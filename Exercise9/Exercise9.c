@@ -2,8 +2,7 @@
 
 int main(void)
 {
-    int secret = 42, tries = 0;
-    int num;
+    int secret = 42, tries = 0, num = 0;
     
     while(num != secret)
     {
@@ -15,7 +14,7 @@ int main(void)
         {
             printf("Too high !\n");
         }
-        else
+        else if(num < secret)
             printf("Too low !\n");
         printf("\n");
     }
