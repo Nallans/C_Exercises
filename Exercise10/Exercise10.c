@@ -1,20 +1,46 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
     int numbers[4] = {};
+    int max = 0, sum = 0;
+    int min;
 
+    system("clear");
     printf("Please give me five positive integers (x x x x x): ");
 
     for(int i = 0; i < 5; i++)
     {
-        scanf("%d", &numbers[i]);
-        printf("%d\n", numbers[i]);
+        if(i == 4)
+        {
+            scanf("%d", &numbers[i]);
+            printf("%d\n", numbers[i]);
+        }
+        else
+        {
+            scanf(" %d", &numbers[i]);
+            printf("%d\n", numbers[i]);
+        }
+        
+        sum += numbers[i];
+        
+        if(numbers[i] > max)
+        {
+            max = numbers[i];
+        }
+        if(numbers[i] < min)
+        {
+            min = numbers[i];
+        }
+    
     }
-
-
-
-
+    printf( "Sum : %d\n"
+            "Average : %.2f\n"
+            "Largest : %d\n"
+            "Smallest : %d\n",
+            sum, (float)sum / 5, max, min);
+        
     return(0);
 }
 
