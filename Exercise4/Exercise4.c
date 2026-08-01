@@ -1,35 +1,3 @@
-/*
-Exercise 4 – Basic Arithmetic
-Goal
-
-Perform calculations.
-
-Task
-
-Ask the user for two integers.
-
-Print:
-
-their sum
-their difference
-their product
-their quotient
-
-Example:
-
-First number: 12
-Second number: 4
-
-Sum: 16
-Difference: 8
-Product: 48
-Quotient: 3
-
-Bonus
-
-What happens if the second number is 0? Prevent your program from crashing by checking before dividing.
-*/
-
 #include <stdio.h>
 
 int main(void)
@@ -100,3 +68,51 @@ void maxmin(int num1, int num2, int num3)
                 "Smallest number : %d\n",
                 num3, num1);
 }
+
+/*
+Exercise 4 – Basic Arithmetic
+Goal
+
+Perform calculations.
+
+Task
+
+Ask the user for two integers.
+
+Print:
+
+their sum
+their difference
+their product
+their quotient
+
+Example:
+
+First number: 12
+Second number: 4
+
+Sum: 16
+Difference: 8
+Product: 48
+Quotient: 3
+
+Bonus
+
+What happens if the second number is 0? Prevent your program from crashing by checking before dividing.
+
+Small challenge 4
+
+Ask the user for three integers and display:
+
+the largest number
+the smallest number
+
+Example:
+
+Numbers: 12 4 9
+
+Largest: 12
+Smallest: 4
+
+Try to solve it with if statements only.
+*/

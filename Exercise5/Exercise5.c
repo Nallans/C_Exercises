@@ -1,30 +1,3 @@
-/*
-Exercise 5 – Even or Odd?
-Goal
-
-Use conditions.
-
-Task
-
-Ask the user for an integer.
-
-Print:
-
-The number is even.
-
-or
-
-The number is odd.
-
-Bonus
-
-Also determine whether it is:
-
-positive
-negative
-zero
-*/
-
 #include <stdio.h>
 
 int main(void)
@@ -73,3 +46,45 @@ void even_or_odd(int number)
     }
     return;
 }
+
+/*
+Exercise 5 – Even or Odd?
+Goal
+
+Use conditions.
+
+Task
+
+Ask the user for an integer.
+
+Print:
+
+The number is even.
+
+or
+
+The number is odd.
+
+Bonus
+
+Also determine whether it is:
+
+positive
+negative
+zero
+
+Small challenge 5
+
+Modify the function so that it also tells whether the number is:
+
+positive
+negative
+zero
+
+For example:
+
+The number is even.
+The number is positive.
+
+Try to keep the logic inside your even_or_odd() function, or create a second function if you want to experiment.
+*/

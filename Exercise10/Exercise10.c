@@ -48,26 +48,6 @@ Ask the user to enter 5 integers.
 
 Then display:
 
-the sum
-the average
-the largest number
-the smallest number
-
-Example:
-
-Enter number 1: 12
-Enter number 2: 4
-Enter number 3: 8
-Enter number 4: 20
-Enter number 5: 6
-
-Sum: 50
-AverExercise 10 — Number Statistics
-
-Ask the user to enter 5 integers.
-
-Then display:
-
     the sum
 
     the average

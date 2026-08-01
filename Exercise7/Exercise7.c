@@ -26,3 +26,33 @@ int main(void)
 
     return(0);
 }
+
+/*
+Exercise 7 — Sum from 1 to N
+
+Ask the user for a positive integer N, then calculate:
+
+1 + 2 + 3 + ... + N
+
+Example:
+
+Enter a number: 5
+The sum is: 15
+
+Use a while loop.
+
+Bonus: Also display the calculation:
+
+1 + 2 + 3 + 4 + 5 = 15
+
+Improvement challenge
+
+Modify the program so that it correctly computes and prints the sum while keeping your nice output formatting.
+
+Example:
+
+Enter a positive integer:
+5
+
+1 + 2 + 3 + 4 + 5 = 15
+*/
