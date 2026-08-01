@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    int numbers[4] = {};
+    int numbers[5] = {};
     int max = 0, sum = 0;
     int min;
 
@@ -12,28 +12,25 @@ int main(void)
 
     for(int i = 0; i < 5; i++)
     {
-        if(i == 4)
-        {
-            scanf("%d", &numbers[i]);
-            printf("%d\n", numbers[i]);
-        }
-        else
-        {
-            scanf(" %d", &numbers[i]);
-            printf("%d\n", numbers[i]);
-        }
+        scanf("%d", &numbers[i]);
         
         sum += numbers[i];
         
-        if(numbers[i] > max)
+        if(numbers[i] > max)        // Searching for max
         {
             max = numbers[i];
         }
-        if(numbers[i] < min)
+        if(i == 0)                  // Initializing min variable
         {
             min = numbers[i];
+        }   
+        else                        // Searching for min
+        {
+            if(numbers[i] < min)
+            {
+                min = numbers[i];
+            }
         }
-    
     }
     printf( "Sum : %d\n"
             "Average : %.2f\n"
