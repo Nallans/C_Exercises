@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    void find_number(int *numbers, int target);
+    bool find_number(int *numbers, int target);
     int numbers[8] = {};
     int target;
 
@@ -16,14 +16,21 @@ int main(void)
     printf("Now give me a number you want to search : ");
     scanf("%d", &target);
 
-    find_number(numbers, target);
+    if(find_number(numbers, target))
+    {
+        printf("Found !\n");
+    }
+    else 
+    {
+        printf("Not found.\n");
+    }
 
     return(0);
 }
 
-void find_number(int *numbers, int target)
+bool find_number(int *numbers, int target)
 {
-    bool isFound = 0;
+    bool isFound = false;
     for(int i = 0; i < 8; i++)
     {
         if(numbers[i] == target)
@@ -32,14 +39,7 @@ void find_number(int *numbers, int target)
         }
     }
 
-    if(isFound == false)
-    {
-        printf("Not found.\n");
-    } 
-    else
-    {
-        printf("Found !\n");
-    }
+    return isFound;
 }
 
 /*
@@ -69,4 +69,8 @@ If it is not found:
 Not found.
 
 Create a function that performs the search.
+
+One improvement challenge :
+
+Make the function **return a `bool`** instead of printing inside the function. Then let `main()` decide what to print.
 */

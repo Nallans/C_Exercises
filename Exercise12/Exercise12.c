@@ -2,9 +2,9 @@
 
 int main(void)
 {
-    void find(int *numbers, int target);
+    int find(int *numbers, int target);
     int numbers[10] = {};
-    int target;
+    int target, count;
 
     printf( "Give me 10 integers please.\n"
             "Numbers : ");
@@ -17,12 +17,14 @@ int main(void)
     printf("Now please give me the number you want to search for : ");
     scanf("%d", &target);
 
-    find(numbers, target);
+    count = find(numbers, target);
+
+    printf("The number %d appears %d times.\n", target, count);
 
     return(0);
 }
 
-void find(int *numbers, int target)
+int find(int *numbers, int target)
 {
     int count = 0;
 
@@ -34,7 +36,7 @@ void find(int *numbers, int target)
         }
     }
 
-    printf("The number %d appears %d times.\n", target, count);
+    return count;
 }
 
 /*
@@ -56,4 +58,8 @@ Target: 2
 The number 2 appears 4 times.
 
 Use a function that returns the count.
+
+One improvement challenge :
+
+Make the function return the number of occurrences as an `int`, and print the result in `main()`.
 */
