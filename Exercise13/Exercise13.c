@@ -2,39 +2,26 @@
 
 int main(void)
 {
-    int* reverse_array(int* numbers);
-    int numbers[6] = {};
+    int numbers[6];
+    int buffer;
 
     printf("Give me 6 integers please : ");
 
     for(int i = 0; i < 6; i++)
     {
         scanf("%d", &numbers[i]);
+        //printf("%d\n", numbers[i]);
     }
 
-    int* numbers = reverse_array(numbers);
-
-    printf("%d\n", numbers[0]);
-    printf("%d\n", numbers[5]);
+    for(int i = 0; i < 6; i++)
+    {
+        buffer = (numbers + i);
+        *(numbers + i) = *(numbers + (5 - i));
+        *(numbers + (5 - i)) = buffer;
+    }
 
     return(0);
 }
-
-int* reverse_array(int* numbers)
-{
-    //int buffer;
-
-    /*for(int i = 0; i < 6; i++)
-    {
-        buffer = numbers[i];
-        numbers[i] = numbers[(5-i)];
-        numbers[-(i+1)] = buffer;
-    }*/
-
-    return numbers;
-}
-
-
 
 /*
 Exercise 13 — Reverse an array

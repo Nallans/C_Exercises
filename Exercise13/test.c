@@ -7,10 +7,9 @@ int main(void)
 
 
     printf("%d\n", numbers[0]);
-    printf("%d\n", numbers[-1]);
+    printf("%d\n", numbers[length - 1]);
 
-    printf("%d\n", *(numbers+1));
-    printf("%d\n", length);
+    printf("%d\n", *(numbers + (length-1)));
 
     return(0);
 }
