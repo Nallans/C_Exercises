@@ -15,8 +15,8 @@ int main(void)
     printf("%d\n", *pnum1); // Printing the value stored in the pointers
     printf("%d\n", *pnum2); // using a dereference operator
 
-    swap(&num1, &num2);     // Using the pointer function with the "address of"
-                            // operator to give them actual pointer addresses
+    swap(&num1, &num2);     // Passing the addresses of the integer to the
+                            // pointer functions
     printf("%d\n", num1);
     printf("%d\n", num2);
 
@@ -27,9 +27,9 @@ void swap(int* num1, int* num2) // Using two pointers as arguments
 {
     int buffer;
     
-    buffer = *num1;     // Dereferencing pointers
-    *num1 = *num2;      // to access and change
-    *num2 = buffer;     // their assigned value
+    buffer = *num1;     // Dereferencing pointers to access and modify
+    *num1 = *num2;      // the values stored at the addresses they
+    *num2 = buffer;     // point to.
 }
 
 /*
