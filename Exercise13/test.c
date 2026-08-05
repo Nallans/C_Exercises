@@ -2,18 +2,21 @@
 
 int main(void)
 {
-    int numbers[6] = {1,2,3,4,5,6};
-    int length = sizeof(numbers)/sizeof(numbers[0]);
-
-
-    printf("%d\n", numbers[0]);
-    printf("%d\n", numbers[length - 1]);
-
-    printf("%d\n", *(numbers + (length-1)));
+    int num1 = 10, num2 = 24;
+    int *pnum1 = &num1, *pnum2 = &num2;
+    
+    printf("%d\n", num1);   // Printing the value stored in num1
+    printf("%d\n", num2);   // Printing the value stored in num2   
+    printf("%p\n", &num1);  // Printing address of num1
+    printf("%p\n", &num2);  // Printing address of num2
+    printf("%p\n", pnum1);  // Printing address of num1 using a pointer variable
+    printf("%p\n", pnum2);  // Printing address of num2 using a pointer variable
+    printf("%d\n", *pnum1); // Printing the value stored in the pointers
+    printf("%d\n", *pnum2); // using a dereference operator
 
     return(0);
 }
 
 /*
-A test file to try using pointers, see how they work, try to access array indexes.
+A test file to try using pointers, see how they work.
 */
