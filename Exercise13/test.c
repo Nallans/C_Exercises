@@ -3,7 +3,8 @@
 int main(void)
 {
     int num1 = 10, num2 = 24;
-    int *pnum1 = &num1, *pnum2 = &num2;
+    int *pnum1 = &num1, *pnum2 = &num2;     // Declaring pointers
+    void swap(int* num1, int* num2);        // Declaring pointer function
     
     printf("%d\n", num1);   // Printing the value stored in num1
     printf("%d\n", num2);   // Printing the value stored in num2   
@@ -14,7 +15,21 @@ int main(void)
     printf("%d\n", *pnum1); // Printing the value stored in the pointers
     printf("%d\n", *pnum2); // using a dereference operator
 
+    swap(&num1, &num2);     // Using the pointer function with the "address of"
+                            // operator to give them actual pointer addresses
+    printf("%d\n", num1);
+    printf("%d\n", num2);
+
     return(0);
+}
+
+void swap(int* num1, int* num2) // Using two pointers as arguments
+{
+    int buffer;
+    
+    buffer = *num1;     // Dereferencing pointers
+    *num1 = *num2;      // to access and change
+    *num2 = buffer;     // their assigned value
 }
 
 /*
