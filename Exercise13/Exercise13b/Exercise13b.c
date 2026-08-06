@@ -1,14 +1,20 @@
 #include <stdio.h>
 
+void display(int* numbers);
+void swap(int* numbers, int target1, int target2);
+
 int main(void)
 {
     int numbers[5] ={1,2,3,4,5};
-    void display(int* numbers);
-    void swap(int* numbers);
+    int target1, target2;
 
     display(numbers);
+    printf( "\n"
+            "Please give me two numbers you want to swap "
+            "(between 1 and 5) : ");
+    scanf("%d %d", &target1, &target2);
 
-    swap(numbers);
+    swap(numbers, target1, target2);
 
     printf("\n");
     display(numbers);
@@ -22,17 +28,17 @@ void display(int* numbers)
 {
     for(int i = 0; i < 5; i++)
     {
-        printf("%d", numbers[i]);
+        printf("%d ", numbers[i]);
     }
 }
 
-void swap(int* numbers)
+void swap(int* numbers, int target1, int target2)
 {
     int buffer;
 
-    buffer = numbers[0];
-    numbers[0] = numbers[4];
-    numbers[4] = buffer;
+    buffer = numbers[target1 - 1];
+    numbers[target1 - 1] = numbers[target2 - 1];
+    numbers[target2 - 1] = buffer;
 }
 /*
 Exercise 13.2 — Swap two elements in an array
@@ -54,4 +60,6 @@ After:
 5 2 3 4 1
 
 Focus: accessing array elements through indices.
+
+One tiny improvement challenge (the only one): modify swap() so that it receives the two indices to swap. That will naturally prepare you for 13c.
 */
