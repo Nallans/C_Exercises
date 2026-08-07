@@ -15,8 +15,10 @@ int main(void)
 
     printf("Original array : ");
     display(numbers, length);
+
     reverse(numbers, length);
     printf("\n");
+    
     printf("Reversed array : ");
     display(numbers, length);
     printf("\n");
