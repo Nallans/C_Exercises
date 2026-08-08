@@ -48,7 +48,11 @@ void largests(int* numbers, int* num1, int* num2)
         {
             *num1 = numbers[i];
         }
-        if((numbers[i] < *num1) && (numbers[i] > *num2))
+        if(i == 0)
+        {
+            *num2 = numbers[i];
+        }
+        else if((numbers[i] < *num1) && (numbers[i] > *num2))
             {
                 *num2 = numbers[i];
             }
@@ -73,4 +77,6 @@ Numbers:
 
 Largest: 20
 Second largest: 19
+
+Try to solve it in one traversal of the array.
 */
