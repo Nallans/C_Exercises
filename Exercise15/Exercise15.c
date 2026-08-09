@@ -2,15 +2,30 @@
 
 void display(int* numbers);
 void allocate(int * numbers);
+void sum(int* numbers, int* total);
+void average(int* total, int* medium);
+void maximum(int* numbers, int* max);
+void minimum(int* numbers, int* min);
 
 int main(void)
 {
     int numbers[10];
+    int max, min, total, medium;
 
     allocate(numbers);
     printf("Numbers :\n");
     display(numbers);
     printf("\n");
+    sum(numbers, &total);
+    printf("Sum = %d\n", total);
+    average(&total, &medium);
+    printf("Average = %d\n", medium);
+    maximum(numbers, &max);
+    minimum(numbers, &min);
+    printf( "Maximum : %d\n"
+            "Minimum : %d\n",
+        max, min);
+
 
     return(0);
 }
@@ -30,6 +45,45 @@ void allocate(int* numbers)
     for(int i = 0; i < 10; i++)
     {
         scanf("%d", &numbers[i]);
+    }
+}
+
+void sum(int* numbers, int* total)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        *total += numbers[i];
+    }
+}
+
+void average(int* total, int* medium)
+{
+    *medium = *total / 10;
+}
+
+void maximum(int* numbers, int* max)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        if(numbers[i] > *max)
+        {
+            *max = numbers[i];
+        }
+    }
+}
+
+void minimum(int* numbers, int* min)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        if(i == 0)
+        {
+            *min = numbers[0];
+        }
+        else if(numbers[i] < *min)
+        {
+            *min = numbers[i];
+        }
     }
 }
 
