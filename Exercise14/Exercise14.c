@@ -7,7 +7,7 @@ void largests(int* numbers, int* num1, int* num2);
 int main(void)
 {
     int numbers[8];
-    int num1, num2;
+    int num1 = 0, num2 = 0;
 
     allocate(numbers);
 
@@ -46,16 +46,13 @@ void largests(int* numbers, int* num1, int* num2)
     {
         if(numbers[i] > *num1)
         {
+            *num2 = *num1;
             *num1 = numbers[i];
         }
-        if(i == 0)
+        else if((numbers[i] < *num1) && (numbers[i] > *num2))
         {
             *num2 = numbers[i];
         }
-        else if((numbers[i] < *num1) && (numbers[i] > *num2))
-            {
-                *num2 = numbers[i];
-            }
     }
 }
 
