@@ -6,26 +6,14 @@ void sum(int* numbers, int* total);
 void average(int* total, int* medium);
 void maximum(int* numbers, int* max);
 void minimum(int* numbers, int* min);
+void process(int* numbers, int total, int medium, int max, int min);
 
 int main(void)
 {
     int numbers[10];
-    int max, min, total, medium;
+    int max = 0, min = 0, total = 0, medium = 0;
 
-    allocate(numbers);
-    printf("Numbers :\n");
-    display(numbers);
-    printf("\n");
-    sum(numbers, &total);
-    printf("Sum = %d\n", total);
-    average(&total, &medium);
-    printf("Average = %d\n", medium);
-    maximum(numbers, &max);
-    minimum(numbers, &min);
-    printf( "Maximum : %d\n"
-            "Minimum : %d\n",
-        max, min);
-
+    process(numbers, total, medium, max, min);
 
     return(0);
 }
@@ -85,6 +73,23 @@ void minimum(int* numbers, int* min)
             *min = numbers[i];
         }
     }
+}
+
+void process(int* numbers, int total, int medium, int max, int min)
+{
+    allocate(numbers);
+    printf("Numbers = ");
+    display(numbers);
+    printf("\n");
+    sum(numbers, &total);
+    average(&total, &medium);
+    maximum(numbers, &max);
+    minimum(numbers, &min);
+    printf( "Total = %d\n"
+            "Average = %d\n"
+            "Maximum = %d\n"
+            "Minimum = %d\n",
+        total, medium, max, min);
 }
 
 /*
