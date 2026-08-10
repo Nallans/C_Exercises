@@ -5,7 +5,7 @@ int length(char* word);
 
 int main(void)
 {
-    char word[] = "";
+    char word[100] = ""; // Need to have a fixed size to avoid memory overflow.
     int size = 0;
 
 
@@ -31,5 +31,6 @@ int length(char* word)
 void get_word(char* word)
 {
     printf("Enter a word : ");
-    scanf("%s", word);
+    scanf("%99s", word);    // Fixing the size for all characters plus terminating
+                            // character '\0' avoids overflow as well
 }
