@@ -29,8 +29,10 @@ int count_vowels(char* word, int vowels)
 
     while(word[i] != '\0')
     {
-        if( word[i] == 97 || word[i] == 101 || word[i] == 105 ||
-            word[i] == 111 || word[i] == 117)
+        if( word[i] == 65 || word[i] == 69 || word[i] == 73 ||
+            word[i] == 79 || word[i] == 85 || word[i] == 89 || // A,E,I,O,U,Y
+            word[i] == 97 || word[i] == 101 || word[i] == 105 ||
+            word[i] == 111 || word[i] == 117 || word[i] == 121) // a,e,i,o,u,y
         {
             vowels++;
         }
