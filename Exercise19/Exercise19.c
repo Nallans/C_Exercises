@@ -27,7 +27,7 @@ int main(void)
 
 void get_word(char* word)
 {
-    scanf("%s", word);
+    scanf("%29s", word);
 }
 
 bool is_identical(char* word1, char* word2)
@@ -35,7 +35,7 @@ bool is_identical(char* word1, char* word2)
     bool identical = true;
     int count = 0;
 
-    while(word1[count] != 0 || word2[count] != 0)
+    while(word1[count] != '\0' || word2[count] != '\0')
     {
         if(word1[count] != word2[count])
         {
