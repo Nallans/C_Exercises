@@ -39,7 +39,7 @@ void copy_word(char* word1, char* word2, int length)
 {
     int counter = 0;
 
-    while(counter < length)
+    while(counter <= length) // Access and copy '\0' to end the string properly
     {
         word2[counter] = word1[counter];
         counter++;
@@ -62,4 +62,8 @@ Create a second character array and copy the contents manually.
 Do not use strcpy().
 
 Focus: traversing one string while writing into another.
+
+One improvement challenge
+
+Modify copy_word() so that the destination string is always a valid C string, even when the source is empty ("").
 */
