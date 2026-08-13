@@ -12,9 +12,11 @@ int main(void)
     printf("First word : ");
     get_word(word1);
     length1 = get_length(word1);
+
     printf("Second word : ");
     get_word(word2);
     length2 = get_length(word2);
+    
     concatenate(word1, word2, length1, length2);
     printf("Result : %s\n", word1);
     
