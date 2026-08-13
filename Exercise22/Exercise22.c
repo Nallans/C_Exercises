@@ -18,8 +18,6 @@ int main(void)
     concatenate(word1, word2, length1, length2);
     printf("Result : %s\n", word1);
     
-
-
     return(0);
 }
 
