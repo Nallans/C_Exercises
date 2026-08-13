@@ -44,7 +44,7 @@ void concatenate(char* word1, char* word2, int length1, int length2)
 {
     int count1 = length1, count2 = 0;
 
-    while(word1[count1] <= word1[length1 + length2])
+    while(count1 <= length1 + length2)
     {
         word1[count1] = word2[count2];
         count1++;
