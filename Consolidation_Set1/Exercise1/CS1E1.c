@@ -30,7 +30,7 @@ int main(void)
 void get_word(char* word)
 {
     printf("Word : ");
-    scanf("%s", word);
+    scanf("%29s", word);
 }
 
 void get_letter(char* letter)
