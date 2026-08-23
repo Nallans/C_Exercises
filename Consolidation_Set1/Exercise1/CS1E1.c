@@ -56,7 +56,7 @@ int count_letter(char* word, char letter)
 }
 
 /*
-Exercise 25 — Character counter
+CS1E1 — Character counter
 
 Write a program that:
 

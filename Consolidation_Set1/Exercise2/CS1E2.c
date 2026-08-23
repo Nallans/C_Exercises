@@ -43,7 +43,7 @@ void remove_vowels(char* word)
 }
 
 /*
-Exercise 26 — Remove all vowels
+CS1E2 — Remove all vowels
 
 Ask the user for a word and remove every vowel from it.
 
