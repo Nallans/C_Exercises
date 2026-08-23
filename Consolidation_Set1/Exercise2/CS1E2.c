@@ -17,7 +17,7 @@ int main(void)
 void get_word(char* word)
 {
     printf("Original word : ");
-    scanf("%s", word);
+    scanf("%29s", word);
 }
 
 void remove_vowels(char* word)
