@@ -1,27 +1,26 @@
 #include <stdio.h>
+#include <stdbool.h> 
 
 void get_word(char* word);
 void get_letter(char* letter);
-int first_occurence(char* word, char letter);
+bool first_occurrence(char* word, char letter, int* index);
 
 int main(void)
 {
     char word[30];
     char letter = 'a';
-    int count = 0;
+    int index = 0;
 
     get_word(word);
     get_letter(&letter);
 
-    count = first_occurence(word, letter);
-    
-    if(count == 0)
+    if(first_occurrence(word, letter, &index))
     {
-        printf("Sorry, the letter %c is not in this word :'(\n", letter);
+        printf("First occurence : index %d\n", index);
     }
     else
     {
-        printf("First occurence : index %d\n", count);
+        printf("Sorry, the letter %c is not in this word :'(\n", letter);
     }
 
     return(0);
@@ -39,20 +38,19 @@ void get_letter(char* letter)
     scanf(" %c", letter);
 }
 
-int first_occurence(char* word, char letter)
+bool first_occurrence(char* word, char letter, int* index)
 {
-    int count = 0;
+    bool is_present = false;
 
-    while(word[count] != '\0')
+    while(word[*index] != '\0')
     {
-        if(word[count] == letter)
+        if(word[*index] == letter)
         {
-            return count;
-            break;
+            return is_present = true;
         }
-        count++;
+        (*index)++;
     }
-    return(0);
+    return(is_present);
 }
 
 /*
