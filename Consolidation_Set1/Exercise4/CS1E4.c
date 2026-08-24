@@ -28,7 +28,7 @@ int main(void)
 
 void get_word(char* word)
 {
-    scanf("%s", word);
+    scanf("%29s", word);
 }
 
 int get_length(char* word)
@@ -40,7 +40,7 @@ int get_length(char* word)
         counter++;
     }
 
-    return counter ++;
+    return counter;
 }
 
 void compare_lengths(int length1, int length2, char* word1, char* word2)
