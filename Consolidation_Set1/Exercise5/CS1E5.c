@@ -30,20 +30,21 @@ int compare_words(char* word1, char* word2)
 {
     int count = 0;
 
-    while(word1[count] == word2[count])
+    while(word1[count] != '\0' || word2[count] != '\0')
     {
         printf(" %c %c |",word1[count], word2[count]);
+
+        if(word1[count] < word2[count])
+        {
+            return(-1);
+        }
+        else if(word1[count] > word2[count])
+        {
+            return(1);
+        }
         count++;
     }
-    if(word1[count] < word2[count])
-    {
-        return(-1);
-    }
-    else if(word1[count] > word2[count])
-    {
-        return(1);
-    }
-    else return(0);
+    return(0);
 }
 
 /*
