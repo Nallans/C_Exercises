@@ -13,8 +13,6 @@ int main(void)
     printf("Word2 : ");
     get_word(word2);
 
-    printf("Word 1 is %s, word 2 is %s\n", word1, word2);
-
     result = compare_words(word1, word2);
     printf("Result : %d\n", result);
 
@@ -32,8 +30,6 @@ int compare_words(char* word1, char* word2)
 
     while(word1[count] != '\0' || word2[count] != '\0')
     {
-        printf(" %c %c |",word1[count], word2[count]);
-
         if(word1[count] < word2[count])
         {
             return(-1);
