@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void get_word(char* word);
-void indexes(char* word);
+void display_indexes(char* word);
 void count_occurences(char* word);
 
 int main(void)
@@ -9,10 +9,9 @@ int main(void)
     char word[30];
 
     get_word(word);
-    printf("The word is \"%s\"\n", word);
-    indexes(word);
+    display_indexes(word);
+    printf("\n");
     count_occurences(word);
-    printf("New word : %s\n", word);
 
     return(0);
 }
@@ -23,7 +22,7 @@ void get_word(char* word)
     scanf("%29s", word);
 }
 
-void indexes(char* word)
+void display_indexes(char* word)
 {
     int count = 0;
 
@@ -36,28 +35,33 @@ void indexes(char* word)
 
 void count_occurences(char* word)
 {
-    int count1 = 0, count2 = 0, count3 = 0, letter_count = 1;
+    int count1 = 0, count2 = 0, count3 = 0;
 
     while(word[count1] != '\0')
     {
-        letter_count = 1;
+        printf("Character %c appears at indexes %d", word[count1], count1);
         count2 = count1 + 1;
         while(word[count2] != '\0')
         {
             while(word[count2] == word[count1])
             {
-                letter_count++;
                 count3 = count2;
                 while(word[count3] != '\0')
                 {
+                    if(word[count3] == word[count1])
+                    {
+                        printf(" %d", count3);
+                    }
                     word[count3] = word[count3 + 1];
                     count3++;
                 }
             }
             count2++;
         }
+        printf("\n");
         count1++;
     }
+
 }
 
 /*
