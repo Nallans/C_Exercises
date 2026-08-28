@@ -43,12 +43,16 @@ void count_occurences(char* word)
         count2 = count1 + 1;
         while(word[count2] != '\0')
         {
-            while(word[count2] == word[count1])
+            while(  word[count2] == word[count1] || 
+                    word[count2] == word[count1] + 32 ||
+                    word[count2] == word[count1] - 32)
             {
                 count3 = count2;
                 while(word[count3] != '\0')
                 {
-                    if(word[count3] == word[count1])
+                    if( word[count3] == word[count1] ||
+                        word[count3] == word[count1] +32 ||
+                        word[count3] == word[count1] - 32)
                     {
                         printf(" %d", count3);
                     }
