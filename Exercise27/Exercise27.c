@@ -2,8 +2,9 @@
 
 void get_word(char* word);
 void display_indexes(char* word);
-void count_occurences(char* word);
+void truncate_word(char* word);
 void string_copy(char* word, char* word2);
+void count_occurences(char* word, char* word2);
 
 int main(void)
 {
@@ -12,9 +13,13 @@ int main(void)
     get_word(word);
     string_copy(word, word2);
     printf("Word 1 : %s, word 2 %s\n", word, word2);
+
     display_indexes(word);
     printf("\n");
-    count_occurences(word);
+
+    truncate_word(word);
+    printf("Word 1 : %s, word 2 %s\n", word, word2);
+    count_occurences(word, word2);
 
     return(0);
 }
@@ -36,13 +41,12 @@ void display_indexes(char* word)
     }
 }
 
-void count_occurences(char* word)
+void truncate_word(char* word)
 {
     int count1 = 0, count2 = 0, count3 = 0;
 
     while(word[count1] != '\0')
     {
-        printf("Character %c appears at indexes %d", word[count1], count1);
         count2 = count1 + 1;
         while(word[count2] != '\0')
         {
@@ -53,19 +57,12 @@ void count_occurences(char* word)
                 count3 = count2;
                 while(word[count3] != '\0')
                 {
-                    if( word[count3] == word[count1] ||
-                        word[count3] == word[count1] +32 ||
-                        word[count3] == word[count1] - 32)
-                    {
-                        printf(" %d", count3);
-                    }
                     word[count3] = word[count3 + 1];
                     count3++;
                 }
             }
             count2++;
         }
-        printf("\n");
         count1++;
     }
 
@@ -73,14 +70,34 @@ void count_occurences(char* word)
 
 void string_copy(char* word, char* word2)
 {
-    int counter = 0;
+    int count = 0;
 
-    while(word[counter] != '\0')
+    while(word[count] != '\0')
     {
-        word2[counter] = word[counter];
-        counter++;
+        word2[count] = word[count];
+        count++;
     }
-    word2[counter] = '\0';
+    word2[count] = '\0';
+}
+
+void count_occurences(char* word, char* word2)
+{
+    int count = 0, count2 = 0;
+
+    while(word[count] != '\0')
+    {
+        printf("Character \'%c\' appears at indexes :", word[count]);
+        while(word2[count2] != '\0')
+        {
+            if(word2[count2] == word[count])
+            {
+                printf(" %d", count2);
+            }
+            count2++;
+        }
+        printf("\n");
+        count++;
+    }
 }
 
 /*
