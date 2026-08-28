@@ -3,12 +3,15 @@
 void get_word(char* word);
 void display_indexes(char* word);
 void count_occurences(char* word);
+void string_copy(char* word, char* word2);
 
 int main(void)
 {
-    char word[30];
+    char word[30], word2[30];
 
     get_word(word);
+    string_copy(word, word2);
+    printf("Word 1 : %s, word 2 %s\n", word, word2);
     display_indexes(word);
     printf("\n");
     count_occurences(word);
@@ -66,6 +69,18 @@ void count_occurences(char* word)
         count1++;
     }
 
+}
+
+void string_copy(char* word, char* word2)
+{
+    int counter = 0;
+
+    while(word[counter] != '\0')
+    {
+        word2[counter] = word[counter];
+        counter++;
+    }
+    word2[counter] = '\0';
 }
 
 /*
