@@ -12,13 +12,12 @@ int main(void)
 
     get_word(word);
     string_copy(word, word2);
-    printf("Word 1 : %s, word 2 %s\n", word, word2);
+    printf("\n");
 
     display_indexes(word);
     printf("\n");
 
     truncate_word(word);
-    printf("Word 1 : %s, word 2 %s\n", word, word2);
     count_occurences(word, word2);
 
     return(0);
@@ -87,6 +86,7 @@ void count_occurences(char* word, char* word2)
     while(word[count] != '\0')
     {
         printf("Character \'%c\' appears at indexes :", word[count]);
+        count2 = count;
         while(word2[count2] != '\0')
         {
             if(word2[count2] == word[count])
