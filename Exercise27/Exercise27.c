@@ -89,7 +89,9 @@ void count_occurences(char* word, char* word2)
         count2 = count;
         while(word2[count2] != '\0')
         {
-            if(word2[count2] == word[count])
+            if( word2[count2] == word[count] ||
+                word2[count2] == word[count] + 32 ||
+                word2[count2] == word[count] - 32)
             {
                 printf(" %d", count2);
             }
