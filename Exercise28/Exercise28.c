@@ -2,6 +2,7 @@
 
 void get_word(char* word);
 void count_occurrences(char* word, int* occurrences);
+void most_frequent(char* word, int* occurrences);
 
 int main(void)
 {
@@ -12,6 +13,7 @@ int main(void)
     printf("The word is %s\n", word);
     count_occurrences(word, occurrences);
     printf("The new word is %s\n", word);
+    most_frequent(word, occurrences);
 
     return(0);
 }
@@ -48,6 +50,25 @@ void count_occurrences(char* word, int* occurrences)
         printf("Occurences for %c : %d\n", word[count1], occurrences[count1]);
         count1++;
     }
+}
+
+void most_frequent(char* word, int* occurrences)
+{
+    int count1 = 0, index = 0, letter_count = 0;
+
+    while(word[count1] != '\0')
+    {
+        if(occurrences[count1] > letter_count)
+        {
+            index = count1;
+            letter_count = occurrences[count1];
+        }
+        count1++;
+    }
+
+    printf( "Most frequent character : %c\n"
+            "Occurrences : %d\n",
+            word[index], occurrences[index]);
 }
 
 /*
