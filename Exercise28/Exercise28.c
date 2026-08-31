@@ -10,9 +10,7 @@ int main(void)
     int occurrences[30];
 
     get_word(word);
-    printf("The word is %s\n", word);
     count_occurrences(word, occurrences);
-    printf("The new word is %s\n", word);
     most_frequent(word, occurrences);
 
     return(0);
@@ -34,7 +32,9 @@ void count_occurrences(char* word, int* occurrences)
         letter_count = 1;
         while(word[count2] != '\0')
         {
-            while(word[count2] == word[count1])
+            while(  word[count2] == word[count1] ||
+                    word[count2] == word[count1] - 32 ||
+                    word[count2] == word[count1] + 32)
             {
                 count3 = count2;
                 letter_count++;
@@ -47,7 +47,6 @@ void count_occurrences(char* word, int* occurrences)
             count2++;
         }
         occurrences[count1] = letter_count;
-        printf("Occurences for %c : %d\n", word[count1], occurrences[count1]);
         count1++;
     }
 }
