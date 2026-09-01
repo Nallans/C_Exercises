@@ -4,6 +4,7 @@ void get_word(char* word);
 int get_length(char* word);
 void consonants_vowels(char* word, char* vowels);
 void string_copy(char* word, char* word2);
+void truncate_word(char* word);
 
 int main(void)
 {
@@ -20,6 +21,9 @@ int main(void)
     consonants_vowels(word, vowels);
     string_copy(word, word2);
     printf("Copied word : %s\n", word2);
+
+    truncate_word(word);
+    printf("Truncated word : %s\n", word);
 
     return(0);
 }
@@ -80,6 +84,30 @@ void string_copy(char* word, char* word2)
         count++;
     }
     word2[count] = '\0';
+}
+
+void truncate_word(char* word)
+{
+    int count1 = 0, count2 = 0, count3 = 0;
+
+    while(word[count1] != '\0')
+    {
+        count2 = count1 + 1;
+        while(word[count2] != '\0')
+        {
+            while(word[count2] == word[count1])
+            {
+                count3 = count2;
+                while(word[count3] != '\0')
+                {
+                    word[count3] = word[count3 + 1];
+                    count3++;
+                }
+            }
+            count2++;
+        }
+        count1++;
+    }
 }
 
 /*
