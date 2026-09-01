@@ -5,11 +5,13 @@ int get_length(char* word);
 void consonants_vowels(char* word, char* vowels);
 void string_copy(char* word, char* word2);
 void truncate_word(char* word);
+void count_occurrences(char* word, char* word2, int* indexes);
 
 int main(void)
 {
     char word[30], word2[30];
     char vowels[] = {'a','e','i','o','u','y','A','E','I','O','U','Y','\0'};
+    int indexes[30];
     int length = 0;
 
     get_word(word);
@@ -24,6 +26,7 @@ int main(void)
 
     truncate_word(word);
     printf("Truncated word : %s\n", word);
+    count_occurrences(word, word2, indexes);
 
     return(0);
 }
@@ -106,6 +109,28 @@ void truncate_word(char* word)
             }
             count2++;
         }
+        count1++;
+    }
+}
+
+void count_occurrences(char* word, char* word2, int* indexes)
+{
+    int count1 = 0, count2 = 0, letter_count;
+
+    while(word[count1] != '\0')
+    {
+        count2 = count1;
+        letter_count = 0;
+        while(word2[count2] != '\0')
+        {
+            if(word2[count2] == word[count1])
+            {
+                letter_count++;
+            }
+            count2++;
+        }
+        indexes[count1] = letter_count;
+        printf("%c : %d\n", word[count1], indexes[count1]);
         count1++;
     }
 }
