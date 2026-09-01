@@ -6,6 +6,7 @@ void consonants_vowels(char* word, char* vowels);
 void string_copy(char* word, char* word2);
 void truncate_word(char* word);
 void count_occurrences(char* word, char* word2, int* indexes);
+void get_most_frequent(char* word, int* indexes);
 
 int main(void)
 {
@@ -15,25 +16,21 @@ int main(void)
     int length = 0;
 
     get_word(word);
-    printf("Original word : %s\n", word);
-
     length = get_length(word);
     printf("Length : %d\n", length);
 
     consonants_vowels(word, vowels);
     string_copy(word, word2);
-    printf("Copied word : %s\n", word2);
-
     truncate_word(word);
-    printf("Truncated word : %s\n", word);
     count_occurrences(word, word2, indexes);
+    get_most_frequent(word, indexes);
 
     return(0);
 }
 
 void get_word(char* word)
 {
-    printf("Word : ");
+    printf("Original word : ");
     scanf("%29s", word);
 }
 
@@ -130,9 +127,24 @@ void count_occurrences(char* word, char* word2, int* indexes)
             count2++;
         }
         indexes[count1] = letter_count;
-        printf("%c : %d\n", word[count1], indexes[count1]);
         count1++;
     }
+}
+
+void get_most_frequent(char* word, int* indexes)
+{
+    int count = 0, letter_count = 0, index = 0;
+
+    while(word[count] != '\0')
+    {
+        if(indexes[count] > letter_count)
+        {
+            letter_count = indexes[count];
+            index = count;
+        }
+        count++;
+    }
+    printf("Most frequent character : %c\n", word[index]);
 }
 
 /*
