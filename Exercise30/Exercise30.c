@@ -1,3 +1,71 @@
+#include <stdio.h>
+
+void get_word(char* word);
+int get_length(char* word);
+void consonants_vowels(char* word, char* vowels);
+
+int main(void)
+{
+    char word[30];
+    char vowels[] = {'a','e','i','o','u','y','A','E','I','O','U','Y','\0'};
+    int length = 0;
+
+    get_word(word);
+    printf("Original word : %s\n", word);
+
+    length = get_length(word);
+    printf("Length : %d\n", length);
+
+    consonants_vowels(word, vowels);
+
+    return(0);
+}
+
+void get_word(char* word)
+{
+    printf("Word : ");
+    scanf("%29s", word);
+}
+
+int get_length(char* word)
+{
+    int count = 0;
+
+    while(word[count] != '\0')
+    {
+        count++;
+    }
+    return count;
+}
+
+void consonants_vowels(char* word, char* vowels)
+{
+    int count = 0, count2 = 0, count_vowels = 0, count_consonants = 0, add_vowel;
+
+    while(word[count] != '\0')
+    {
+        add_vowel = 0;
+        count2 = 0;
+        while(vowels[count2] != '\0')
+        {
+            if(word[count] == vowels[count2])
+            {
+                count_vowels++;
+                add_vowel++;
+                break;
+            }
+            count2++;
+        }
+        if(add_vowel == 0)
+        {
+            count_consonants++;
+        }
+        count++;
+    }
+    printf( "Vowels : %d\n"
+            "Consonants : %d\n", count_vowels, count_consonants);
+}
+
 /*
 Exercise 30 — A small text processor
 
