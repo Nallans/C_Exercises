@@ -9,6 +9,7 @@ void truncate_word(char* word);
 void count_occurrences(char* word, char* word2, int* indexes);
 void get_most_frequent(char* word, int* indexes);
 void reverse_copy(char* word2, char* word3, int length);
+void is_palindrome(char* word2, char* word3);
 
 int main(void)
 {
@@ -22,13 +23,15 @@ int main(void)
     printf("Length : %d\n", length);
 
     consonants_vowels(word, vowels);
+
     string_copy(word, word2);
     truncate_word(word);
+
     count_occurrences(word, word2, indexes);
     get_most_frequent(word, indexes);
-    printf( "Word : %s\n"
-            "Copied word : %s\n", word, word2);
+    
     reverse_copy(word2, word3, length);
+    is_palindrome(word2, word3);
 
     return(0);
 }
@@ -163,6 +166,29 @@ void reverse_copy(char* word2, char* word3, int length)
     }
     word3[length] = '\0';
     printf("Reversed : %s\n", word3);
+}
+
+void is_palindrome(char* word2, char* word3)
+{
+    int count = 0;
+    bool palindrome = true;
+
+    while(word2[count] != '\0')
+    {
+        if(word2[count] != word3[count])
+        {
+            palindrome = false;
+        }
+        count++;
+    }
+    if(palindrome)
+    {
+        printf("Palindrome : Yes\n");
+    }
+    else
+    {
+        printf("Palindrome : No\n");
+    }
 }
 
 /*
