@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 void get_word(char* word);
 int get_length(char* word);
@@ -7,10 +8,11 @@ void string_copy(char* word, char* word2);
 void truncate_word(char* word);
 void count_occurrences(char* word, char* word2, int* indexes);
 void get_most_frequent(char* word, int* indexes);
+void reverse_copy(char* word2, char* word3, int length);
 
 int main(void)
 {
-    char word[30], word2[30];
+    char word[30], word2[30], word3[30];
     char vowels[] = {'a','e','i','o','u','y','A','E','I','O','U','Y','\0'};
     int indexes[30];
     int length = 0;
@@ -24,6 +26,9 @@ int main(void)
     truncate_word(word);
     count_occurrences(word, word2, indexes);
     get_most_frequent(word, indexes);
+    printf( "Word : %s\n"
+            "Copied word : %s\n", word, word2);
+    reverse_copy(word2, word3, length);
 
     return(0);
 }
@@ -145,6 +150,19 @@ void get_most_frequent(char* word, int* indexes)
         count++;
     }
     printf("Most frequent character : %c\n", word[index]);
+}
+
+void reverse_copy(char* word2, char* word3, int length)
+{
+    int count = 0, end = length - 1;
+
+    while(word2[count] != '\0')
+    {
+        word3[end - count] = word2[count];
+        count++; 
+    }
+    word3[length] = '\0';
+    printf("Reversed : %s\n", word3);
 }
 
 /*
