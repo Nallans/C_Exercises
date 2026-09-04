@@ -1,3 +1,35 @@
+#include <stdio.h>
+
+void string_copy(char* word, char* word2);
+//void get_name_age(char* name, int* age);
+
+int main(void)
+{
+    struct People
+    {
+       char name[20];
+       int age; 
+    };
+
+    struct People person1, person2, person3, person4, person5;
+
+    
+
+    return(0);
+}
+
+void string_copy(char* word, char* word2)
+{
+    int count = 0;
+
+    while(word[count] != '\0')
+    {
+        word2[count] = word[count];
+        count++;
+    }
+    word2[count] = '\0';
+}
+
 /*
 Exercise 32 — Multiple Structures
 
