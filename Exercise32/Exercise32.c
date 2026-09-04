@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void string_copy(char* word, char* word2);
-//void get_name_age(char* name, int* age);
+void get_name_age(char* name, int* age);
 
 int main(void)
 {
@@ -12,8 +12,6 @@ int main(void)
     };
 
     struct People person1, person2, person3, person4, person5;
-
-    
 
     return(0);
 }
@@ -28,6 +26,19 @@ void string_copy(char* word, char* word2)
         count++;
     }
     word2[count] = '\0';
+}
+
+void get_name_age(char* name, int* age)
+{
+    int count = 1;
+
+    while(count < 6)
+    {
+        printf("Name of person n° %d : ", count);
+        scanf("%s", name);
+        printf("Age of person n° %d : ", count);
+        scanf("%d", age);
+    }
 }
 
 /*
