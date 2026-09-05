@@ -38,9 +38,9 @@ void get_name_age(struct People* person)
 
     while(count < 5)
     {
-        printf("Name of person n° %d : ", count);
+        printf("Name of person n° %d : ", count + 1);
         scanf("%19s", person[count].name);
-        printf("Age of person n° %d : ", count);
+        printf("Age of person n° %d : ", count + 1);
         scanf("%d", &person[count].age);
         count++;
     }
