@@ -6,7 +6,6 @@ struct People
     int age;
 };
 
-void string_copy(char* word, char* word2);
 void get_name_age(struct People* person);
 void display(struct People* person);
 
@@ -18,18 +17,6 @@ int main(void)
     display(person);
 
     return(0);
-}
-
-void string_copy(char* word, char* word2)
-{
-    int count = 0;
-
-    while(word[count] != '\0')
-    {
-        word2[count] = word[count];
-        count++;
-    }
-    word2[count] = '\0';
 }
 
 void get_name_age(struct People* person)
