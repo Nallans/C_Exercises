@@ -24,6 +24,7 @@ int main(void)
     }
 
     get_name(user_name);
+    printf("You are looking for %s.\n", user_name);
     find_person(user_name, person);
 
     return(0);
