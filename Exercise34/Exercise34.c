@@ -38,19 +38,22 @@ void get_name(char* user_name)
 
 void find_person(char* user_name, struct People* person)
 {
-    bool found = false;
+    int count = 0;
+    
 
     for(int i = 0; i < 5; i++)
     {
-        if(person[i].name == user_name)
+        while(person[i].name[count] != '\0')
         {
-            found = true;
-            printf("The person is %s, age %d\n", person[i].name, person[i].age);
+            if(person[i].name[count] != user_name[count])
+            {
+                printf( "Informations :\n"
+                        "Name : %s\n"
+                        "Age : %d\n",
+                person[i].name, person[i].age);
+            }
+            count++;
         }
-    }
-    if(found == false)
-    {
-        printf("This person doesn't exist.\n");
     }
 }
 
