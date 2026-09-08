@@ -9,6 +9,7 @@ struct People
 
 void get_name(char* user_name);
 void find_person(char* user_name, struct People* person);
+bool string_compare(char* name1, char* name2);
 
 int main(void)
 {
@@ -38,23 +39,40 @@ void get_name(char* user_name)
 
 void find_person(char* user_name, struct People* person)
 {
-    int count = 0;
-    
+    bool is_found = false;
 
     for(int i = 0; i < 5; i++)
     {
-        while(person[i].name[count] != '\0')
+        if(string_compare(user_name, person[i].name))
         {
-            if(person[i].name[count] != user_name[count])
-            {
-                printf( "Informations :\n"
-                        "Name : %s\n"
-                        "Age : %d\n",
-                person[i].name, person[i].age);
-            }
-            count++;
+            printf( "The person is :\n"
+                    "Name : %s\n"
+                    "Age : %d\n",
+                    person[i].name, person[i].age);
+                    is_found = true;           
         }
     }
+    if(is_found == false)
+    {
+        printf("This person doesn't exist.\n");
+    }
+}
+
+bool string_compare(char* name1, char* name2)
+{
+    int count = 0;
+    bool is_same = true;
+
+    while(name1[count] != '\0' || name2[count] != '\0')
+    {
+        if(name1[count] != name2[count])
+        {
+            is_same = false;
+            return is_same;
+        }
+        count++;
+    }
+    return is_same;
 }
 
 /*
