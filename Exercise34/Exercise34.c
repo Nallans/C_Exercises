@@ -17,15 +17,7 @@ int main(void)
     {"John", 45}, {"Lea", 21}};
     char user_name[20];
 
-    for(int i = 0; i < 5; i++)
-    {
-        printf( "Person %d name : %s\n"
-                "Person %d age : %d\n",
-                i + 1, person[i].name, i + 1, person[i].age);
-    }
-
     get_name(user_name);
-    printf("You are looking for %s.\n", user_name);
     find_person(user_name, person);
 
     return(0);
@@ -61,18 +53,16 @@ void find_person(char* user_name, struct People* person)
 bool string_compare(char* name1, char* name2)
 {
     int count = 0;
-    bool is_same = true;
 
     while(name1[count] != '\0' || name2[count] != '\0')
     {
         if(name1[count] != name2[count])
         {
-            is_same = false;
-            return is_same;
+            return false;
         }
         count++;
     }
-    return is_same;
+    return true;
 }
 
 /*
