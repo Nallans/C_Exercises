@@ -8,12 +8,13 @@ struct Games
 
 void display_games(struct Games* game);
 void highest_rating(struct Games* game);
+void oldest_game(struct Games* game);
 
 int main(void)
 {
     struct Games game[10] = {{"Doom", 1993, 96},{"Doom 2", 1994, 100}, 
     {"Half-Life", 1998, 97}, {"Half-Life 2", 2004, 98},
-    {"Duke Nukem 3D", 1996, 93}, {"Super Mario Bros", 1995, 99},
+    {"Duke Nukem 3D", 1996, 93}, {"Super Mario Bros", 1985, 99},
     {"Castlevania", 1986, 92}, {"Ratchet & Clank", 2002, 91},
     {"Halo", 2001, 95}, {"Pokemon", 1998, 94}};
 
@@ -21,6 +22,9 @@ int main(void)
     printf("\n");
 
     highest_rating(game);
+    printf("\n");
+
+    oldest_game(game);
     printf("\n");
 
     return(0);
@@ -49,6 +53,22 @@ void highest_rating(struct Games* game)
     }
     printf("Highest rated game is : %s with %d / 100 (%d)\n",
         game[index].title, game[index].rating, game[index].release_year);
+}
+
+void oldest_game(struct Games* game)
+{
+    int oldest = 2100, index = 0;
+
+    for(int i = 0; i < 10; i++)
+    {
+        if(game[i].release_year < oldest)
+        {
+            oldest = game[i].release_year;
+            index = i;
+        }
+    }
+    printf("Oldest game : %s, released in %d\n",
+        game[index].title, game[index].release_year);
 }
 
 /*
