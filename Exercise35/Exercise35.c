@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 struct Games
 {
@@ -9,6 +10,9 @@ struct Games
 void display_games(struct Games* game);
 void highest_rating(struct Games* game);
 void oldest_game(struct Games* game);
+void get_name(char* name);
+bool string_compare(char* name1, char* name2);
+void find_game(char* name, struct Games* game);
 
 int main(void)
 {
@@ -18,6 +22,8 @@ int main(void)
     {"Castlevania", 1986, 92}, {"Ratchet & Clank", 2002, 91},
     {"Halo", 2001, 95}, {"Pokemon", 1998, 94}};
 
+    char name[50];
+
     display_games(game);
     printf("\n");
 
@@ -26,6 +32,9 @@ int main(void)
 
     oldest_game(game);
     printf("\n");
+
+    get_name(name);
+    find_game(name, game);
 
     return(0);
 }
@@ -69,6 +78,47 @@ void oldest_game(struct Games* game)
     }
     printf("Oldest game : %s, released in %d\n",
         game[index].title, game[index].release_year);
+}
+
+void get_name(char* name)
+{
+    printf("What is the game you're looking for ? ");
+    scanf("%49[^\n]", name); // Takes all input (even spaces) until \n
+}
+
+bool string_compare(char* name1, char* name2)
+{
+    int count = 0;
+
+    while(name1[count] != '\0' || name2[count] != '\0')
+    {
+        if(name1[count] != name2[count])
+        {
+            return false;
+        }
+        count++;
+    }
+    return true;
+}
+
+void find_game(char* name, struct Games* game)
+{
+    bool is_found = false;
+
+    for(int i = 0; i < 10; i++)
+    {
+        if(string_compare(name, game[i].title))
+        {
+            printf( "Game found !\n"
+                    "Title : %s, release year : %d, rating : %d / 100\n",
+                game[i].title, game[i].release_year, game[i].rating);
+                is_found = true;
+        }
+    }
+    if(is_found == false)
+    {
+        printf("Sorry, didn't find your game :/\n");
+    }
 }
 
 /*
