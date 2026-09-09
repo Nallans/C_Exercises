@@ -6,6 +6,8 @@ struct Games
     int release_year, rating;
 };
 
+void display_games(struct Games* game);
+
 int main(void)
 {
     struct Games game[10] = {{"Doom", 1993, 95},{"Doom 2", 1994, 98}, 
@@ -14,13 +16,18 @@ int main(void)
     {"Castlevania", 1986, 90}, {"Ratchet & Clank", 2002, 90},
     {"Halo", 2001, 95}, {"Pokemon", 1998, 95}};
 
+    display_games(game);
+
+    return(0);
+}
+
+void display_games(struct Games* game)
+{
     for(int i = 0; i < 10; i++)
     {
         printf( "Game : %s, Year : %d, Rating : %d / 100\n",
                 game[i].title, game[i].release_year, game[i].rating);
     }
-
-    return(0);
 }
 
 /*
