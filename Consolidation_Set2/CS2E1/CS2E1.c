@@ -9,16 +9,20 @@ struct Students
 
 void display_students(struct Students* student);
 void highest_grade(struct Students* student);
+void youngest_student(struct Students* student);
 
 int main(void)
 {
-    struct Students student[5] = {{"John", 17, 80}, {"Lea", 16, 95},
+    struct Students student[5] = {{"John", 17, 80}, {"Lea", 18, 95},
     {"Billy", 25, 78}, {"Lina", 20, 89}, {"Alex", 23, 56}};
 
     display_students(student);
     printf("\n");
 
     highest_grade(student);
+    printf("\n");
+
+    youngest_student(student);
     printf("\n");
 
     return(0);
@@ -47,6 +51,22 @@ void highest_grade(struct Students* student)
     }
     printf("%s has the highest grade with %d / 100\n",
         student[index].name, student[index].grade);
+}
+
+void youngest_student(struct Students* student)
+{
+    int youngest = 100, index = 0;
+
+    for(int i = 0; i < 5; i++)
+    {
+        if(student[i].age < youngest)
+        {
+            youngest = student[i].age;
+            index = i;
+        }
+    }
+    printf("%s is the youngest student at %d years old.\n",
+        student[index].name, student[index].age);
 }
 
 /*
