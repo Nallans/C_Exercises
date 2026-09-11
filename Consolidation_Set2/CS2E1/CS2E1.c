@@ -11,6 +11,7 @@ void display_students(struct Students* student);
 void highest_grade(struct Students* student);
 void youngest_student(struct Students* student);
 void get_name(char* name);
+bool string_compare(char* name1, char* name2);
 
 int main(void)
 {
@@ -79,6 +80,21 @@ void get_name(char* name)
 {
     printf("Who are you looking for ? ");
     scanf("%29s", name);
+}
+
+bool string_compare(char* name1, char* name2)
+{
+    int count = 0;
+
+    while(name1[count] != '\0' || name2[count] != '\0')
+    {
+        if(name1[count] != name2[count])
+        {
+            return false;
+        }
+        count++;
+    }
+    return true;
 }
 
 /*
