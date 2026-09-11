@@ -10,11 +10,14 @@ struct Students
 void display_students(struct Students* student);
 void highest_grade(struct Students* student);
 void youngest_student(struct Students* student);
+void get_name(char* name);
 
 int main(void)
 {
     struct Students student[5] = {{"John", 17, 80}, {"Lea", 18, 95},
     {"Billy", 25, 78}, {"Lina", 20, 89}, {"Alex", 23, 56}};
+    
+    char name[30];
 
     display_students(student);
     printf("\n");
@@ -24,6 +27,9 @@ int main(void)
 
     youngest_student(student);
     printf("\n");
+
+    get_name(name);
+    printf("You are looking for %s\n", name);
 
     return(0);
 }
@@ -67,6 +73,12 @@ void youngest_student(struct Students* student)
     }
     printf("%s is the youngest student at %d years old.\n",
         student[index].name, student[index].age);
+}
+
+void get_name(char* name)
+{
+    printf("Who are you looking for ? ");
+    scanf("%29s", name);
 }
 
 /*
