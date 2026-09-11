@@ -12,6 +12,7 @@ void highest_grade(struct Students* student);
 void youngest_student(struct Students* student);
 void get_name(char* name);
 bool string_compare(char* name1, char* name2);
+void find_student(char* name, struct Students* student);
 
 int main(void)
 {
@@ -30,7 +31,7 @@ int main(void)
     printf("\n");
 
     get_name(name);
-    printf("You are looking for %s\n", name);
+    find_student(name, student);
 
     return(0);
 }
@@ -95,6 +96,25 @@ bool string_compare(char* name1, char* name2)
         count++;
     }
     return true;
+}
+
+void find_student(char* name, struct Students* student)
+{
+    bool is_found = false;
+
+    for(int i = 0; i < 5; i++)
+    {
+        if(string_compare(name, student[i].name))
+        {
+            is_found = true;
+            printf("The student is %s, age %d, grade %d / 100\n",
+                student[i].name, student[i].age, student[i].grade);
+        }
+    }
+    if(is_found == false)
+    {
+        printf("Sorry, didn't find this student\n");
+    }
 }
 
 /*
