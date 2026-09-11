@@ -136,4 +136,19 @@ Display all students.
 Find the student with the highest grade.
 Find the youngest student.
 Ask for a name and search for that student.
+
+Your one improvement challenge
+
+Since you finished the exercise cleanly, I'm giving you one:
+
+Make the search case-insensitive.
+
+So:
+
+john
+John
+JOHN
+jOhN
+
+should all find the same student.
 */
