@@ -89,7 +89,9 @@ bool string_compare(char* name1, char* name2)
 
     while(name1[count] != '\0' || name2[count] != '\0')
     {
-        if(name1[count] != name2[count])
+        if( name1[count] != name2[count] && 
+            name1[count] - 32 != name2[count] &&
+            name1[count] + 32 != name2[count])
         {
             return false;
         }
