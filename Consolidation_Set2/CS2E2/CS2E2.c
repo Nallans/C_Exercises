@@ -1,3 +1,20 @@
+#include <stdio.h>
+
+struct Games
+{
+    char title[30];
+    int release_year, rating;
+};
+
+int main(void)
+{   
+    struct Games game[5] = {{"Doom", 1993, 95},{"Pong", 1972, 80},
+    {"Pacman", 1980, 85}, {"Super Mario Brothers", 1985, 98},
+    {"Half-Life", 1998, 97}};
+
+    return(0);
+}
+
 /*
 CS2E2 — Game Rating Update
 
