@@ -72,6 +72,11 @@ void modify_game(char* name, struct Games* game)
             is_found = true;
             printf("What is your rating of %s ? ", game[i].title);
             scanf("%d", &game[i].rating);
+            while(game[i].rating < 0 || game[i].rating > 100)
+            {
+                printf("Please give a rating between 0 and 100 : ");
+                scanf("%d", &game[i].rating);
+            }
             printf("%s : New rating : %d / 100\n", 
             game[i].title, game[i].rating);
         }
