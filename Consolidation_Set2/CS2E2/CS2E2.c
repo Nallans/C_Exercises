@@ -108,4 +108,10 @@ Ask the user for a title.
 If the game exists, ask for a new rating and modify it.
 
 Finally, display the modified game.
+
+Improvement challenge
+
+Once you've fixed the input issue, add a check so that the new rating must be between 0 and 100.
+
+Don't worry about making it bulletproof against non-numeric input yet. Just make the program reject a number like -5 or 120 and ask for the rating again.
 */
