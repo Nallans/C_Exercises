@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 struct Games
 {
@@ -7,6 +8,7 @@ struct Games
     int release_year, rating;
 };
 
+void menu(char* name, struct Games* game);
 void display_games(struct Games* game);
 bool string_compare(char* name1, char* name2);
 void get_name(char* name);
@@ -24,21 +26,7 @@ int main(void)
 
     char name[30];
 
-    display_games(game);
-    printf("\n");
-
-    printf("What is the game you're looking for ? ");
-    get_name(name);
-    find_game(name, game);
-    printf("\n");
-
-    printf("What is the game you want to modify ? ");
-    get_name(name);
-    modify_rating(name, game);
-    printf("\n");
-
-    max_min_rating(game);
-    printf("\n");
+    menu(name, game);
 
     return(0);
 }
@@ -145,6 +133,51 @@ void max_min_rating(struct Games* game)
     game[index_max].title, game[index_max].release_year, game[index_max].rating);
     printf("Lowest rated game is %s, released in %d, rated %d / 100\n",
     game[index_min].title, game[index_min].release_year, game[index_min].rating);
+}
+
+void menu(char* name, struct Games* game)
+{
+    int choice;
+
+    printf( "1. Display all games.\n"
+            "2. Search for a game.\n"
+            "3. Modify a game rating.\n"
+            "4. Display highest and lowest rated games.\n"
+            "5. Quit.\n"
+            "\n"
+            "What is your choice ? ");
+
+    scanf("%d", &choice);
+
+    switch(choice)
+    {
+        case 1 : 
+            display_games(game);
+            break;
+        
+        case 2 :
+            printf("What is the game you're looking for ? ");
+            get_name(name);
+            find_game(name, game);
+            break;
+
+        case 3 : 
+            printf("What is the game you want to modify ? ");
+            get_name(name);
+            modify_rating(name, game);
+            break;
+        
+        case 4 :
+            max_min_rating(game);
+            break;
+        
+        case 5 :
+            exit(0);   // Exit command used with stdlib to quit program      
+
+        default :
+            printf("That's not a correct choice, duh. Try again : ");
+            scanf("%d", &choice);
+    }
 }
 
 /*
