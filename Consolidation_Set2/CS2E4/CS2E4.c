@@ -12,6 +12,7 @@ bool string_compare(char* name1, char* name2);
 void get_name(char* name);
 void find_game(char* name, struct Games* game);
 void modify_rating(char* name, struct Games* game);
+void max_min_rating(struct Games* game);
 
 int main(void)
 {
@@ -34,6 +35,10 @@ int main(void)
     printf("What is the game you want to modify ? ");
     get_name(name);
     modify_rating(name, game);
+    printf("\n");
+
+    max_min_rating(game);
+    printf("\n");
 
     return(0);
 }
@@ -117,6 +122,29 @@ void modify_rating(char* name, struct Games* game)
     {
         printf("Sorry, your game was not found :/\n");
     }
+}
+
+void max_min_rating(struct Games* game)
+{
+    int highest = -1, lowest = 101, index_max = 0, index_min = 0;
+
+    for(int i = 0; i < 10; i++)
+    {
+        if(game[i].rating > highest)
+        {
+            highest = game[i].rating;
+            index_max = i;
+        }
+        if(game[i].rating < lowest)
+        {
+            lowest = game[i].rating;
+            index_min = i;
+        }
+    }
+    printf("Highest rated game is %s, released in %d, rated %d / 100\n",
+    game[index_max].title, game[index_max].release_year, game[index_max].rating);
+    printf("Lowest rated game is %s, released in %d, rated %d / 100\n",
+    game[index_min].title, game[index_min].release_year, game[index_min].rating);
 }
 
 /*
