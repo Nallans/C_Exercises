@@ -7,6 +7,7 @@ struct Games
 };
 
 void display_games(struct Games* game);
+void lowest_rating(struct Games* game);
 
 int main(void)
 {
@@ -17,6 +18,10 @@ int main(void)
     {"Jak & Daxter", 2001, 93}, {"SSX", 2000, 90}};
 
     display_games(game);
+    printf("\n");
+
+    lowest_rating(game);
+    printf("\n");
 
     return(0);
 }
@@ -28,6 +33,22 @@ void display_games(struct Games* game)
         printf("%s, released in %d, rated %d / 100\n",
         game[i].title, game[i].release_year, game[i].rating);
     }
+}
+
+void lowest_rating(struct Games* game)
+{
+    int lowest = 120, index = 0;
+
+    for(int i = 0; i < 10; i++)
+    {
+        if(game[i].rating < lowest)
+        {
+            lowest = game[i].rating;
+            index = i;
+        }
+    }
+    printf( "Booooooooooh ! The lowest rated game is %s with %d / 100 !\n",
+            game[index].title, game[index].rating);
 }
 
 /*
