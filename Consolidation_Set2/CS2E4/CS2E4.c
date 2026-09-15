@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 struct Games
 {
@@ -7,6 +8,7 @@ struct Games
 };
 
 void display_games(struct Games* game);
+bool string_compare(char* name1, char* name2);
 
 int main(void)
 {
@@ -17,6 +19,9 @@ int main(void)
     {"Devil May Cry 5", 2019, 91}, {"Castlevania", 1986, 92}};
 
     display_games(game);
+    printf("\n");
+
+    printf("%d\n", string_compare("Hello", "HeLlO"));
 
     return(0);
 }
@@ -29,6 +34,23 @@ void display_games(struct Games* game)
         printf("%s, released in %d, rated %d / 100\n",
         game[i].title, game[i].release_year, game[i].rating);
     }
+}
+
+bool string_compare(char* name1, char* name2)
+{
+    int count = 0;
+
+    while(name1[count] != '\0' || name2[count] != '\0')
+    {
+        if( name1[count] != name2[count] &&
+            name1[count] + 32 != name2[count] &&
+            name1[count] - 32 != name2[count])
+            {
+                return false;
+            }
+        count++;
+    }
+    return true;
 }
 
 /*
