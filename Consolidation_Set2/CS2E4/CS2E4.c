@@ -2,9 +2,11 @@
 
 struct Games
 {
-    char name[30];
+    char title[30];
     int release_year, rating;
 };
+
+void display_games(struct Games* game);
 
 int main(void)
 {
@@ -14,7 +16,19 @@ int main(void)
     {"Half-Life 2", 2004, 99}, {"SSX", 2000, 90},
     {"Devil May Cry 5", 2019, 91}, {"Castlevania", 1986, 92}};
 
+    display_games(game);
+
     return(0);
+}
+
+void display_games(struct Games* game)
+{
+    printf("LIBRARY : \n");
+    for(int i = 0; i < 10; i++)
+    {
+        printf("%s, released in %d, rated %d / 100\n",
+        game[i].title, game[i].release_year, game[i].rating);
+    }
 }
 
 /*
