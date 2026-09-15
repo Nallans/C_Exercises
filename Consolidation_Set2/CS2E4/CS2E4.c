@@ -1,3 +1,22 @@
+#include <stdio.h>
+
+struct Games
+{
+    char name[30];
+    int release_year, rating;
+};
+
+int main(void)
+{
+    struct Games game[10] = {{"Doom", 1993, 95}, {"Doom 2", 1994, 96},
+    {"Jak & Daxter", 2001, 93}, {"Ratchet & Clank", 2002, 94},
+    {"Super Mario Bros", 1985, 98}, {"Half-Life", 1998, 97},
+    {"Half-Life 2", 2004, 99}, {"SSX", 2000, 90},
+    {"Devil May Cry 5", 2019, 91}, {"Castlevania", 1986, 92}};
+
+    return(0);
+}
+
 /*
 CS2E4 — The Small Database
 
