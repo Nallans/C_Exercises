@@ -8,7 +8,7 @@ struct Games
     int release_year, rating;
 };
 
-void menu(char* name, struct Games* game);
+void menu(char* name, struct Games* game, int choice);
 void display_games(struct Games* game);
 bool string_compare(char* name1, char* name2);
 void get_name(char* name);
@@ -25,8 +25,12 @@ int main(void)
     {"Devil May Cry 5", 2019, 91}, {"Castlevania", 1986, 92}};
 
     char name[30];
+    int choice = 1;
 
-    menu(name, game);
+    while(choice > 0 || choice < 6)
+    {
+        menu(name, game, choice);
+    }
 
     return(0);
 }
@@ -135,10 +139,8 @@ void max_min_rating(struct Games* game)
     game[index_min].title, game[index_min].release_year, game[index_min].rating);
 }
 
-void menu(char* name, struct Games* game)
+void menu(char* name, struct Games* game, int choice)
 {
-    int choice;
-
     printf( "1. Display all games.\n"
             "2. Search for a game.\n"
             "3. Modify a game rating.\n"
@@ -152,31 +154,43 @@ void menu(char* name, struct Games* game)
     switch(choice)
     {
         case 1 : 
+            printf("\n");
             display_games(game);
+            printf("\n");
             break;
         
         case 2 :
+            printf("\n");
             printf("What is the game you're looking for ? ");
             get_name(name);
             find_game(name, game);
+            printf("\n");
             break;
 
         case 3 : 
+            printf("\n");
             printf("What is the game you want to modify ? ");
             get_name(name);
             modify_rating(name, game);
+            printf("\n");
             break;
         
         case 4 :
+            printf("\n");
             max_min_rating(game);
+            printf("\n");
             break;
         
         case 5 :
             exit(0);   // Exit command used with stdlib to quit program      
 
         default :
-            printf("That's not a correct choice, duh. Try again : ");
-            scanf("%d", &choice);
+            while(choice < 1 || choice > 5)
+            {
+                printf("Duh, that's not a good choice. "
+                "Using a correct number will take you back to menu : ");
+                scanf("%d", &choice);
+            }
     }
 }
 
