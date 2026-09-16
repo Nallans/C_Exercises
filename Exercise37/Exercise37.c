@@ -50,4 +50,12 @@ Create a function that receives a pointer to a person and modifies their informa
 For example, the function could update the person's age and height.
 
 Your main() should create the person and call the function.
+
+Improvement challenge
+
+Make modify_person() modify only the age, while leaving height untouched.
+
+Then have it increase the person's age by 1 automatically rather than asking the user for a new age.
+
+It's deliberately tiny: I want you to practice modifying a member through the pointer without adding another concept.
 */
