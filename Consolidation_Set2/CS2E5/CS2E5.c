@@ -1,3 +1,21 @@
+#include <stdio.h>
+
+struct Games
+{
+    char title[30];
+    int release_year, rating;
+};
+
+int main(void)
+{
+    struct Games game[8] = {{"Doom", 1993, 90}, {"Doom 2", 1994, 93},
+    {"Ratchet & Clank", 2002, 95}, {"Jak & Daxter", 2001, 94},
+    {"Skate 3", 2010, 92}, {"SSX", 2000, 91},
+    {"Super Mario Bros", 1985, 96}, {"Pong", 1972, 85}};
+
+    return(0);
+}
+
 /*
 CS2E5 — Reconstruction Challenge
 
