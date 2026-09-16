@@ -8,7 +8,7 @@ struct Games
     int release_year, rating;
 };
 
-void menu(char* name, struct Games* game, int choice);
+void menu(char* name, struct Games* game, int* choice);
 void display_games(struct Games* game);
 bool string_compare(char* name1, char* name2);
 void get_name(char* name);
@@ -29,7 +29,7 @@ int main(void)
 
     while(choice > 0 || choice < 6)
     {
-        menu(name, game, choice);
+        menu(name, game, &choice);
     }
 
     return(0);
@@ -139,7 +139,7 @@ void max_min_rating(struct Games* game)
     game[index_min].title, game[index_min].release_year, game[index_min].rating);
 }
 
-void menu(char* name, struct Games* game, int choice)
+void menu(char* name, struct Games* game, int* choice)
 {
     printf( "1. Display all games.\n"
             "2. Search for a game.\n"
@@ -149,9 +149,9 @@ void menu(char* name, struct Games* game, int choice)
             "\n"
             "What is your choice ? ");
 
-    scanf("%d", &choice);
+    scanf("%d", choice);
 
-    switch(choice)
+    switch(*choice)
     {
         case 1 : 
             printf("\n");
@@ -185,11 +185,11 @@ void menu(char* name, struct Games* game, int choice)
             exit(0);   // Exit command used with stdlib to quit program      
 
         default :
-            while(choice < 1 || choice > 5)
+            while(*choice < 1 || *choice > 5)
             {
                 printf("Duh, that's not a good choice. "
                 "Using a correct number will take you back to menu : ");
-                scanf("%d", &choice);
+                scanf("%d", choice);
             }
     }
 }
