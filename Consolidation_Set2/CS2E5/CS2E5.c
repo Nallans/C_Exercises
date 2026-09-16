@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h> 
 
 struct Games
 {
@@ -7,6 +8,7 @@ struct Games
 };
 
 void display_games(struct Games* game);
+void get_name(char* name);
 
 int main(void)
 {
@@ -15,7 +17,13 @@ int main(void)
     {"Skate 3", 2010, 92}, {"SSX", 2000, 91},
     {"Super Mario Bros", 1985, 96}, {"Pong", 1972, 85}};
 
+    char name[30];
+
     display_games(game);
+    printf("\n");
+
+    get_name(name);
+    printf("You're looking for %s\n", name);
 
     return(0);
 }
@@ -27,6 +35,12 @@ void display_games(struct Games* game)
         printf("%s, released in %d, rated %d / 100\n",
         game[i].title, game[i].release_year, game[i].rating);
     }
+}
+
+void get_name(char* name)
+{
+    printf("What is the game you're looking for ? ");
+    scanf("%29[^\n]", name);
 }
 
 /*
