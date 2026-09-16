@@ -1,3 +1,22 @@
+#include <stdio.h>
+
+struct People
+{
+    char name[30];
+    int age;
+    float height;
+};
+
+int main(void)
+{
+    struct People person = {"John", 28, 1.84};
+
+    printf("%s, age %d, height %.2f\n",
+    person.name, person.age, person.height); 
+
+    return(0);
+}
+
 /*
 Exercise 36 — A Person Through a Pointer
 
