@@ -1,3 +1,30 @@
+#include <stdio.h>
+
+struct People
+{
+    char name[30];
+    int age;
+    float height;
+};
+
+void display_person(struct People* person);
+
+int main(void)
+{
+    struct People person = {"John", 34, 1.84};
+    struct People* pPerson = &person;
+
+    display_person(pPerson);
+
+    return(0);
+}
+
+void display_person(struct People* pPerson)
+{
+    printf("Person : %s, age : %d, height %.2f\n",
+    pPerson->name, pPerson->age, pPerson->height);
+}
+
 /*
 Exercise 37 — Modify Through a Function
 
