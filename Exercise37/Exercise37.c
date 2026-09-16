@@ -9,6 +9,7 @@ struct People
 
 void display_person(struct People* person);
 void modify_person(struct People* person);
+void getting_old(struct People* person);
 
 int main(void)
 {
@@ -19,6 +20,12 @@ int main(void)
     printf("\n");
 
     modify_person(pPerson);
+    printf("\n");
+
+    display_person(pPerson);
+    printf("\n");
+
+    getting_old(pPerson);
     printf("\n");
 
     display_person(pPerson);
@@ -38,6 +45,11 @@ void modify_person(struct People* pPerson)
     scanf("%d", &pPerson->age);
     printf("What height do you want to give %s ? ", pPerson->name);
     scanf("%f", &pPerson->height);
+}
+
+void getting_old(struct People* pPerson)
+{
+    pPerson->age++;
 }
 
 /*
