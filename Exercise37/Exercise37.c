@@ -8,11 +8,18 @@ struct People
 };
 
 void display_person(struct People* person);
+void modify_person(struct People* person);
 
 int main(void)
 {
     struct People person = {"John", 34, 1.84};
     struct People* pPerson = &person;
+
+    display_person(pPerson);
+    printf("\n");
+
+    modify_person(pPerson);
+    printf("\n");
 
     display_person(pPerson);
 
@@ -23,6 +30,14 @@ void display_person(struct People* pPerson)
 {
     printf("Person : %s, age : %d, height %.2f\n",
     pPerson->name, pPerson->age, pPerson->height);
+}
+
+void modify_person(struct People* pPerson)
+{
+    printf("What age do you want to give %s ? ", pPerson->name);
+    scanf("%d", &pPerson->age);
+    printf("What height do you want to give %s ? ", pPerson->name);
+    scanf("%f", &pPerson->height);
 }
 
 /*
