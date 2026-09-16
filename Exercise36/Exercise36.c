@@ -10,9 +10,14 @@ struct People
 int main(void)
 {
     struct People person = {"John", 28, 1.84};
+    struct People* pPerson = &person;
 
     printf("%s, age %d, height %.2f\n",
-    person.name, person.age, person.height); 
+    pPerson->name, pPerson->age, pPerson->height); 
+
+    printf("What would be %s's new age ? ", pPerson->name);
+    scanf("%d", &pPerson->age);
+    printf("%s's new age : %d\n", pPerson->name, pPerson->age);
 
     return(0);
 }
