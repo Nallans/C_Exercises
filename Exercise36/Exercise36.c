@@ -17,7 +17,11 @@ int main(void)
 
     printf("What would be %s's new age ? ", pPerson->name);
     scanf("%d", &pPerson->age);
-    printf("%s's new age : %d\n", pPerson->name, pPerson->age);
+    printf("What would be %s's new height ? ", pPerson->name);
+    scanf("%f", &pPerson->height);
+
+    printf("New information : %s, age %d, height %.2f\n",
+    pPerson->name, pPerson->age, pPerson->height);
 
     return(0);
 }
