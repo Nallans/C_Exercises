@@ -10,6 +10,7 @@ struct Games
 void display_games(struct Games* game);
 void get_name(char* name);
 bool string_compare(char* name1, char* name2);
+void find_game(char* name, struct Games* game);
 
 int main(void)
 {
@@ -24,9 +25,7 @@ int main(void)
     printf("\n");
 
     get_name(name);
-    printf("You're looking for %s\n", name);
-
-    printf("%d\n", string_compare("Hello", name));
+    find_game(name, game);
 
     return(0);
 }
@@ -61,6 +60,26 @@ bool string_compare(char* name1, char* name2)
         count++;
     }
     return true;
+}
+
+void find_game(char* name, struct Games* game)
+{
+    bool is_found = false;
+
+    for(int i = 0; i < 8; i++)
+    {
+        if(string_compare(name, game[i].title))
+        {
+            is_found = true;
+            printf("Game : %s, released in %d, rated %d / 100\n",
+            game[i].title, game[i].release_year, game[i].rating);
+            break;
+        }
+    }
+    if(is_found == false)
+    {
+        printf("Sorry, your game was not found :/\n");
+    }
 }
 
 /*
