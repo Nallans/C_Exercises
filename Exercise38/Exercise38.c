@@ -1,3 +1,20 @@
+#include <stdio.h>
+
+struct People
+{
+    char name[30];
+    int age;
+    float height;
+};
+
+int main(void)
+{
+    struct People person[5] = {{"John", 34, 1.86}, {"Lea", 21, 1.67},
+    {"Francis", 45, 1.98}, {"Sarah", 37, 1.79}, {"Austin", 27, 1.71}};
+
+    return(0);
+}
+
 /*
 Exercise 38 — Array of Structures, Modified Through a Function
 
