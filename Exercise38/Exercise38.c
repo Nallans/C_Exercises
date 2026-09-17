@@ -7,12 +7,27 @@ struct People
     float height;
 };
 
+void display_people(struct People* pPerson);
+
 int main(void)
 {
     struct People person[5] = {{"John", 34, 1.86}, {"Lea", 21, 1.67},
     {"Francis", 45, 1.98}, {"Sarah", 37, 1.79}, {"Austin", 27, 1.71}};
 
+    struct People* pPerson = &person[0];
+
+    display_people(pPerson);
+
     return(0);
+}
+
+void display_people(struct People* pPerson)
+{
+    for(int i = 0; i < 5; i++)
+    {
+        printf("Person : %s, age : %d, height %.2f\n",
+        (pPerson + i)->name, (pPerson + i)->age, (pPerson + i)->height);
+    }
 }
 
 /*
