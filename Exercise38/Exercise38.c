@@ -57,4 +57,10 @@ display everyone again
 The modification function should operate on the original array.
 
 Don't create another array just to perform the modification.
+
+Improvement challenge
+
+You already increment every person's age.
+
+Now add a second operation: create a function that receives the same pointer and increases every person's height by 0.01.
 */
