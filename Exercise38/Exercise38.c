@@ -9,6 +9,7 @@ struct People
 
 void display_people(struct People* pPerson);
 void getting_old(struct People* pPerson);
+void getting_taller(struct People* pPerson);
 
 int main(void)
 {
@@ -21,6 +22,10 @@ int main(void)
     printf("\n");
 
     getting_old(pPerson);
+    display_people(pPerson);
+    printf("\n");
+
+    getting_taller(pPerson);
     display_people(pPerson);
 
     return(0);
@@ -40,6 +45,14 @@ void getting_old(struct People* pPerson)
     for(int i = 0; i < 5; i++)
     {
         (pPerson + i)->age++;
+    }
+}
+
+void getting_taller(struct People* pPerson)
+{
+    for(int i = 0; i < 5; i++)
+    {
+        (pPerson + i)->height += 0.01;
     }
 }
 
