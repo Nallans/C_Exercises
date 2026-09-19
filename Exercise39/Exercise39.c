@@ -9,6 +9,7 @@ struct Games
 
 void display_games(struct Games* pGame);
 bool string_compare(char* name1, char* name2);
+void get_name(char* name);
 
 int main(void)
 {
@@ -18,12 +19,15 @@ int main(void)
     {"Pong", 1972, 80}, {"Castlevania", 1986, 88},
     {"Devil May Cry 5", 2019, 94}, {"Project Zomboid", 2013, 98}};
 
+    char name[30];
+
     struct Games* pGame = &game[0];
 
     display_games(pGame);
     printf("\n");
 
-    printf("%d\n", string_compare("Hello", "heLlO"));
+    get_name(name);
+    printf("You chose %s\n", name);
 
     return(0);
 }
@@ -52,6 +56,12 @@ bool string_compare(char* name1, char* name2)
         count++;
     }
     return true;
+}
+
+void get_name(char* name)
+{
+    printf("What game are you looking for ? ");
+    scanf("%29[^\n]", name);
 }
 
 /*
