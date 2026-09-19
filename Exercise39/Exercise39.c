@@ -8,6 +8,7 @@ struct Games
 };
 
 void display_games(struct Games* pGame);
+bool string_compare(char* name1, char* name2);
 
 int main(void)
 {
@@ -20,6 +21,9 @@ int main(void)
     struct Games* pGame = &game[0];
 
     display_games(pGame);
+    printf("\n");
+
+    printf("%d\n", string_compare("Hello", "heLlO"));
 
     return(0);
 }
@@ -31,6 +35,23 @@ void display_games(struct Games* pGame)
         printf("%s, released in %d, rated %d / 100\n",
         (pGame + i)->title, (pGame + i)->release_year, (pGame + i)->rating);
     }
+}
+
+bool string_compare(char* name1, char* name2)
+{
+    int count = 0;
+
+    while(name1[count] != '\0' || name2[count] != '\0')
+    {
+        if( name1[count] != name2[count] &&
+            name1[count] + 32 != name2[count] &&
+            name1[count] - 32 != name2[count])
+        {
+            return false;
+        }
+        count++;
+    }
+    return true;
 }
 
 /*
