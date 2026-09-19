@@ -10,7 +10,8 @@ struct Games
 void display_games(struct Games* pGame);
 bool string_compare(char* name1, char* name2);
 void get_name(char* name);
-void modify_rating(char* name, struct Games* pGame);
+bool find_game(char* name, struct Games* pGame, int* pIndex);
+void modify_rating(struct Games* pGame, int index);
 
 int main(void)
 {
@@ -21,6 +22,8 @@ int main(void)
     {"Devil May Cry 5", 2019, 94}, {"Project Zomboid", 2013, 98}};
 
     char name[30];
+    int index = 0;
+    int* pIndex = &index;
 
     struct Games* pGame = &game[0];
 
@@ -28,7 +31,15 @@ int main(void)
     printf("\n");
 
     get_name(name);
-    modify_rating(name, pGame);
+
+    if(find_game(name, pGame, pIndex))
+    {
+        modify_rating(pGame, index);
+    }
+    else
+    {
+        printf("Sorry, you game was not found :/\n");
+    }
 
     return(0);
 }
@@ -65,32 +76,30 @@ void get_name(char* name)
     scanf("%29[^\n]", name);
 }
 
-void modify_rating(char* name, struct Games* pGame)
+bool find_game(char* name, struct Games* pGame, int* pIndex)
 {
-    bool is_found = false;
-
     for(int i = 0; i < 10; i++)
     {
         if(string_compare(name, (pGame + i)->title))
         {
-            is_found = true;
-            printf("What is your rating ? ");
-            scanf("%d", &(pGame + i)->rating);
-
-            while((pGame + i)->rating < 0 || (pGame + i)->rating > 100)
-            {
-                printf("You must choose between 0 and 100 : ");
-                scanf("%d", &(pGame + i)->rating);
-            }
-            printf("New rating : %s, released in %d, rated %d / 100\n",
-            (pGame + i)-> title, (pGame + i)->release_year, (pGame + i)->rating);
-            break;
+            *pIndex = i;
+            return true;
         }
     }
-    if(is_found == false)
+    return false;
+}
+
+void modify_rating(struct Games* pGame, int index)
+{
+    printf("What is your rating ? ");
+    scanf("%d",&(pGame + index)->rating);
+    while((pGame + index)->rating < 0 || (pGame + index)->rating > 100)
     {
-        printf("Sorry, your game was not found :/\n");
+        printf("Choose between 0 and 100 please : ");
+        scanf("%d", &(pGame + index)->rating);
     }
+    printf("New rating : %s, released in %d, rated %d / 100\n",
+    (pGame + index)->title, (pGame + index)->release_year, (pGame + index)->rating);
 }
 
 /*
