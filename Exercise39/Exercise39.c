@@ -109,4 +109,18 @@ Ask the user for a game title.
 If the game exists, allow the user to modify its rating.
 
 Otherwise, display an appropriate message.
+
+Improvement challenge
+
+Refactor your program so that find_game() and modify_rating() are separate functions.
+
+The important constraint:
+
+find_game() must return enough information for modify_rating() to operate on the actual struct Games that was found.
+
+Don't use a global variable.
+
+Don't copy the structure.
+
+And don't have find_game() perform the modification itself.
 */
