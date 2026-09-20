@@ -10,8 +10,8 @@ struct Games
 void display_games(struct Games* pGame);
 bool string_compare(char* name1, char* name2);
 void get_name(char* name);
-bool find_game(char* name, struct Games* pGame, struct Games* pIndex);
-void modify_rating(struct Games* pIndex);
+bool find_game(char* name, struct Games* pGame, struct Games** pIndex);
+void modify_rating(struct Games** pIndex);
 
 int main(void)
 {
@@ -23,7 +23,7 @@ int main(void)
 
     char name[30];
     struct Games* pGame = &game[0];
-    struct Games* pIndex = pGame;
+    struct Games** pIndex = &pGame;
 
     display_games(pGame);
     printf("\n");
@@ -74,30 +74,30 @@ void get_name(char* name)
     scanf("%29[^\n]", name);
 }
 
-bool find_game(char* name, struct Games* pGame, struct Games* pIndex)
+bool find_game(char* name, struct Games* pGame, struct Games** pIndex)
 {
     for(int i = 0; i < 10; i++)
     {
         if(string_compare(name, (pGame + i)->title))
         {
-            pIndex = (pGame + i);
+            (*pIndex) = pGame + i;
             return true;
         }
     }
     return false;
 }
 
-void modify_rating(struct Games* pIndex)
+void modify_rating(struct Games** pIndex)
 {
     printf("What is your rating ? ");
-    scanf("%d",&pIndex->rating);
-    while(pIndex->rating < 0 || pIndex->rating > 100)
+    scanf("%d", &(*pIndex)->rating);
+    while((*pIndex)->rating < 0 || (*pIndex)->rating > 100)
     {
         printf("Choose between 0 and 100 please : ");
-        scanf("%d", &pIndex->rating);
+        scanf("%d", &(*pIndex)->rating);
     }
     printf("New rating : %s, released in %d, rated %d / 100\n",
-    pIndex->title, pIndex->release_year, pIndex->rating);
+    (*pIndex)->title, (*pIndex)->release_year, (*pIndex)->rating);
 }
 
 /*
