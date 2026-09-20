@@ -10,8 +10,8 @@ struct Games
 void display_games(struct Games* pGame);
 bool string_compare(char* name1, char* name2);
 void get_name(char* name);
-bool find_game(char* name, struct Games* pGame, int* pIndex);
-void modify_rating(struct Games* pGame, int index);
+bool find_game(char* name, struct Games* pGame, struct Games* pIndex);
+void modify_rating(struct Games* pIndex);
 
 int main(void)
 {
@@ -22,10 +22,8 @@ int main(void)
     {"Devil May Cry 5", 2019, 94}, {"Project Zomboid", 2013, 98}};
 
     char name[30];
-    int index = 0;
-    int* pIndex = &index;
-
     struct Games* pGame = &game[0];
+    struct Games* pIndex = pGame;
 
     display_games(pGame);
     printf("\n");
@@ -34,7 +32,7 @@ int main(void)
 
     if(find_game(name, pGame, pIndex))
     {
-        modify_rating(pGame, index);
+        modify_rating(pIndex);
     }
     else
     {
@@ -76,30 +74,30 @@ void get_name(char* name)
     scanf("%29[^\n]", name);
 }
 
-bool find_game(char* name, struct Games* pGame, int* pIndex)
+bool find_game(char* name, struct Games* pGame, struct Games* pIndex)
 {
     for(int i = 0; i < 10; i++)
     {
         if(string_compare(name, (pGame + i)->title))
         {
-            *pIndex = i;
+            pIndex = (pGame + i);
             return true;
         }
     }
     return false;
 }
 
-void modify_rating(struct Games* pGame, int index)
+void modify_rating(struct Games* pIndex)
 {
     printf("What is your rating ? ");
-    scanf("%d",&(pGame + index)->rating);
-    while((pGame + index)->rating < 0 || (pGame + index)->rating > 100)
+    scanf("%d",&pIndex->rating);
+    while(pIndex->rating < 0 || pIndex->rating > 100)
     {
         printf("Choose between 0 and 100 please : ");
-        scanf("%d", &(pGame + index)->rating);
+        scanf("%d", &pIndex->rating);
     }
     printf("New rating : %s, released in %d, rated %d / 100\n",
-    (pGame + index)->title, (pGame + index)->release_year, (pGame + index)->rating);
+    pIndex->title, pIndex->release_year, pIndex->rating);
 }
 
 /*
