@@ -132,4 +132,10 @@ Don't use a global variable.
 Don't copy the structure.
 
 And don't have find_game() perform the modification itself.
+
+Improvement challenge — Exercise 39
+
+Since this exercise was specifically about separating responsibilities, I'd like one final tiny refinement:
+
+Change find_game() so that it returns a pointer to the game it found instead of returning the index through pIndex.
 */
