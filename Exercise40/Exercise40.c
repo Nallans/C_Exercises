@@ -9,6 +9,7 @@ struct Games
 };
 
 void display_games(struct Games* pGame);
+void get_name(char* name);
 
 int main(void)
 {
@@ -19,8 +20,13 @@ int main(void)
     {"Minecraft", 2011, 99}, {"Super Mario Bros", 1985, 95}};
     
     struct Games* pGame = &game[0];
+    char name[30];
 
     display_games(pGame);
+    printf("\n");
+
+    get_name(name);
+    printf("You're looking for %s\n", name);
 
     return(0);
 }
@@ -32,6 +38,12 @@ void display_games(struct Games* pGame)
         printf("%s, released in %d, rated %d / 100\n",
         (pGame + i)->title, (pGame + i)->release_year, (pGame+i)->rating);
     }
+}
+
+void get_name(char* name)
+{
+    printf("What is the game you're looking for ? ");
+    scanf("%[^\n]", name);
 }
 
 /*
