@@ -1,3 +1,24 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Games
+{
+    char title[30];
+    int release_year, rating;
+};
+
+int main(void)
+{
+    struct Games game[10] = {{"Doom", 1993, 94}, {"Driver San Francisco", 2011, 89},
+    {"Jak & Daxter", 2001, 87}, {"Ratchet & Clank", 2002, 90}, 
+    {"Burnout 3", 2004, 86}, {"Skate 3", 2010, 84},
+    {"Half-Life", 1998, 96}, {"Project Zomboid", 2013, 98},
+    {"Minecraft", 2011, 99}, {"Super Mario Bros", 1985, 95}};
+
+    return(0);
+}
+
 /*
 Exercise 40 — The Collection Manager
 
