@@ -11,6 +11,7 @@ struct Games
 void display_games(struct Games* pGame);
 void get_name(char* name);
 bool string_compare(char* name1, char* name2);
+bool find_game(char* name1, struct Games* pGame, struct Games** pIndex);
 
 int main(void)
 {
@@ -21,17 +22,14 @@ int main(void)
     {"Minecraft", 2011, 99}, {"Super Mario Bros", 1985, 95}};
     
     struct Games* pGame = &game[0];
+    struct Games** pIndex = &pGame;
     char name[30];
 
     display_games(pGame);
     printf("\n");
 
     get_name(name);
-    printf("You're looking for %s\n", name);
-    printf("\n");
-
-    printf( "The words are the same (1 for yes, 0 for no) : %d\n",
-            string_compare("Hello", "Hell"));
+    find_game(name, pGame, pIndex);
 
     return(0);
 }
@@ -66,6 +64,22 @@ bool string_compare(char* name1, char* name2)
         count++;
     }
     return true;
+}
+
+bool find_game(char* name, struct Games* pGame, struct Games** pIndex)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        if(string_compare(name, (pGame + i)->title))
+        {
+            *pIndex = &(*pGame) + i;
+            printf("%s, released in %d, rated %d / 100\n",
+            (*pIndex)->title, (*pIndex)->release_year, (*pIndex)->rating);
+            return true;
+        }
+    }
+    printf("Sorry, the game you're looking for is not present\n");
+    return false;
 }
 
 /*
