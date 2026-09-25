@@ -63,6 +63,7 @@ bool string_compare(char* name1, char* name2)
         }
         count++;
     }
+
     return true;
 }
 
@@ -76,6 +77,7 @@ bool find_game(char* name, struct Games* pGame, struct Games** pIndex)
             return true;
         }
     }
+    
     return false;
 }
 
@@ -83,11 +85,13 @@ void modify_rating(struct Games** pIndex)
 {    
     printf("What is your new rating for %s ? ",(*pIndex)->title);
     scanf("%d", &(*pIndex)->rating);
+
     while((*pIndex)->rating < 0 || (*pIndex)->rating > 100)
     {
         printf("You need to choose between 0 and 100 : ");
         scanf("%d", &(*pIndex)->rating);
     }
+
     printf("New rating : %s, released in %d, rated %d / 100\n",
     (*pIndex)->title, (*pIndex)->release_year, (*pIndex)->rating);
 }
@@ -104,6 +108,7 @@ void highest_rating(struct Games* pGame)
             index = i; 
         }
     }
+
     printf("Highest rated game : %s, released in %d, rated %d / 100\n",
     (pGame + index)->title, (pGame + index)->release_year, (pGame + index)->rating);
 }
@@ -120,6 +125,7 @@ void oldest_game(struct Games* pGame)
             index = i;
         }
     }
+
     printf("Oldest game is %s, released in %d, rated %d / 100\n",
     (pGame + index)->title, (pGame + index)->release_year, (pGame + index)->rating);
 }
@@ -145,6 +151,7 @@ void menu(char* name, struct Games* pGame, struct Games** pIndex)
             printf("Choose a correct option : ");
             scanf("%d", &choice);
         }
+
         switch(choice)
         {
             case 1 :
@@ -188,8 +195,7 @@ void menu(char* name, struct Games* pGame, struct Games** pIndex)
             exit(0);
         }
         printf("\n");
-    }
-    
+    } 
 }
 
 /*
