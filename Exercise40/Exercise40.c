@@ -1,6 +1,5 @@
 #include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 struct Games
 {
@@ -190,12 +189,10 @@ void menu(char* name, struct Games* pGame, struct Games** pIndex)
             case 5 :
             oldest_game(pGame);
             break;
-
-            case 6 :
-            exit(0);
         }
         printf("\n");
     } 
+    printf("Okay, see you !\n");
 }
 
 /*
