@@ -77,7 +77,7 @@ bool find_game(char* name, struct Games* pGame, struct Games** pIndex)
             return true;
         }
     }
-    
+
     return false;
 }
 
@@ -221,4 +221,12 @@ The program should offer a simple menu:
 6. Quit
 
 You decide how to organize the functions.
+
+One improvement challenge for Exercise 40
+
+Remove the dependency on:
+
+exit(0);
+
+and make option 6 terminate naturally through your existing menu loop.
 */
