@@ -8,6 +8,7 @@ struct Person
 };
 
 void birthday(struct Person* pPerson);
+void grow(struct Person* pPerson);
 
 int main(void)
 {
@@ -19,15 +20,21 @@ int main(void)
     printf("\n");
 
     birthday(pPerson);
+    grow(pPerson);
     printf("%s, age %d, height %.2f\n",
     pPerson->name, pPerson->age, pPerson->height);
-    
+
     return(0);
 }
 
 void birthday(struct Person* pPerson)
 {
     pPerson->age++;
+}
+
+void grow(struct Person* pPerson)
+{
+    pPerson->height += 0.01;
 }
 
 /*
