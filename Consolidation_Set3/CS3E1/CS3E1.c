@@ -7,15 +7,27 @@ struct Person
     float height;
 };
 
+void birthday(struct Person* pPerson);
+
 int main(void)
 {
     struct Person person1 = {"John", 34, 1.82};
-    struct Person* pPerson1 = &person1;
+    struct Person* pPerson = &person1;
 
     printf("%s, age %d, height %.2f\n",
-    pPerson1->name, pPerson1->age, pPerson1->height);
+    pPerson->name, pPerson->age, pPerson->height);
+    printf("\n");
 
+    birthday(pPerson);
+    printf("%s, age %d, height %.2f\n",
+    pPerson->name, pPerson->age, pPerson->height);
+    
     return(0);
+}
+
+void birthday(struct Person* pPerson)
+{
+    pPerson->age++;
 }
 
 /*
