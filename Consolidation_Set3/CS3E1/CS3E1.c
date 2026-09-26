@@ -66,4 +66,22 @@ which increases the person's height by 0.01.
 Goal
 
 Call both functions from main() and display the person's information before and after.
+
+CS3E1 Improvement Challenge
+
+One small extension:
+
+Add:
+
+void birthday_n(struct Person* pPerson, int years);
+
+Instead of increasing the age by exactly one, the function should increase it by whatever number of years is supplied.
+
+For example:
+
+Age: 34
+birthday_n(..., 5)
+Age: 39
+
+Don't add another function or redesign anything. Just practice passing both a pointer and a normal value to the function.
 */
