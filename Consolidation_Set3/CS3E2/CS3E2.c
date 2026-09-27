@@ -38,7 +38,14 @@ int main(void)
     display_people(pPerson);
     printf("\n");
 
-    find_person(u_name, pPerson);
+    if(find_person(u_name, pPerson))
+    {
+        printf("Congratulations, you found the person !\n");
+    }
+    else
+    {
+        printf("Sorry, the person is not here :/\n");
+    }
 
     return(0);
 }
