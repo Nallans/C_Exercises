@@ -9,6 +9,7 @@ struct People
 
 void display_people(struct People* pPerson);
 void find_oldest(struct People* pPerson);
+void find_tallest(struct People* pPerson);
 
 int main(void)
 {
@@ -22,6 +23,9 @@ int main(void)
     printf("\n");
 
     find_oldest(pPerson);
+    printf("\n");
+
+    find_tallest(pPerson);
 
     return(0);
 }
@@ -49,6 +53,23 @@ void find_oldest(struct People* pPerson)
     }
     printf("Oldest person is %s, age %d\n",
     (pPerson + index)->name, (pPerson + index)->age);
+}
+
+void find_tallest(struct People* pPerson)
+{
+    float tallest = 0;
+    int index = 0;
+
+    for(int i = 0; i < 8; i++)
+    {
+        if((pPerson + i)->height > tallest)
+        {
+            tallest = (pPerson + i)->height;
+            index = i;
+        }
+    }
+    printf("Tallest person is %s, height %.2f\n",
+    (pPerson + index)->name, (pPerson + index)->height);
 }
 
 /*
