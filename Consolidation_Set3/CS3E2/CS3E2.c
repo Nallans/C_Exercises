@@ -14,6 +14,7 @@ void find_tallest(struct People* pPerson);
 void birthday(struct People* pPerson);
 void get_name(char* u_name);
 bool string_compare(char* name1, char* name2);
+void find_person(char* u_name, struct People* pPerson);
 
 int main(void)
 {
@@ -37,8 +38,7 @@ int main(void)
     display_people(pPerson);
     printf("\n");
 
-    get_name(u_name);
-    printf("%d\n", string_compare("John",u_name));
+    find_person(u_name, pPerson);
 
     return(0);
 }
@@ -114,6 +114,28 @@ bool string_compare(char* name1, char* name2)
         count++;
     }
     return true;
+}
+
+void find_person(char* u_name, struct People* pPerson)
+{
+    bool is_found = false;
+
+    get_name(u_name);
+
+    for(int i = 0; i < 8; i++)
+    {
+        if(string_compare(u_name, (pPerson + i)->name))
+        {
+            is_found = true;
+            printf("%s, age %d, height %.2f\n",(pPerson + i)->name,
+            (pPerson + i)->age, (pPerson + i)->height);
+            break;
+        }
+    }
+    if(is_found == false)
+    {
+        printf("Sorry, this person is not here :/\n");
+    }
 }
 
 /*
