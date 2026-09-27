@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 struct People
 {
@@ -11,6 +12,8 @@ void display_people(struct People* pPerson);
 void find_oldest(struct People* pPerson);
 void find_tallest(struct People* pPerson);
 void birthday(struct People* pPerson);
+void get_name(char* u_name);
+bool string_compare(char* name1, char* name2);
 
 int main(void)
 {
@@ -19,6 +22,7 @@ int main(void)
     {"Amanda", 29, 1.82}, {"Lindsay", 21, 1.64}, {"Hugh", 18, 1.61}};
 
     struct People* pPerson = &person[0];
+    char u_name[30];
 
     display_people(pPerson);
     printf("\n");
@@ -32,6 +36,9 @@ int main(void)
     birthday(pPerson);
     display_people(pPerson);
     printf("\n");
+
+    get_name(u_name);
+    printf("%d\n", string_compare("John",u_name));
 
     return(0);
 }
@@ -84,6 +91,29 @@ void birthday(struct People* pPerson)
     {
         (pPerson + i)->age++;
     }
+}
+
+void get_name(char* u_name)
+{
+    printf("Who are you looking for ? ");
+    scanf("%29s", u_name);
+}
+
+bool string_compare(char* name1, char* name2)
+{
+    int count = 0;
+
+    while(name1[count] != '\0' || name2[count] != '\0')
+    {
+        if( name1[count] != name2[count] &&
+            name1[count] + 32 != name2[count] &&
+            name1[count] - 32 != name2[count])
+        {
+            return false;
+        }
+        count++;
+    }
+    return true;
 }
 
 /*
