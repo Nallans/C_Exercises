@@ -14,7 +14,7 @@ void find_tallest(struct People* pPerson);
 void birthday(struct People* pPerson);
 void get_name(char* u_name);
 bool string_compare(char* name1, char* name2);
-void find_person(char* u_name, struct People* pPerson);
+bool find_person(char* u_name, struct People* pPerson);
 
 int main(void)
 {
@@ -116,26 +116,20 @@ bool string_compare(char* name1, char* name2)
     return true;
 }
 
-void find_person(char* u_name, struct People* pPerson)
+bool find_person(char* u_name, struct People* pPerson)
 {
-    bool is_found = false;
-
     get_name(u_name);
 
     for(int i = 0; i < 8; i++)
     {
         if(string_compare(u_name, (pPerson + i)->name))
         {
-            is_found = true;
             printf("%s, age %d, height %.2f\n",(pPerson + i)->name,
             (pPerson + i)->age, (pPerson + i)->height);
-            break;
+            return true;
         }
     }
-    if(is_found == false)
-    {
-        printf("Sorry, this person is not here :/\n");
-    }
+    return false;
 }
 
 /*
@@ -164,4 +158,17 @@ Constraint
 Don't copy entire struct Person objects unnecessarily.
 
 Pass the array through a pointer.
+
+CS3E2 Improvement Challenge
+
+Make find_person() return a bool:
+
+bool find_person(...);
+
+It should return:
+
+true when the person is found
+false when the person isn't found
+
+Keep the printing behavior for now.
 */
