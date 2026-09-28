@@ -1,3 +1,22 @@
+#include <stdio.h>
+
+struct Games
+{
+    char title[30];
+    int release_year, rating;
+};
+
+int main(void)
+{
+    struct Games game[10] = {{"Doom", 1993, 89}, {"Doom 2", 1994, 92},
+    {"Pong", 1972, 76}, {"Pokemon", 1996, 93},
+    {"Super Mario Bros", 1985, 87}, {"Jak & Daxter", 2001, 88},
+    {"Ratchet & Clank", 2002, 91}, {"Project Zomboid", 2013, 99},
+    {"Diablo", 1997, 94}, {"Half-Life", 1998, 95}};
+
+    return(0);
+}
+
 /*
 CS3E3 — Find and Return a Person
 
