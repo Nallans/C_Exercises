@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 struct Items
 {
@@ -7,6 +8,10 @@ struct Items
     float price;
 };
 
+void display_items(struct Items* pItem);
+void get_name(char* name);
+bool string_compare(char* name1, char* name2);
+
 int main(void)
 {
     struct Items item[10] = {{"Ayn Thor", 1, 329.99}, {"Anbernic RG SP", 10, 69.99},
@@ -14,7 +19,47 @@ int main(void)
     {"WiiU", 1, 69.99}, {"PS3", 6, 59.99}, {"NES", 1, 89.99},
     {"GameBoy", 2, 99.99}, {"GameBoy Advance SP", 1, 109.99}};
 
+    struct Items* pItem = &item[0];
+    char name[30];
+
+    display_items(pItem);
+
+    get_name(name);
+    printf("%d\n", string_compare(name, "GameBoy"));
+
     return(0);
+}
+
+void display_items(struct Items* pItem)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        printf("Item : %s, quantity : %d, price : %.2f €\n",
+        (pItem + i)->name, (pItem + i)->quantity, (pItem + i)->price);
+    }
+}
+
+void get_name(char* name)
+{
+    printf("What item are you looking for ? ");
+    scanf("%29[^\n]", name);
+}
+
+bool string_compare(char* name1, char* name2)
+{
+    int count = 0;
+
+    while(name1[count] != '\0' || name2[count] != '\0')
+    {
+        if( name1[count] != name2[count] &&
+            name1[count] +32 != name2[count] &&
+            name1[count] -32 != name2[count])
+        {
+            return false;
+        }
+        count++;
+    }
+    return true;
 }
 
 /*
