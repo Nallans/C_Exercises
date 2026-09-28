@@ -1,3 +1,22 @@
+#include <stdio.h>
+
+struct Items
+{
+    char name[30];
+    int quantity;
+    float price;
+};
+
+int main(void)
+{
+    struct Items item[10] = {{"Ayn Thor", 1, 329.99}, {"Anbernic RG SP", 10, 69.99},
+    {"PS2", 4, 39.99}, {"Xbox 360", 5, 49.99}, {"Wii", 3, 29.99},
+    {"WiiU", 1, 69.99}, {"PS3", 6, 59.99}, {"NES", 1, 89.99},
+    {"GameBoy", 2, 99.99}, {"GameBoy Advance SP", 1, 109.99}};
+
+    return(0);
+}
+
 /*
 CS3E4 — Mini Inventory
 
