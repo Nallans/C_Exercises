@@ -11,6 +11,7 @@ struct Items
 void display_items(struct Items* pItem);
 void get_name(char* name);
 bool string_compare(char* name1, char* name2);
+bool find_item(char* name, struct Items* pItem, struct Items** pIndex);
 
 int main(void)
 {
@@ -20,12 +21,21 @@ int main(void)
     {"GameBoy", 2, 99.99}, {"GameBoy Advance SP", 1, 109.99}};
 
     struct Items* pItem = &item[0];
+    struct Items** pIndex = &pItem;
     char name[30];
 
     display_items(pItem);
 
     get_name(name);
-    printf("%d\n", string_compare(name, "GameBoy"));
+    if(find_item(name, pItem, pIndex))
+    {
+        printf("Item : %s, quantity : %d, price : %.2f\n",
+        (*pIndex)->name, (*pIndex)->quantity, (*pIndex)->price);
+    }
+    else
+    {
+        printf("Sorry, this item is not in store :/\n");
+    }
 
     return(0);
 }
@@ -60,6 +70,19 @@ bool string_compare(char* name1, char* name2)
         count++;
     }
     return true;
+}
+
+bool find_item(char* name, struct Items* pItem, struct Items** pIndex)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        if(string_compare(name, (pItem + i)->name))
+        {
+            (*pIndex) = pItem + i;
+            return true;
+        }
+    }
+    return false;
 }
 
 /*
