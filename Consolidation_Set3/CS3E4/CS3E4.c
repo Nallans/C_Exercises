@@ -14,6 +14,7 @@ bool string_compare(char* name1, char* name2);
 bool find_item(char* name, struct Items* pItem, struct Items** pIndex);
 void change_quantity(char* name, struct Items* pItem, struct Items** pIndex);
 void change_price(char* name, struct Items* pItem, struct Items** pIndex);
+void most_expensive(struct Items* pItem);
 
 int main(void)
 {
@@ -47,6 +48,9 @@ int main(void)
 
     get_name(name);
     change_price(name, pItem, pIndex);
+    printf("\n");
+
+    most_expensive(pItem);
 
     return(0);
 }
@@ -136,6 +140,22 @@ void change_price(char* name, struct Items* pItem, struct Items** pIndex)
     {
         printf("Sorry, this item was not found :/\n");
     }
+}
+
+void most_expensive(struct Items* pItem)
+{
+    int expensive = 0, index = 0;
+
+    for(int i = 0; i < 10; i++)
+    {
+        if((pItem + i)->price > expensive)
+        {
+            expensive = (pItem + i)->price;
+            index = i;
+        }
+    }
+    printf("Most expensive item : %s, quantity : %d, price %.2f\n",
+    (pItem + index)->name, (pItem + index)->quantity, (pItem + index)->price);
 }
 
 /*
