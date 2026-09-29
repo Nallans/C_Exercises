@@ -15,12 +15,13 @@ bool find_item(char* name, struct Items* pItem, struct Items** pIndex);
 void change_quantity(char* name, struct Items* pItem, struct Items** pIndex);
 void change_price(char* name, struct Items* pItem, struct Items** pIndex);
 void most_expensive(struct Items* pItem);
+void lowest_quantity(struct Items* pItem);
 
 int main(void)
 {
-    struct Items item[10] = {{"Ayn Thor", 1, 329.99}, {"Anbernic RG SP", 10, 69.99},
+    struct Items item[10] = {{"Ayn Thor", 2, 329.99}, {"Anbernic RG SP", 10, 69.99},
     {"PS2", 4, 39.99}, {"Xbox 360", 5, 49.99}, {"Wii", 3, 29.99},
-    {"WiiU", 1, 69.99}, {"PS3", 6, 59.99}, {"NES", 1, 89.99},
+    {"WiiU", 6, 69.99}, {"PS3", 7, 59.99}, {"NES", 3, 89.99},
     {"GameBoy", 2, 99.99}, {"GameBoy Advance SP", 1, 109.99}};
 
     struct Items* pItem = &item[0];
@@ -51,6 +52,10 @@ int main(void)
     printf("\n");
 
     most_expensive(pItem);
+    printf("\n");
+
+    lowest_quantity(pItem);
+    printf("\n");
 
     return(0);
 }
@@ -155,6 +160,21 @@ void most_expensive(struct Items* pItem)
         }
     }
     printf("Most expensive item : %s, quantity : %d, price %.2f\n",
+    (pItem + index)->name, (pItem + index)->quantity, (pItem + index)->price);
+}
+
+void lowest_quantity(struct Items* pItem)
+{
+    int lowest = 1000, index = 0;
+    for(int i = 0; i < 10; i++)
+    {
+        if((pItem + i)->quantity < lowest)
+        {
+            lowest = (pItem + i)->quantity;
+            index = i;
+        }
+    }
+    printf("Lowest quantity : %s, quantity : %d, price : %.2f\n",
     (pItem + index)->name, (pItem + index)->quantity, (pItem + index)->price);
 }
 
