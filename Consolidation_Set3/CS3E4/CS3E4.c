@@ -13,6 +13,7 @@ void get_name(char* name);
 bool string_compare(char* name1, char* name2);
 bool find_item(char* name, struct Items* pItem, struct Items** pIndex);
 void change_quantity(char* name, struct Items* pItem, struct Items** pIndex);
+void change_price(char* name, struct Items* pItem, struct Items** pIndex);
 
 int main(void)
 {
@@ -42,6 +43,10 @@ int main(void)
 
     get_name(name);
     change_quantity(name, pItem, pIndex);
+    printf("\n");
+
+    get_name(name);
+    change_price(name, pItem, pIndex);
 
     return(0);
 }
@@ -103,9 +108,34 @@ void change_quantity(char* name, struct Items* pItem, struct Items** pIndex)
             printf("That's not correct, give a positive or null integer : ");
             scanf("%d", &(*pIndex)->quantity);
         }
+        printf("New quantity : %s, quantity : %d, price %.2f\n",
+        (*pIndex)->name, (*pIndex)->quantity, (*pIndex)->price);
     }
-    printf("New quantity : %s, quantity : %d, price %.2f\n",
-    (*pIndex)->name, (*pIndex)->quantity, (*pIndex)->price);
+    else
+    {
+        printf("Sorry, this item was not found :/\n");
+    }
+}
+
+void change_price(char* name, struct Items* pItem, struct Items** pIndex)
+{
+    if(find_item(name, pItem, pIndex))
+    {
+        printf("What is the new price ? ");
+        scanf("%f", &(*pIndex)->price);
+
+        while((*pIndex)->price < 0)
+        {
+            printf("That's not correct, give a positive or null price : ");
+            scanf("%f", &(*pIndex)->price);
+        }
+        printf("New price : %s, quantity %d, price %.2f\n",
+        (*pIndex)->name, (*pIndex)->quantity, (*pIndex)->price);
+    }
+    else
+    {
+        printf("Sorry, this item was not found :/\n");
+    }
 }
 
 /*
