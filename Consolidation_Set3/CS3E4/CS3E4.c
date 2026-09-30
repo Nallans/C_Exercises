@@ -123,7 +123,8 @@ void change_price(char* name, struct Items* pItem, struct Items** pIndex)
 
 void most_expensive(struct Items* pItem)
 {
-    int expensive = 0, index = 0;
+    float expensive = 0;
+    int index = 0;
 
     for(int i = 0; i < 10; i++)
     {
