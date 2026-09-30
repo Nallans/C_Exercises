@@ -155,7 +155,7 @@ void lowest_quantity(struct Items* pItem)
 
 void menu(char* name, struct Items* pItem, struct Items** pIndex)
 {
-    int choice;
+    int choice = 0;
 
     printf( "MENU :\n"
             "1. Display inventory\n"
