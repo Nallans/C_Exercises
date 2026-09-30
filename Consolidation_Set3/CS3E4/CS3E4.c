@@ -16,6 +16,7 @@ void change_quantity(char* name, struct Items* pItem, struct Items** pIndex);
 void change_price(char* name, struct Items* pItem, struct Items** pIndex);
 void most_expensive(struct Items* pItem);
 void lowest_quantity(struct Items* pItem);
+void menu(char* name, struct Items* pItem, struct Items** pIndex);
 
 int main(void)
 {
@@ -28,34 +29,7 @@ int main(void)
     struct Items** pIndex = &pItem;
     char name[30];
 
-    display_items(pItem);
-
-    get_name(name);
-    if(find_item(name, pItem, pIndex))
-    {
-        printf("Item : %s, quantity : %d, price : %.2f\n",
-        (*pIndex)->name, (*pIndex)->quantity, (*pIndex)->price);
-    }
-    else
-    {
-        printf("Sorry, this item is not in store :/\n");
-    }
-
-    printf("\n");
-
-    get_name(name);
-    change_quantity(name, pItem, pIndex);
-    printf("\n");
-
-    get_name(name);
-    change_price(name, pItem, pIndex);
-    printf("\n");
-
-    most_expensive(pItem);
-    printf("\n");
-
-    lowest_quantity(pItem);
-    printf("\n");
+    menu(name, pItem, pIndex);
 
     return(0);
 }
@@ -122,7 +96,7 @@ void change_quantity(char* name, struct Items* pItem, struct Items** pIndex)
     }
     else
     {
-        printf("Sorry, this item was not found :/\n");
+        printf("Sorry, your item was not found :/\n");
     }
 }
 
@@ -143,7 +117,7 @@ void change_price(char* name, struct Items* pItem, struct Items** pIndex)
     }
     else
     {
-        printf("Sorry, this item was not found :/\n");
+        printf("Sorry, your item was not found :/\n");
     }
 }
 
@@ -176,6 +150,78 @@ void lowest_quantity(struct Items* pItem)
     }
     printf("Lowest quantity : %s, quantity : %d, price : %.2f\n",
     (pItem + index)->name, (pItem + index)->quantity, (pItem + index)->price);
+}
+
+void menu(char* name, struct Items* pItem, struct Items** pIndex)
+{
+    int choice;
+
+    printf( "MENU :\n"
+            "1. Display inventory\n"
+            "2. Search for an item\n"
+            "3. Change quantity\n"
+            "4. Change price\n"
+            "5. Find most expensive item\n"
+            "6. Find item with lowest quantity\n"
+            "7. Quit\n");
+
+    printf("\n");
+
+    while(choice != 7)
+    {
+        printf("What is your choice ? ");
+        scanf("%d", &choice);
+
+    while(choice < 1 || choice > 7)
+    {
+        printf("Enter a number between 1 and 7 : ");
+        scanf("%d", &choice);
+    }
+
+        switch(choice)
+        {
+            case 1 :
+            display_items(pItem);
+            printf("\n");
+            break;
+
+            case 2 :
+            get_name(name);
+            if(find_item(name, pItem, pIndex))
+            {
+                printf("Item found : %s, quantity : %d, price : %.2f\n",
+                (*pIndex)->name, (*pIndex)->quantity, (*pIndex)->price);
+            }
+            else
+            {
+                printf("Sorry, your item was not found :/\n");
+            }
+            printf("\n");
+            break;
+
+            case 3 :
+            get_name(name);
+            change_quantity(name, pItem, pIndex);
+            printf("\n");
+            break;
+
+            case 4 :
+            get_name(name);
+            change_price(name, pItem, pIndex);
+            printf("\n");
+            break;
+
+            case 5 : 
+            most_expensive(pItem);
+            printf("\n");
+            break;
+
+            case 6 :
+            lowest_quantity(pItem);
+            printf("\n");
+            break;
+        }
+    }
 }
 
 /*
