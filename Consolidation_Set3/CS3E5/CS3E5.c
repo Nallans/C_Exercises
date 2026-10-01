@@ -1,3 +1,21 @@
+#include <stdio.h>
+
+struct Games
+{
+    char title[30];
+    int release_year, rating;
+};
+
+int main(void)
+{
+    struct Games game[10] = {{"Doom", 1993, 91}, {"Pac-Man", 1980, 78},
+    {"Super Mario Bros", 1985, 89}, {"Jak & Daxter", 2001, 92},
+    {"Driver San Francisco", 2011, 86}, {"Ratchet & Clank", 2002, 94},
+    {"Half-Life", 1998, 97}, {"Pong", 1972, 74}};
+
+    return(0);
+}
+
 /*
 CS3E5 — Reconstruction Challenge
 
