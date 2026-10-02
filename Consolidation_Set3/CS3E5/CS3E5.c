@@ -15,6 +15,7 @@ void change_rating(struct Games** pIndex);
 void highest_rated(struct Games* pGame);
 void oldest_game(struct Games* pGame);
 void lowest_rated(struct Games* pGame);
+void menu(char* name, struct Games* pGame, struct Games** pIndex);
 
 int main(void)
 {
@@ -27,33 +28,7 @@ int main(void)
     struct Games** pIndex = &pGame;
     char name[30];
 
-    display_games(pGame);
-    printf("\n");
-
-    get_name(name);
-    if(find_game(name, pGame, pIndex))
-    {
-        printf("Game found ! %s, released in %d, rated %d / 100\n",
-        (*pIndex)->title, (*pIndex)->release_year, (*pIndex)->rating);
-    }
-    else
-    {
-        printf("Sorry, your game was not found :/\n");
-    }
-
-    get_name(name);
-    if(find_game(name, pGame, pIndex))
-    {
-        change_rating(pIndex);
-    }
-    else
-    {
-        printf("Sorry, your game was not found :/\n");
-    }
-
-    highest_rated(pGame);
-    oldest_game(pGame);
-    lowest_rated(pGame);
+    menu(name, pGame, pIndex);
 
     return(0);
 }
@@ -163,6 +138,84 @@ void lowest_rated(struct Games* pGame)
     }
     printf("Lowest rated game is %s, released in %d, rated %d / 100\n",
     (pGame + index)->title, (pGame + index)->release_year, (pGame + index)->rating);
+}
+
+void menu(char* name, struct Games* pGame, struct Games** pIndex)
+{
+    int choice = 0;
+
+    printf( "Welcome to the Game Library !\n"
+            "\n"
+            "1. Display all games\n"
+            "2. Search for a game\n"
+            "3. Change a game's rating\n"
+            "4. Display the highest-rated game\n"
+            "5. Display the oldest game\n"
+            "6. Display the lowest-rated game\n"
+            "7. Quit\n"
+            "\n"
+            "What is your choice ? ");
+
+    while(choice != 7)
+    {
+        scanf("%d", &choice);
+
+        while(choice < 1 || choice > 7)
+        {
+            printf("You must choose a number between 1 and 7 : ");
+            scanf("%d", &choice);
+        }
+
+        switch(choice)
+        {
+            case 1 :
+            display_games(pGame);
+            printf("\n");
+            break;
+
+            case 2 : 
+            get_name(name);
+            if(find_game(name, pGame, pIndex))
+            {
+                printf("Game found ! %s, released in %d, rated %d / 100\n",
+                (*pIndex)->title, (*pIndex)->release_year, (*pIndex)->rating);
+            }
+            else
+            {
+                printf("Sorry, your game was not found :/\n");
+            }
+            printf("\n");
+            break;
+
+            case 3 :
+            get_name(name);
+            if(find_game(name, pGame, pIndex))
+            {
+                change_rating(pIndex);
+            }
+            else
+            {
+                printf("Sorry, your game was not found :/\n");
+            }
+            printf("\n");
+            break;
+
+            case 4 :
+            highest_rated(pGame);
+            printf("\n");
+            break;
+            
+            case 5 :
+            oldest_game(pGame);
+            printf("\n");
+            break;
+
+            case 6 : 
+            lowest_rated(pGame);
+            printf("\n");
+            break;
+        }
+    }
 }
 
 /*
