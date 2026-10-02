@@ -13,6 +13,7 @@ bool string_compare(char* name1, char* name2);
 bool find_game(char* name, struct Games* pGame, struct Games** pIndex);
 void change_rating(struct Games** pIndex);
 void highest_rated(struct Games* pGame);
+void oldest_game(struct Games* pGame);
 
 int main(void)
 {
@@ -50,6 +51,7 @@ int main(void)
     }
 
     highest_rated(pGame);
+    oldest_game(pGame);
 
     return(0);
 }
@@ -126,6 +128,22 @@ void highest_rated(struct Games* pGame)
         }
     }
     printf("Highest rated game : %s, released in %d, rated %d / 100\n",
+    (pGame + index)->title, (pGame + index)->release_year, (pGame + index)->rating);
+}
+
+void oldest_game(struct Games* pGame)
+{
+    int oldest = 3000, index = 0;
+
+    for(int i = 0; i < 8; i++)
+    {
+        if((pGame + i)->release_year < oldest)
+        {
+            oldest = (pGame + i)->release_year;
+            index = i;
+        }
+    }
+    printf("Oldest game is %s, released in %d, rated %d / 100\n",
     (pGame + index)->title, (pGame + index)->release_year, (pGame + index)->rating);
 }
 
