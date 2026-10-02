@@ -14,6 +14,7 @@ bool find_game(char* name, struct Games* pGame, struct Games** pIndex);
 void change_rating(struct Games** pIndex);
 void highest_rated(struct Games* pGame);
 void oldest_game(struct Games* pGame);
+void lowest_rated(struct Games* pGame);
 
 int main(void)
 {
@@ -52,6 +53,7 @@ int main(void)
 
     highest_rated(pGame);
     oldest_game(pGame);
+    lowest_rated(pGame);
 
     return(0);
 }
@@ -144,6 +146,22 @@ void oldest_game(struct Games* pGame)
         }
     }
     printf("Oldest game is %s, released in %d, rated %d / 100\n",
+    (pGame + index)->title, (pGame + index)->release_year, (pGame + index)->rating);
+}
+
+void lowest_rated(struct Games* pGame)
+{
+    int lowest = 101, index = 0;
+
+    for(int i = 0; i < 8; i++)
+    {
+        if((pGame + i)->rating < lowest)
+        {
+            lowest = (pGame + i)->rating;
+            index = i;
+        }
+    }
+    printf("Lowest rated game is %s, released in %d, rated %d / 100\n",
     (pGame + index)->title, (pGame + index)->release_year, (pGame + index)->rating);
 }
 
