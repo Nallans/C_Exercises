@@ -11,6 +11,7 @@ void display_games(struct Games* pGame);
 void get_name(char* name);
 bool string_compare(char* name1, char* name2);
 bool find_game(char* name, struct Games* pGame, struct Games** pIndex);
+void change_rating(char* name, struct Games* pGame, struct Games** pIndex);
 
 int main(void)
 {
@@ -37,6 +38,9 @@ int main(void)
         printf("Sorry, your game was not found :/\n");
     }
 
+    get_name(name);
+    change_rating(name, pGame, pIndex);
+
     return(0);
 }
 
@@ -52,7 +56,7 @@ void display_games(struct Games* pGame)
 void get_name(char* name)
 {
     printf("What is the game you're looking for ? ");
-    scanf("%29[^\n]", name);
+    scanf(" %29[^\n]", name);
 }
 
 bool string_compare(char* name1, char* name2)
@@ -83,6 +87,27 @@ bool find_game(char* name, struct Games* pGame, struct Games** pIndex)
         }
     }
     return false;
+}
+
+void change_rating(char* name, struct Games* pGame, struct Games** pIndex)
+{
+    if(find_game(name, pGame, pIndex))
+    {
+        printf("What is your rating of %s ? ", (*pIndex)->title);
+        scanf("%d", &(*pIndex)->rating);
+        
+        while((*pIndex)->rating < 0 || (*pIndex)->rating > 100)
+        {
+            printf("You must enter a number between 0 and 100 : ");
+            scanf("%d", &(*pIndex)->rating);
+        }
+        printf("New rating : %s, released in %d, rated %d / 100\n",
+        (*pIndex)->title, (*pIndex)->release_year, (*pIndex)->rating);
+    }
+    else
+    {
+        printf("Sorry, your game was not found :/\n");
+    }
 }
 
 /*
