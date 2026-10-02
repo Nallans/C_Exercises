@@ -153,11 +153,11 @@ void menu(char* name, struct Games* pGame, struct Games** pIndex)
             "5. Display the oldest game\n"
             "6. Display the lowest-rated game\n"
             "7. Quit\n"
-            "\n"
-            "What is your choice ? ");
+            "\n");
 
     while(choice != 7)
     {
+        printf("What is your choice ? ");
         scanf("%d", &choice);
 
         while(choice < 1 || choice > 7)
@@ -216,6 +216,7 @@ void menu(char* name, struct Games* pGame, struct Games** pIndex)
             break;
         }
     }
+    printf("Okay then, see you ! :D\n");
 }
 
 /*
