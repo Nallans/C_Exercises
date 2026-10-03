@@ -1,23 +1,24 @@
 #include <stdio.h>
 
-void analyze_numbers(int* numbers, int size, int* sum, float* average, int* highest);
+void analyze_numbers(int* numbers, int size, int* sum, float* average, int* highest, int* lowest);
 
 int main(void)
 {
     int numbers[5] = {5, 2, 1, 6, 7};
-    int sum = 0, highest = 0;
+    int sum = 0, highest = 0, lowest = 10;
     float average;
 
-    analyze_numbers(numbers, 5, &sum, &average, &highest);
+    analyze_numbers(numbers, 5, &sum, &average, &highest, &lowest);
 
     printf( "Sum = %d\n"
             "Average = %.2f\n"
-            "Highest = %d\n", sum, average, highest);
+            "Highest = %d\n"
+            "Lowest = %d\n", sum, average, highest, lowest);
 
     return(0);
 }
 
-void analyze_numbers(int* numbers, int size, int* sum, float* average, int* highest)
+void analyze_numbers(int* numbers, int size, int* sum, float* average, int* highest, int* lowest)
 {
     for(int i = 0; i < size; i++)
     {
@@ -25,6 +26,10 @@ void analyze_numbers(int* numbers, int size, int* sum, float* average, int* high
         if(*(numbers + i) > *highest)
         {
             *highest = *(numbers + i);
+        }
+        if(*(numbers + i) < *lowest)
+        {
+            *lowest = *(numbers + i);
         }
     }
     *average = (float) *sum / size;
@@ -62,6 +67,7 @@ Your function currently calculates:
 sum
 average
 highest
+
 Challenge
 
 Modify it so that it also returns the lowest number.
