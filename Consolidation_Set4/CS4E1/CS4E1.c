@@ -1,3 +1,19 @@
+#include <stdio.h>
+
+void analyze_numbers(int* numbers, int size, int* sum, float* average, int* highest);
+
+int main(void)
+{
+    int numbers[5] = {5, 2, 1, 6, 7};
+
+    return(0);
+}
+
+void analyze_numbers(int* numbers, int size, int* sum, float* average, int* highest)
+{
+
+}
+
 /*
 CS4E1 — Multiple Results
 
