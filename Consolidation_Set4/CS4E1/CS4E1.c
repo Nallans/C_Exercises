@@ -52,4 +52,17 @@ The calculations must happen inside analyze_numbers().
 main() must receive the three results through the pointer parameters.
 Do not use global variables.
 Do not create separate functions for each calculation.
+
+Improvement Challenge
+
+Let's make this one slightly more interesting without jumping too far ahead.
+
+Your function currently calculates:
+
+sum
+average
+highest
+Challenge
+
+Modify it so that it also returns the lowest number.
 */
