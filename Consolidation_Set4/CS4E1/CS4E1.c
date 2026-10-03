@@ -1,0 +1,23 @@
+/*
+CS4E1 — Multiple Results
+
+Write a program containing a function:
+
+void analyze_numbers(int *numbers, int size, int *sum, float *average, int *highest);
+
+The function receives an array of integers and must calculate:
+
+the sum
+the average
+the highest value
+
+The function must not return anything.
+
+main() should create an array, call the function, and display all three results.
+
+Requirements
+The calculations must happen inside analyze_numbers().
+main() must receive the three results through the pointer parameters.
+Do not use global variables.
+Do not create separate functions for each calculation.
+*/
