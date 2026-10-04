@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void display_numbers(int* pNumber, int size);
-void double_numbers(int* pNumber, int size);
+void operate_numbers(int* pNumber, int size);
 
 int main(void)
 {
@@ -9,7 +9,8 @@ int main(void)
     int *pNumber = &numbers[0];
 
     display_numbers(pNumber, 8);
-    double_numbers(pNumber, 8);
+    printf("\n");
+    operate_numbers(pNumber, 8);
     printf("\n");
     display_numbers(pNumber, 8);
     printf("\n");
@@ -32,11 +33,38 @@ void display_numbers(int* pNumber, int size)
     }
 }
 
-void double_numbers(int* pNumber, int size)
+void operate_numbers(int* pNumber, int size)
 {
+    int operation, factor;
+
+    printf("Choose 1 for multiplication, 2 for division : ");
+    scanf("%d", &operation);
+
+    while(operation < 1 || operation > 2)
+    {
+        printf("Choose between 1 and 2 : ");
+        scanf("%d", &operation);
+    }
+
+    printf("Great, now choose the factor : ");
+    scanf("%d", &factor);
+
+    while(factor < 1)
+    {
+        printf("You must choose a factor greater than 0 : ");
+        scanf("%d", &factor);
+    }
+
     for(int i = 0; i < size; i++)
     {
-        *(pNumber + i) += *(pNumber + i);
+        if(operation == 1)
+        {
+            *(pNumber + i) *= factor;
+        }
+        else
+        {
+            *(pNumber + i) /= factor;
+        }
     }
 }
 
