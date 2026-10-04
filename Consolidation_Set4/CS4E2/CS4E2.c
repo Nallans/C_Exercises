@@ -18,7 +18,8 @@ int main(void)
     printf("%d\n", *(numbers + 2)); // Accessing via dereferencing the array and adding index
     printf("%d\n", *(pNumber + 2)); // Accessing via dereferencing pointer to the first element of the array
 
-    // These are the same because an array is a pointer to its first element, so they're accessing the same variable at the same place in memory, just not by the same technique.
+    // These are the same because an array's name decays to a pointer to its first element, so they're accessing the same variable at the same place in memory, just not by the same technique.
+    // Example : Here "numbers" becomes "&numbers[0]"
 
     return(0);
 }
@@ -75,4 +76,38 @@ numbers[i]
 Convince yourself that they reach the same element.
 
 Don't just accept that they're equivalent. Figure out why.
+
+Improvement challenge :
+
+You actually already have a good foundation for the next step.
+
+Notice that your double_numbers() currently has:
+
+*(pNumber + i) += *(pNumber + i);
+
+I want you to think about why this works rather than changing it immediately.
+
+For the next improvement challenge, modify the function so that it can perform either multiplication or division on every element, depending on what the caller asks for.
+
+For example, conceptually:
+
+numbers = {12, 4, 27, 8}
+
+operation = multiply
+factor = 3
+
+→ {36, 12, 81, 24}
+
+or:
+
+numbers = {12, 4, 27, 8}
+
+operation = divide
+factor = 2
+
+→ {6, 2, 13, 4}
+
+You decide the function's parameters and how you represent the operation.
+
+Don't add a solution yet. The interesting part is figuring out what information the function needs and how to use the pointer to modify the original array.
 */
