@@ -12,6 +12,13 @@ int main(void)
     double_numbers(pNumber, 8);
     printf("\n");
     display_numbers(pNumber, 8);
+    printf("\n");
+
+    printf("%d\n", numbers[2]);     // Accessing via array index
+    printf("%d\n", *(numbers + 2)); // Accessing via dereferencing the array and adding index
+    printf("%d\n", *(pNumber + 2)); // Accessing via dereferencing pointer to the first element of the array
+
+    // These are the same because an array is a pointer to its first element, so they're accessing the same variable at the same place in memory, just not by the same technique.
 
     return(0);
 }
