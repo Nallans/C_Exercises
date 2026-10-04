@@ -1,12 +1,16 @@
 #include <stdio.h>
 
 void display_numbers(int* pNumber, int size);
+void double_numbers(int* pNumber, int size);
 
 int main(void)
 {
     int numbers[8] = {12, 4, 27, 8, 15, 3, 19, 6};
     int *pNumber = &numbers[0];
 
+    display_numbers(pNumber, 8);
+    double_numbers(pNumber, 8);
+    printf("\n");
     display_numbers(pNumber, 8);
 
     return(0);
@@ -17,6 +21,14 @@ void display_numbers(int* pNumber, int size)
     for(int i = 0; i < size; i++)
     {
         printf("%d ", *(pNumber + i));
+    }
+}
+
+void double_numbers(int* pNumber, int size)
+{
+    for(int i = 0; i < size; i++)
+    {
+        *(pNumber + i) += *(pNumber + i);
     }
 }
 
