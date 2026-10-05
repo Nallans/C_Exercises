@@ -23,6 +23,8 @@ void get_size(int* size)
 void operate_numbers(int size)
 {
     int numbers[size];
+    int sum = 0, highest = 0, lowest = 1000;
+    float average;
 
     printf("What are the numbers you want to store ? ");
 
@@ -30,7 +32,25 @@ void operate_numbers(int size)
     {
         scanf(" %d", &numbers[i]);
         printf("%d ", numbers[i]);
+        sum += numbers[i];
+
+        if(numbers[i] > highest)
+        {
+            highest = numbers[i];
+        }
+        if(numbers[i] < lowest)
+        {
+            lowest = numbers[i];
+        }
     }
+    average = (float) sum / size;
+
+    printf( "\n"
+            "Sum = %d\n"
+            "Average = %.2f\n"
+            "Highest = %d\n"
+            "Lowest = %d\n",
+            sum, average, highest, lowest);
 }
 /*
 CS4E4 — The Unknown Size Problem
@@ -47,6 +67,7 @@ their sum
 their average
 their highest value
 their lowest value
+
 Constraint
 
 You are not allowed to declare a fixed array such as:
