@@ -20,6 +20,7 @@ void inspect_array(int* pNumbers, int size)
                 "Index : %d\n"
                 "Address : %p\n",
                 *(pNumbers + i), i, (pNumbers + i));
+                // The adress increments by 4 each time, because an int is a type of 4 bytes.
     }
 }
 
