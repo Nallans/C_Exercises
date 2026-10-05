@@ -1,3 +1,22 @@
+#include <stdio.h>
+
+void get_size(int* size);
+
+int main(void)
+{
+    int size;
+    int numbers[size];
+
+    printf("You want %d integers\n", size);
+
+    return(0);
+}
+
+void get_size(int* size)
+{
+    printf("How many integers do you want to store ? ");
+    scanf("%d", size);
+}
 /*
 CS4E4 — The Unknown Size Problem
 
