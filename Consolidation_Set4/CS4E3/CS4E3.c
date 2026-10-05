@@ -1,3 +1,13 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int numbers[10] = {3, 1, 8, 4, 6, 2, 9, 0, 7, 5};
+    int* pNumbers = numbers;
+
+    return(0);
+}
+
 /*
 CS4E3 — Walking Through Memory
 
