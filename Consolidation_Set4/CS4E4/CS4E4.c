@@ -28,7 +28,7 @@ void operate_numbers(int size)
 
     for(int i = 0; i < size; i++)
     {
-        scanf("%d ", &numbers[i]);
+        scanf(" %d", &numbers[i]);
         printf("%d ", numbers[i]);
     }
 }
