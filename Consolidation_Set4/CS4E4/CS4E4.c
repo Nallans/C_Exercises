@@ -1,13 +1,15 @@
 #include <stdio.h>
 
 void get_size(int* size);
+void operate_numbers(int size);
 
 int main(void)
 {
     int size;
-    int numbers[size];
 
+    get_size(&size);
     printf("You want %d integers\n", size);
+    operate_numbers(size);
 
     return(0);
 }
@@ -16,6 +18,19 @@ void get_size(int* size)
 {
     printf("How many integers do you want to store ? ");
     scanf("%d", size);
+}
+
+void operate_numbers(int size)
+{
+    int numbers[size];
+
+    printf("What are the numbers you want to store ? ");
+
+    for(int i = 0; i < size; i++)
+    {
+        scanf("%d ", &numbers[i]);
+        printf("%d ", numbers[i]);
+    }
 }
 /*
 CS4E4 — The Unknown Size Problem
