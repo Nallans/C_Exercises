@@ -53,6 +53,13 @@ void operate_numbers(int size)
             sum, average, highest, lowest);
 }
 /*
+    Notes :
+
+        Here, the problem is that we can't initialize an array in main that is not fixed, as the user didn't gave his input at the start of main. It will create an uninitialized error. So I thought about doing it inside a function
+        to have the program compile properly, then operate on the array. Problem is, the way to access the array is restricted, and it exists only while the function is running, as it is local.
+*/
+
+/*
 CS4E4 — The Unknown Size Problem
 
 Write a program that asks the user:
