@@ -1,3 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    return(0);
+}
 /*
 CS4E5 — Welcome to malloc()
 
