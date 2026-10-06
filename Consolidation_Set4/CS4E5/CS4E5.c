@@ -3,6 +3,7 @@
 
 void get_size(int* size);
 void get_numbers(int* pNumbers, int size);
+void display_numbers(int* pNumbers, int size);
 
 int main(void)
 {
@@ -20,6 +21,9 @@ int main(void)
 
     else printf("Memory allocated successfully.\n");
 
+    get_numbers(pNumbers, size);
+    display_numbers(pNumbers, size);
+
     return(0);
 }
 
@@ -31,11 +35,22 @@ void get_size(int* size)
 
 void get_numbers(int* pNumbers, int size)
 {
+    printf("What are the numbers you want to store ? ");
+    
     for(int i = 0; i < size; i++)
     {
         scanf("%d", (pNumbers + i));
     }
 }
+
+void display_numbers(int* pNumbers, int size)
+{
+    for(int i = 0; i < size; i++)
+    {
+        printf("%d ", *(pNumbers + i));
+    }
+}
+
 /*
 CS4E5 — Welcome to malloc()
 
