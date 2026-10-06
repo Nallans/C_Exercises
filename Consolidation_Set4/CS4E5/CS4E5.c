@@ -1,9 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void get_size(int* size);
+void get_numbers(int* pNumbers, int size);
+
 int main(void)
 {
+    int size;
+
+    get_size(&size);
+
+    int *pNumbers = malloc(size * sizeof(int));
+
+    if(pNumbers == NULL)
+    {
+        printf("Memory allocation FAILED.\n");
+        return (1);
+    }
+
+    else printf("Memory allocated successfully.\n");
+
     return(0);
+}
+
+void get_size(int* size)
+{
+    printf("What would be the size of your array ? ");
+    scanf("%d", size);
+}
+
+void get_numbers(int* pNumbers, int size)
+{
+    for(int i = 0; i < size; i++)
+    {
+        scanf("%d", (pNumbers + i));
+    }
 }
 /*
 CS4E5 — Welcome to malloc()
