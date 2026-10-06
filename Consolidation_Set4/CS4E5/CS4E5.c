@@ -83,6 +83,13 @@ void operate_numbers(int* pNumbers, int size)
 }
 
 /*
+        Notes :
+
+        - number of elements * size of the elements is necessary because that represents how many blocs of memory we need. If we only do size, it doesn't work : For example we need to store an array of 5 integers. 5 * 1 = 5, but this value is okay for 5 char types, so we could not all the numbers in our array : only one. Whereas 5 integers are 5 * 4 = 20, that would be the exact byte size of memory we need.
+        - The pointer contains random values after using malloc. That's where calloc is useful : it initializes new space with 0. When using malloc, we must always assign values to the new space we just allocated to avoid unexpected behavior. Otherwise, we'll print "garbage" random values stored in the addresses.
+*/
+
+/*
 CS4E5 — Welcome to malloc()
 
 Now we'll solve CS4E4 properly.
