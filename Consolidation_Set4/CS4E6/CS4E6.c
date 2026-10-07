@@ -1,3 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void get_size(int* size);
+
+int main(void)
+{
+    int size;
+    // int* pNumbers;
+
+    get_size(&size);
+    printf("You want to store %d numbers\n", size);
+    printf("\n");
+
+    return(0);
+}
+
+void get_size(int* size)
+{
+    printf("How many integers do you want to store ? ");
+    scanf("%d", size);
+}
+
 /*
 CS4E6 — Dynamic Array Through Functions
 
