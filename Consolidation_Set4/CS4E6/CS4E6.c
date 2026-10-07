@@ -3,6 +3,7 @@
 
 void get_size(int* size);
 int* allocate(int* pNumbers, int size);
+void get_numbers(int* pNumbers, int size);
 
 int main(void)
 {
@@ -12,6 +13,8 @@ int main(void)
     get_size(&size);
     printf("You want to store %d numbers\n", size);
     pNumbers = allocate(pNumbers, size);
+    get_numbers(pNumbers, size);
+
     free(pNumbers);
 
     return(0);
@@ -35,6 +38,17 @@ int* allocate(int* pNumbers, int size)
         printf("Memory successfully allocated !\n");
     }
     return pNumbers;
+}
+
+void get_numbers(int* pNumbers, int size)
+{
+    printf("What numbers do you want to store ? ");
+
+    for(int i = 0; i < size; i++)
+    {
+        scanf("%d", pNumbers + i);
+        printf("%d ", *(pNumbers + i));
+    }
 }
 
 /*
