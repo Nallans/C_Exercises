@@ -5,6 +5,7 @@ void get_size(int* size);
 int* allocate(int* pNumbers, int size);
 void get_numbers(int* pNumbers, int size);
 void display_numbers(int* pNumbers, int size);
+void operate_numbers(int* pNumbers, int size);
 
 int main(void)
 {
@@ -17,6 +18,7 @@ int main(void)
     get_numbers(pNumbers, size);
     display_numbers(pNumbers, size);
     printf("\n");
+    operate_numbers(pNumbers, size);
 
     free(pNumbers);
 
@@ -59,6 +61,33 @@ void display_numbers(int* pNumbers, int size)
     {
         printf("%d ", *(pNumbers + i));
     }
+}
+
+void operate_numbers(int* pNumbers, int size)
+{
+    int sum = 0, highest = *(pNumbers + 0), lowest = *(pNumbers + 0);
+    float average;
+
+    for(int i = 0; i < size; i++)
+    {
+        sum += *(pNumbers + i);
+        
+        if(highest < *(pNumbers + i))
+        {
+            highest = *(pNumbers + i);
+        }
+        if(lowest > *(pNumbers + i))
+        {
+            lowest = *(pNumbers + i);
+        }
+    }
+    average = (float) sum / size;
+
+    printf( "Sum = %d\n"
+            "Average = %.2f\n"
+            "Highest = %d\n"
+            "Lowest = %d\n",
+            sum, average, highest, lowest);
 }
 
 /*
