@@ -12,6 +12,7 @@ void get_number(int* number);
 void allocate(struct People** ppPerson, int size);
 void get_information(struct People** ppPerson, int size);
 void display_people(struct People ** ppPerson, int size);
+void operate_people(struct People** ppPerson, int size);
 
 int main(void)
 {
@@ -28,6 +29,8 @@ int main(void)
     get_information(ppPerson, size);
     printf("\n");
     display_people(ppPerson, size);
+    printf("\n");
+    operate_people(ppPerson, size);
     
     free(*ppPerson);
 
@@ -75,6 +78,35 @@ void display_people(struct People** ppPerson, int size)
     }
 }
 
+void operate_people(struct People** ppPerson, int size)
+{
+    int sum = 0, oldest = 0, tallest = 0, o_index, t_index;
+    float average;
+
+    for(int i = 0; i < size; i++)
+    {
+        sum += (*ppPerson + i)->age;
+
+        if(oldest < (*ppPerson + i)->age)
+        {
+            oldest = (*ppPerson + i)->age;
+            o_index = i;
+        }
+        if(tallest < (*ppPerson + i)->height)
+        {
+            tallest = (*ppPerson + i)->height;
+            t_index = i;
+        }
+    }
+    average = (float) sum / size;
+    printf( "Oldest person : %s, age %d\n"
+            "Tallest person : %s, height %.2f\n"
+            "Average age : %.2f\n",
+    (*ppPerson + o_index)->name, (*ppPerson + o_index)->age,
+    (*ppPerson + t_index)->name, (*ppPerson + t_index)->height,
+    average);
+}
+
 /*
 CS4E7 — Dynamic People
 
@@ -106,6 +138,7 @@ Finally, calculate and display:
 oldest person
 tallest person
 average age
+
 Constraints
 
 You must:
