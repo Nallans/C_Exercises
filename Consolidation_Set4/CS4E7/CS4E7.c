@@ -8,9 +8,22 @@ struct People
     float height;
 };
 
+void get_number(int* number);
+
 int main(void)
 {
+    int number;
+
+    printf("How many people do you want to create ? ");
+    get_number(&number);
+    printf("You want to create %d people\n", number);
+
     return(0);
+}
+
+void get_number(int* number)
+{
+    scanf("%d", number);
 }
 
 /*
