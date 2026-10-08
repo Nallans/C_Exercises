@@ -9,7 +9,8 @@ struct People
 };
 
 void get_number(int* number);
-void allocate(struct People** pPerson, int size);
+void allocate(struct People** ppPerson, int size);
+void get_information(struct People** ppPerson, int size);
 
 int main(void)
 {
@@ -23,6 +24,7 @@ int main(void)
     printf("You want to create %d people\n", size);
 
     allocate(ppPerson, size);
+    get_information(ppPerson, size);
     
     free(*ppPerson);
 
@@ -45,6 +47,24 @@ void allocate(struct People** ppPerson, int size)
     else
     {
         printf("Memory allocation successfull !\n");
+    }
+}
+
+void get_information(struct People** ppPerson, int size)
+{
+    for(int i = 0; i < size; i++)
+    {
+        printf("What is person %d's name ? ", i + 1);
+        scanf(" %29[^\n]", (*ppPerson + i)->name);
+        printf("What is person %d's age ? ", i + 1);
+        scanf(" %d", &((*ppPerson) + i)->age);
+        printf("What is person %d's height ? ", i + 1);
+        scanf(" %f", &(*ppPerson + i)->height);
+    }
+    for(int i = 0; i < size; i++)
+    {
+        printf( "%s, age %d, height %.2f\n",
+                (*ppPerson + i)->name, (*ppPerson + i)->age, (*ppPerson + i)->height);
     }
 }
 
