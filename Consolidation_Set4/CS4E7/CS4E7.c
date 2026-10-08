@@ -80,8 +80,8 @@ void display_people(struct People** ppPerson, int size)
 
 void operate_people(struct People** ppPerson, int size)
 {
-    int sum = 0, oldest = 0, tallest = 0, o_index, t_index;
-    float average;
+    int sum = 0, oldest = 0, o_index, t_index;
+    float tallest = 0, average;
 
     for(int i = 0; i < size; i++)
     {
