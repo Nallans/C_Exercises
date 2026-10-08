@@ -1,3 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct People
+{
+    char name[30];
+    int age;
+    float height;
+};
+
+int main(void)
+{
+    return(0);
+}
+
 /*
 CS4E7 — Dynamic People
 
