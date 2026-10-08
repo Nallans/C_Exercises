@@ -9,14 +9,22 @@ struct People
 };
 
 void get_number(int* number);
+void allocate(struct People** pPerson, int size);
 
 int main(void)
 {
-    int number;
+    int size;
+    struct People person;
+    struct People* pPerson = &person;
+    struct People** ppPerson = &pPerson;
 
     printf("How many people do you want to create ? ");
-    get_number(&number);
-    printf("You want to create %d people\n", number);
+    get_number(&size);
+    printf("You want to create %d people\n", size);
+
+    allocate(ppPerson, size);
+    
+    free(*ppPerson);
 
     return(0);
 }
@@ -24,6 +32,20 @@ int main(void)
 void get_number(int* number)
 {
     scanf("%d", number);
+}
+
+void allocate(struct People** ppPerson, int size)
+{
+    *ppPerson = malloc(size * sizeof(struct People));
+
+    if(*ppPerson == NULL)
+    {
+        printf("Memory allocation failed\n");
+    }
+    else
+    {
+        printf("Memory allocation successfull !\n");
+    }
 }
 
 /*
