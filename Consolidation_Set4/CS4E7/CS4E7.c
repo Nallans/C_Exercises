@@ -11,6 +11,7 @@ struct People
 void get_number(int* number);
 void allocate(struct People** ppPerson, int size);
 void get_information(struct People** ppPerson, int size);
+void display_people(struct People ** ppPerson, int size);
 
 int main(void)
 {
@@ -25,6 +26,8 @@ int main(void)
 
     allocate(ppPerson, size);
     get_information(ppPerson, size);
+    printf("\n");
+    display_people(ppPerson, size);
     
     free(*ppPerson);
 
@@ -61,10 +64,14 @@ void get_information(struct People** ppPerson, int size)
         printf("What is person %d's height ? ", i + 1);
         scanf(" %f", &(*ppPerson + i)->height);
     }
+}
+
+void display_people(struct People** ppPerson, int size)
+{
     for(int i = 0; i < size; i++)
     {
-        printf( "%s, age %d, height %.2f\n",
-                (*ppPerson + i)->name, (*ppPerson + i)->age, (*ppPerson + i)->height);
+        printf("%s, age %d, height %.2f\n",
+        (*ppPerson + i)->name, (*ppPerson + i)->age, (*ppPerson + i)->height);
     }
 }
 
