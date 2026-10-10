@@ -9,6 +9,7 @@ struct Games
 
 void get_size(int* size);
 void allocate(struct Games** ppGame, int size);
+void get_information(struct Games** ppGame, int size);
 
 int main(void)
 {
@@ -20,6 +21,7 @@ int main(void)
     get_size(&size);
     printf("You want to store %d games\n", size);
     allocate(ppGame, size);
+    get_information(ppGame, size);
 
     return(0);
 }
@@ -41,6 +43,23 @@ void allocate(struct Games** ppGame, int size)
     else
     {
         printf("Memory allocation successful !\n");
+    }
+}
+
+void get_information(struct Games** ppGame, int size)
+{
+    for(int i = 0; i < size; i++)
+    {
+        printf("What is game n° %d's title ? ", i + 1);
+        scanf(" %29[^\n]", (*ppGame + i)->title);
+        printf("What is game n° %d's release year ? ", i + 1);
+        scanf(" %d", &(*ppGame + i)->release_year);
+        printf("What is game n° %d's rating ? ", i + 1);
+        scanf(" %d", &(*ppGame + i)->rating);
+
+        printf("%d. %s, released in %d, rated %d / 100\n",
+        i + 1,
+        (*ppGame + i)->title, (*ppGame + i)->release_year, (*ppGame + i)->rating);
     }
 }
 
