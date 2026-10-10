@@ -17,6 +17,7 @@ bool find_game(struct Games** ppGame, int size, int* index);
 void change_rating(struct Games** ppGame, int size, int* index);
 void highest_rated(struct Games** ppGame, int size);
 void oldest_game(struct Games** ppGame, int size);
+void menu(struct Games** ppGame, int size, int* index);
 
 int main(void)
 {
@@ -30,13 +31,8 @@ int main(void)
     allocate(ppGame, size);
     get_information(ppGame, size);
     printf("\n");
-    display_games(ppGame, size);
-    printf("\n");
-    find_game(ppGame, size, &index);
-    change_rating(ppGame, size , &index);
-    highest_rated(ppGame, size);
-    printf("\n");
-    oldest_game(ppGame, size);
+    
+    menu(ppGame, size, &index);
 
     free(*ppGame);
 
@@ -171,6 +167,59 @@ void oldest_game(struct Games** ppGame, int size)
     printf("Oldest game : %s, released in %d (%d / 100)\n",
     (*ppGame + index)-> title, (*ppGame + index)->release_year,
     (*ppGame + index)->rating);
+}
+
+void menu(struct Games** ppGame, int size, int* index)
+{
+    int choice;
+    
+    while(choice != 6)
+    {
+        printf( "Game Library : Menu\n"
+        "1. Display games\n"
+        "2. Search for a game\n"
+        "3. Change a rating\n"
+        "4. Display highest-rated game\n"
+        "5. Display oldest game\n"
+        "6. Quit\n"
+        "\n");
+
+        scanf(" %d", &choice);
+        while(choice < 1 || choice > 6)
+        {
+            printf("Incorrect number. Choose between 1 and 6 : ");
+            scanf("%d", &choice);
+        }
+
+        switch(choice)
+        {
+            case 1 :
+            display_games(ppGame, size);
+            printf("\n");
+            break;
+
+            case 2 : 
+            find_game(ppGame, size, index);
+            printf("\n");
+            break;
+
+            case 3 :
+            change_rating(ppGame, size, index);
+            printf("\n");
+            break;
+
+            case 4 :
+            highest_rated(ppGame, size);
+            printf("\n");
+            break;
+
+            case 5 :
+            oldest_game(ppGame, size);
+            printf("\n");
+            break;
+        }
+    }
+    printf("Bye bye ! :D\n");
 }
 
 /*
