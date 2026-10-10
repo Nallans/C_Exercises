@@ -13,11 +13,12 @@ void allocate(struct Games** ppGame, int size);
 void get_information(struct Games** ppGame, int size);
 void display_games(struct Games** ppGame, int size);
 bool string_compare(char* name1, char* name2);
-void find_game(struct Games** ppGame, int size);
+bool find_game(struct Games** ppGame, int size, int* index);
+void change_rating(struct Games** ppGame, int size, int* index);
 
 int main(void)
 {
-    int size;
+    int size, index;
     struct Games game;
     struct Games* pGame = &game;
     struct Games** ppGame = &pGame;
@@ -29,7 +30,8 @@ int main(void)
     printf("\n");
     display_games(ppGame, size);
     printf("\n");
-    find_game(ppGame, size);
+    find_game(ppGame, size, &index);
+    change_rating(ppGame, size , &index);
 
     free(*ppGame);
 
@@ -97,10 +99,9 @@ bool string_compare(char* name1, char* name2)
     return true;
 }
 
-void find_game(struct Games** ppGame, int size)
+bool find_game(struct Games** ppGame, int size, int* index)
 {
     char name[30];
-    bool is_found = false;
 
     printf("What is the game you're looking for ? ");
     scanf(" %29[^\n]", name);
@@ -109,14 +110,25 @@ void find_game(struct Games** ppGame, int size)
     {
         if(string_compare((*ppGame + i)->title, name))
         {
-            is_found = true;
             printf("Game found ! %s, released in %d, rated %d / 100 !\n",
             (*ppGame + i)->title, (*ppGame + i)->release_year, (*ppGame + i)->rating);
+            *index = i;
+            return true;
         }
     }
-    if(is_found == false)
+    printf("Sorry, game not found :/\n");
+    return false;
+}
+
+void change_rating(struct Games** ppGame, int size, int* index)
+{
+    printf("Change rating mode ! ");
+    if(find_game(ppGame, size, index))
     {
-        printf("Sorry, game not found :/\n");
+        printf("What is your new rating of %s ? ", (*ppGame + *index)->title);
+        scanf(" %d", &(*ppGame + *index)->rating);
+        printf("%s's new rating : %d / 100 !\n",
+            (*ppGame + *index)->title, (*ppGame + *index)->rating);
     }
 }
 
