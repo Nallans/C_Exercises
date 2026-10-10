@@ -1,3 +1,4 @@
+#include <stdbool.h> 
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,6 +12,7 @@ void get_size(int* size);
 void allocate(struct Games** ppGame, int size);
 void get_information(struct Games** ppGame, int size);
 void display_games(struct Games** ppGame, int size);
+bool string_compare(char* name1, char* name2);
 
 int main(void)
 {
@@ -19,12 +21,14 @@ int main(void)
     struct Games* pGame = &game;
     struct Games** ppGame = &pGame;
 
+    printf("%d\n", string_compare("DOOM", "doom"));
     get_size(&size);
     printf("You want to store %d games\n", size);
     allocate(ppGame, size);
     get_information(ppGame, size);
     printf("\n");
     display_games(ppGame, size);
+    
 
     return(0);
 }
@@ -70,6 +74,24 @@ void display_games(struct Games** ppGame, int size)
         i + 1, (*ppGame + i)->title, (*ppGame + i)->release_year,
         (*ppGame + i)->rating);
     }
+}
+
+bool string_compare(char* name1, char* name2)
+{
+    int count = 0;
+
+    while(name1[count] != '\0' || name2[count] != '\0')
+    {
+        if( name1[count] != name2[count] &&
+            name1[count] +32 != name2[count] &&
+            name1[count] -32 != name2[count])
+        {
+            return false;
+        }
+        count++;
+    }
+
+    return true;
 }
 
 /*
