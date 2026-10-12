@@ -9,14 +9,19 @@ struct Games
 };
 
 void get_number(int* size);
+void allocate(struct Games** ppGame, int size);
 
 int main(void)
 {
     int i_size;
+    struct Games* pGame;
+    struct Games** ppGame = &pGame;
 
     printf("What number of games do you want to store ? ");
     get_number(&i_size);
     printf("You want to store %d numbers\n", i_size);
+
+    allocate(ppGame, i_size);
 
     return(0);
 }
@@ -24,6 +29,20 @@ int main(void)
 void get_number(int* size)
 {
     scanf(" %d", size);
+}
+
+void allocate(struct Games** ppGame, int size)
+{
+    *ppGame = malloc(size * (sizeof(struct Games)));
+    
+    if(*ppGame == NULL)
+    {
+        printf("Memory allocation failed\n");
+    }
+    else
+    {
+        printf("Successful memory allocation !\n");
+    }
 }
 
 /*
