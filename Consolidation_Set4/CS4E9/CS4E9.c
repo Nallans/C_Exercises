@@ -1,3 +1,31 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Games
+{
+    char title[30];
+    int release_year, rating;
+};
+
+void get_number(int* size);
+
+int main(void)
+{
+    int i_size;
+
+    printf("What number of games do you want to store ? ");
+    get_number(&i_size);
+    printf("You want to store %d numbers\n", i_size);
+
+    return(0);
+}
+
+void get_number(int* size)
+{
+    scanf(" %d", size);
+}
+
 /*
 CS4E9 — The Expansion
 And this one is not for immediately tomorrow.
