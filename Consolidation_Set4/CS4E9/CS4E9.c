@@ -10,15 +10,16 @@ struct Games
 
 void get_number(int* size);
 void allocate(struct Games** ppGame, int size);
-void get_information(struct Games** ppGame, int size);
+void get_information(struct Games** ppGame, int size, int counter);
 void display_games(struct Games** ppGame, int size);
 bool string_compare(char* name1, char* name2);
 bool find_game(char* name, struct Games** ppGame, int size, int* index);
 void change_rating(struct Games** ppGame, int index);
+void add_game(struct Games** ppGame, int size, int counter);
 
 int main(void)
 {
-    int size, index;
+    int size, index, counter = 0;
     char name[30];
     struct Games* pGame;
     struct Games** ppGame = &pGame;
@@ -28,11 +29,12 @@ int main(void)
     printf("You want to store %d numbers\n", size);
 
     allocate(ppGame, size);
-    get_information(ppGame, size);
+    get_information(ppGame, size, counter);
     printf("\n");
     display_games(ppGame, size);
     find_game(name, ppGame, size, &index);
     change_rating(ppGame, index);
+    add_game(ppGame, size, counter);
 
     free(*ppGame);
     *ppGame = NULL;
@@ -59,9 +61,9 @@ void allocate(struct Games** ppGame, int size)
     }
 }
 
-void get_information(struct Games** ppGame, int size)
+void get_information(struct Games** ppGame, int size, int counter)
 {
-    for(int i = 0; i < size; i++)
+    for(int i = counter; i < size; i++)
     {
         printf("What is game n°%d's title ? ", i + 1);
         scanf(" %29[^\n]", (*ppGame + i)->title);
@@ -145,6 +147,19 @@ void change_rating(struct Games** ppGame, int index)
     }
     printf("%s (%d)'s new rating : %d / 100\n", (*ppGame + index)->title,
     (*ppGame + index)->release_year, (*ppGame + index)->rating);
+}
+
+void add_game(struct Games** ppGame, int size, int counter)
+{
+    struct Games** temp = realloc(*ppGame, (sizeof(struct Games)) + 1);
+    *temp = *ppGame;
+    *temp = NULL;
+
+    counter = size;
+    size += 1;
+    get_information(ppGame, size, counter);
+    printf("Game added : %s (%d), %d / 100\n", (*ppGame + counter)->title,
+    (*ppGame + counter)->release_year, (*ppGame + counter)->rating);
 }
 
 /*
