@@ -13,22 +13,24 @@ void allocate(struct Games** ppGame, int size);
 void get_information(struct Games** ppGame, int size);
 void display_games(struct Games** ppGame, int size);
 bool string_compare(char* name1, char* name2);
+bool find_game(char* name, struct Games** ppGame, int size);
 
 int main(void)
 {
-    int i_size;
+    int size;
+    char name[30];
     struct Games* pGame;
     struct Games** ppGame = &pGame;
 
     printf("What number of games do you want to store ? ");
-    get_number(&i_size);
-    printf("You want to store %d numbers\n", i_size);
+    get_number(&size);
+    printf("You want to store %d numbers\n", size);
 
-    allocate(ppGame, i_size);
-    get_information(ppGame, i_size);
+    allocate(ppGame, size);
+    get_information(ppGame, size);
     printf("\n");
-    display_games(ppGame, i_size);
-    printf("%d\n", string_compare("hello", "HELLO"));
+    display_games(ppGame, size);
+    find_game(name, ppGame, size);
 
     return(0);
 }
@@ -90,6 +92,24 @@ bool string_compare(char* name1, char* name2)
     }
 
     return true;
+}
+
+bool find_game(char* name, struct Games** ppGame, int size)
+{
+    printf("What game are you looking for ? ");
+    scanf(" %29[^\n]", name);
+
+    for(int i = 0; i < size; i++)
+    {
+        if(string_compare(name, (*ppGame + i)->title))
+        {
+            printf("Game found ! %s (%d), %d / 100\n", (*ppGame + i)->title,
+            (*ppGame + i)->release_year, (*ppGame + i)->rating);
+            return true;
+        }
+    }
+    printf("Sorry, didn't find your game :/\n");
+    return false;
 }
 
 /*
