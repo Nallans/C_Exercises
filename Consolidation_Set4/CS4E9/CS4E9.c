@@ -65,10 +65,25 @@ void get_information(struct Games** ppGame, int size)
     {
         printf("What is game n°%d's title ? ", i + 1);
         scanf(" %29[^\n]", (*ppGame + i)->title);
+
         printf("What is game n°%d's release year ? ", i + 1);
         scanf(" %d", &(*ppGame + i)->release_year);
+
+        while(  (*ppGame + i)->release_year < 1958 || 
+                (*ppGame + i)->release_year > 2030)
+        {
+            printf("You must enter a year between 1958 (Tennis For Two) and 2030 : ");
+            scanf(" %d", &(*ppGame + i)->release_year);
+        }
+
         printf("What is game n°%d's rating ? ", i + 1);
         scanf(" %d", &(*ppGame + i)->rating);
+
+        while((*ppGame + i)->rating < 0 || (*ppGame + i)->rating > 100)
+        {
+            printf("You must enter a number between 0 and 100 : ");
+            scanf(" %d", &(*ppGame + i)->rating);
+        }
     }
 }
 
