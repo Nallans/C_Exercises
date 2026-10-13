@@ -13,11 +13,12 @@ void allocate(struct Games** ppGame, int size);
 void get_information(struct Games** ppGame, int size);
 void display_games(struct Games** ppGame, int size);
 bool string_compare(char* name1, char* name2);
-bool find_game(char* name, struct Games** ppGame, int size);
+bool find_game(char* name, struct Games** ppGame, int size, int* index);
+void change_rating(struct Games** ppGame, int index);
 
 int main(void)
 {
-    int size;
+    int size, index;
     char name[30];
     struct Games* pGame;
     struct Games** ppGame = &pGame;
@@ -30,7 +31,8 @@ int main(void)
     get_information(ppGame, size);
     printf("\n");
     display_games(ppGame, size);
-    find_game(name, ppGame, size);
+    find_game(name, ppGame, size, &index);
+    change_rating(ppGame, index);
 
     return(0);
 }
@@ -94,7 +96,7 @@ bool string_compare(char* name1, char* name2)
     return true;
 }
 
-bool find_game(char* name, struct Games** ppGame, int size)
+bool find_game(char* name, struct Games** ppGame, int size, int* index)
 {
     printf("What game are you looking for ? ");
     scanf(" %29[^\n]", name);
@@ -103,6 +105,7 @@ bool find_game(char* name, struct Games** ppGame, int size)
     {
         if(string_compare(name, (*ppGame + i)->title))
         {
+            *index = i;
             printf("Game found ! %s (%d), %d / 100\n", (*ppGame + i)->title,
             (*ppGame + i)->release_year, (*ppGame + i)->rating);
             return true;
@@ -110,6 +113,20 @@ bool find_game(char* name, struct Games** ppGame, int size)
     }
     printf("Sorry, didn't find your game :/\n");
     return false;
+}
+
+void change_rating(struct Games** ppGame, int index)
+{
+    printf("What is your rating of %s ? ", (*ppGame + index)->title);
+    scanf(" %d", &(*ppGame + index)->rating);
+
+    while((*ppGame + index)->rating < 0 || (*ppGame + index)->rating > 100)
+    {
+        printf("You must enter a number between 0 and 100 : ");
+        scanf(" %d", &(*ppGame + index)->rating);
+    }
+    printf("%s (%d)'s new rating : %d / 100\n", (*ppGame + index)->title,
+    (*ppGame + index)->release_year, (*ppGame + index)->rating);
 }
 
 /*
