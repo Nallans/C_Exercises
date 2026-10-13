@@ -12,6 +12,7 @@ void get_number(int* size);
 void allocate(struct Games** ppGame, int size);
 void get_information(struct Games** ppGame, int size);
 void display_games(struct Games** ppGame, int size);
+bool string_compare(char* name1, char* name2);
 
 int main(void)
 {
@@ -27,6 +28,7 @@ int main(void)
     get_information(ppGame, i_size);
     printf("\n");
     display_games(ppGame, i_size);
+    printf("%d\n", string_compare("hello", "HELLO"));
 
     return(0);
 }
@@ -70,6 +72,24 @@ void display_games(struct Games** ppGame, int size)
         printf("%d. %s, released in %d, rated %d / 100\n", i + 1,
         (*ppGame + i)->title, (*ppGame + i)->release_year, (*ppGame + i)->rating);
     }
+}
+
+bool string_compare(char* name1, char* name2)
+{
+    int count = 0;
+
+    while(name1[count] != '\0' || name2[count] != '\0')
+    {
+        if( name1[count] != name2[count] &&
+            name1[count] + 32 != name2[count] &&
+            name1[count] - 32 != name2[count])
+        {
+            return false;
+        }
+        count++;
+    }
+
+    return true;
 }
 
 /*
