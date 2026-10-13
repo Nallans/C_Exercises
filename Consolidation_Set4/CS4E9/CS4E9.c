@@ -34,6 +34,9 @@ int main(void)
     find_game(name, ppGame, size, &index);
     change_rating(ppGame, index);
 
+    free(*ppGame);
+    *ppGame = NULL;
+
     return(0);
 }
 
