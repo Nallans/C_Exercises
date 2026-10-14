@@ -16,6 +16,7 @@ bool string_compare(char* name1, char* name2);
 bool find_game(char* name, struct Games** ppGame, int size, int* index);
 void change_rating(struct Games** ppGame, int index);
 void add_game(struct Games** ppGame, int size, int counter);
+void remove_game(struct Games** ppGame, int size, int* index);
 
 int main(void)
 {
@@ -160,6 +161,24 @@ void add_game(struct Games** ppGame, int size, int counter)
     get_information(ppGame, size, counter);
     printf("Game added : %s (%d), %d / 100\n", (*ppGame + counter)->title,
     (*ppGame + counter)->release_year, (*ppGame + counter)->rating);
+}
+
+void remove_game(struct Games** ppGame, int size, int* index)
+{
+    char u_game[30];
+
+    printf("What game do you want to remove ? ");
+    scanf("%29[^\n]", u_game);
+
+    if(find_game(u_game, ppGame, size, index))
+    {
+        for(int i = *index; i < size; i++)
+        {
+            (*ppGame + i - 1)->title = (*ppGame + i)->title;
+            (*ppGame + i - 1)->release_year = (*ppGame + i)->release_year;
+            (*ppGame + i - 1)->rating = (*ppGame + i)->rating;
+        }
+    }
 }
 
 /*
