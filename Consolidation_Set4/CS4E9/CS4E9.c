@@ -16,15 +16,19 @@ bool string_compare(char* name1, char* name2);
 bool find_game(char* name, struct Games** ppGame, int size, int* index);
 void change_rating(struct Games** ppGame, int index);
 void add_game(struct Games** ppGame, int size, int counter);
-void remove_game(struct Games** ppGame, int size, int* index);
+// void remove_game(struct Games** ppGame, int size, int* index);
+void string_copy(char* name1, char* name2);
 
 int main(void)
 {
     int size, index, counter = 0;
     char name[30];
+    char test[30] = "somerandomvalue";
     struct Games* pGame;
     struct Games** ppGame = &pGame;
 
+    string_copy("Hello", test);
+    printf("%s\n", test);
     printf("What number of games do you want to store ? ");
     get_number(&size);
     printf("You want to store %d numbers\n", size);
@@ -162,7 +166,7 @@ void add_game(struct Games** ppGame, int size, int counter)
     printf("Game added : %s (%d), %d / 100\n", (*ppGame + counter)->title,
     (*ppGame + counter)->release_year, (*ppGame + counter)->rating);
 }
-
+/*
 void remove_game(struct Games** ppGame, int size, int* index)
 {
     char u_game[30];
@@ -180,7 +184,18 @@ void remove_game(struct Games** ppGame, int size, int* index)
         }
     }
 }
+*/
+void string_copy(char* name1, char* name2)
+{
+    int count = 0;
 
+    while(name1[count] != '\0')
+    {
+        name2[count] = name1[count];
+        count++;
+    }
+    name2[count] = '\0';
+}
 /*
 CS4E9 — The Expansion
 And this one is not for immediately tomorrow.
