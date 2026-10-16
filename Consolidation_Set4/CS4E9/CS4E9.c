@@ -16,19 +16,16 @@ bool string_compare(char* name1, char* name2);
 bool find_game(char* name, struct Games** ppGame, int size, int* index);
 void change_rating(struct Games** ppGame, int index);
 void add_game(struct Games** ppGame, int size, int counter);
-// void remove_game(struct Games** ppGame, int size, int* index);
+void remove_game(struct Games** ppGame, int size, int* index);
 void string_copy(char* name1, char* name2);
 
 int main(void)
 {
     int size, index, counter = 0;
     char name[30];
-    char test[30] = "somerandomvalue";
     struct Games* pGame;
     struct Games** ppGame = &pGame;
 
-    string_copy("Hello", test);
-    printf("%s\n", test);
     printf("What number of games do you want to store ? ");
     get_number(&size);
     printf("You want to store %d numbers\n", size);
@@ -39,7 +36,10 @@ int main(void)
     display_games(ppGame, size);
     find_game(name, ppGame, size, &index);
     change_rating(ppGame, index);
+    remove_game(ppGame, size, &index);
+    display_games(ppGame, size);
     add_game(ppGame, size, counter);
+    
 
     free(*ppGame);
     *ppGame = NULL;
@@ -166,7 +166,7 @@ void add_game(struct Games** ppGame, int size, int counter)
     printf("Game added : %s (%d), %d / 100\n", (*ppGame + counter)->title,
     (*ppGame + counter)->release_year, (*ppGame + counter)->rating);
 }
-/*
+
 void remove_game(struct Games** ppGame, int size, int* index)
 {
     char u_game[30];
@@ -178,13 +178,21 @@ void remove_game(struct Games** ppGame, int size, int* index)
     {
         for(int i = *index; i < size; i++)
         {
-            (*ppGame + i - 1)->title = (*ppGame + i)->title;
-            (*ppGame + i - 1)->release_year = (*ppGame + i)->release_year;
-            (*ppGame + i - 1)->rating = (*ppGame + i)->rating;
+            if(i + 1 == size)
+            {
+                break;
+            }
+            else
+            {
+                string_copy((*ppGame + i + 1)->title, (*ppGame + i)->title);
+                (*ppGame + i )->release_year = (*ppGame + i + 1)->release_year;
+                (*ppGame + i)->rating = (*ppGame + i + 1)->rating;
+            }
         }
+        *ppGame = realloc(*ppGame, (sizeof(struct Games) - 1));
     }
 }
-*/
+
 void string_copy(char* name1, char* name2)
 {
     int count = 0;
