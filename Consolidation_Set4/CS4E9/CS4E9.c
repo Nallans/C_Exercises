@@ -15,8 +15,8 @@ void display_games(struct Games** ppGame, int size);
 bool string_compare(char* name1, char* name2);
 bool find_game(char* name, struct Games** ppGame, int size, int* index);
 void change_rating(struct Games** ppGame, int index);
-void add_game(struct Games** ppGame, int size, int counter);
-void remove_game(struct Games** ppGame, int size, int* index);
+void add_game(struct Games** ppGame, int *size, int counter);
+void remove_game(struct Games** ppGame, int *size, int* index);
 void string_copy(char* name1, char* name2);
 
 int main(void)
@@ -36,9 +36,10 @@ int main(void)
     display_games(ppGame, size);
     find_game(name, ppGame, size, &index);
     change_rating(ppGame, index);
-    remove_game(ppGame, size, &index);
+    remove_game(ppGame, &size, &index);
     display_games(ppGame, size);
-    add_game(ppGame, size, counter);
+    add_game(ppGame, &size, counter);
+    display_games(ppGame, size);
     
 
     free(*ppGame);
@@ -154,31 +155,29 @@ void change_rating(struct Games** ppGame, int index)
     (*ppGame + index)->release_year, (*ppGame + index)->rating);
 }
 
-void add_game(struct Games** ppGame, int size, int counter)
+void add_game(struct Games** ppGame, int *size, int counter)
 {
-    struct Games** temp = realloc(*ppGame, (sizeof(struct Games)) + 1);
-    *temp = *ppGame;
-    *temp = NULL;
+    counter = *size;
+    *size += 1;
+    *ppGame = realloc(*ppGame, *size * (sizeof(struct Games)));
 
-    counter = size;
-    size += 1;
-    get_information(ppGame, size, counter);
+    get_information(ppGame, *size, counter);
     printf("Game added : %s (%d), %d / 100\n", (*ppGame + counter)->title,
     (*ppGame + counter)->release_year, (*ppGame + counter)->rating);
 }
 
-void remove_game(struct Games** ppGame, int size, int* index)
+void remove_game(struct Games** ppGame, int *size, int* index)
 {
     char u_game[30];
 
     printf("What game do you want to remove ? ");
     scanf("%29[^\n]", u_game);
 
-    if(find_game(u_game, ppGame, size, index))
+    if(find_game(u_game, ppGame, *size, index))
     {
-        for(int i = *index; i < size; i++)
+        for(int i = *index; i < *size; i++)
         {
-            if(i + 1 == size)
+            if(i + 1 == *size)
             {
                 break;
             }
@@ -189,7 +188,8 @@ void remove_game(struct Games** ppGame, int size, int* index)
                 (*ppGame + i)->rating = (*ppGame + i + 1)->rating;
             }
         }
-        *ppGame = realloc(*ppGame, (sizeof(struct Games) - 1));
+        *size -= 1;
+        *ppGame = realloc(*ppGame, *size * (sizeof(struct Games)));
     }
 }
 
