@@ -18,6 +18,7 @@ void change_rating(struct Games** ppGame, int index);
 void add_game(struct Games** ppGame, int *size, int counter);
 void remove_game(struct Games** ppGame, int *size, int* index);
 void string_copy(char* name1, char* name2);
+void menu(int* size, struct Games** ppGame, char* name, int counter, int* index);
 
 int main(void)
 {
@@ -28,19 +29,11 @@ int main(void)
 
     printf("What number of games do you want to store ? ");
     get_number(&size);
-    printf("You want to store %d numbers\n", size);
-
     allocate(ppGame, size);
     get_information(ppGame, size, counter);
     printf("\n");
-    display_games(ppGame, size);
-    find_game(name, ppGame, size, &index);
-    change_rating(ppGame, index);
-    remove_game(ppGame, &size, &index);
-    display_games(ppGame, size);
-    add_game(ppGame, &size, counter);
-    display_games(ppGame, size);
-    
+
+    menu(&size, ppGame, name, counter, &index);    
 
     free(*ppGame);
     *ppGame = NULL;
@@ -204,6 +197,61 @@ void string_copy(char* name1, char* name2)
     }
     name2[count] = '\0';
 }
+
+void menu(int* size, struct Games** ppGame, char* name, int counter, int* index)
+{
+    int choice;
+
+    while(choice != 6)
+    {
+        printf( "Games Library :\n"
+            "1. Display games\n"
+            "2. Add a game\n"
+            "3. Search\n"
+            "4. Change rating\n"
+            "5. Remove a game\n"
+            "6. Quit\n");
+        scanf(" %d", &choice);
+
+        while(choice < 1 || choice > 6)
+        {
+        printf("You must choose between 1 and 6 : ");
+        scanf(" %d", &choice);
+        }
+
+        switch(choice)
+        {
+            case 1 :
+            display_games(ppGame, *size);
+            printf("\n");
+            break;
+
+            case 2 :
+            add_game(ppGame, size, counter);
+            printf("\n");
+            break;
+
+            case 3 :
+            find_game(name, ppGame, *size, index);
+            printf("\n");
+            break;
+
+            case 4 :
+            if(find_game(name, ppGame, *size, index))
+            {
+                change_rating(ppGame, *index);
+            }
+            printf("\n");
+            break;
+
+            case 5 :
+            remove_game(ppGame, size, index);
+            printf("\n");
+            break;
+        }
+    }
+}
+
 /*
 CS4E9 — The Expansion
 And this one is not for immediately tomorrow.
