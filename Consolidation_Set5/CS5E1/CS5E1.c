@@ -1,3 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void get_size(int* size);
+
+int main(void)
+{
+    int size;
+
+    get_size(&size);
+    printf("So you want to store %d integers\n", size);
+
+    return(0);
+}
+
+void get_size(int* size)
+{
+    printf("How many integers do you want to store ? ");
+    scanf(" %d", size);
+    
+    while(*size <= 0)
+    {
+        printf("You must enter a positive integer\n");
+        scanf(" %d", size);
+    }
+}
+
 /*
 Exercise 1 — Allocation Lifecycle
 Objective: Understand the full lifetime of a dynamically allocated array.
