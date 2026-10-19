@@ -2,13 +2,17 @@
 #include <stdlib.h>
 
 void get_size(int* size);
+void allocate(int size, int** ppNumber);
 
 int main(void)
 {
     int size;
+    int* pNumber;
+    int** ppNumber = &pNumber;
 
     get_size(&size);
     printf("So you want to store %d integers\n", size);
+    allocate(size, ppNumber);
 
     return(0);
 }
@@ -22,6 +26,21 @@ void get_size(int* size)
     {
         printf("You must enter a positive integer\n");
         scanf(" %d", size);
+    }
+}
+
+void allocate(int size, int** ppNumber)
+{
+    *ppNumber = (int*)malloc(size * sizeof(int));
+
+    if(*ppNumber == NULL)
+    {
+        printf("Memory allocation failed :/\n");
+        exit(1);
+    }
+    else
+    {
+        printf("Memory allocation successful !\n");
     }
 }
 
