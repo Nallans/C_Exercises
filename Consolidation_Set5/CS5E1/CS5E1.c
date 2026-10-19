@@ -6,6 +6,7 @@ void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
 void display_numbers(int size, int** ppNumber);
 void reset_numbers(int size, int** ppNumber);
+void display_numbers_reverse(int size, int **ppNumber);
 
 int main(void)
 {
@@ -18,6 +19,7 @@ int main(void)
     allocate(size, ppNumber);
     get_numbers(size, ppNumber);
     display_numbers(size, ppNumber);
+    display_numbers_reverse(size, ppNumber);
     reset_numbers(size, ppNumber);
     printf("\n");
     display_numbers(size, ppNumber);
@@ -82,6 +84,14 @@ void reset_numbers(int size, int** ppNumber)
     }
 }
 
+void display_numbers_reverse(int size, int **ppNumber)
+{
+    for(int i = size - 1; i >= 0; i--)
+    {
+        printf("%d ", *(*ppNumber + i));
+    }
+}
+
 /*
 Exercise 1 — Allocation Lifecycle
 Objective: Understand the full lifetime of a dynamically allocated array.
@@ -98,5 +108,13 @@ Rules:
 - Use a pointer to access the allocated memory.
 - Keep allocation, input, display, and cleanup in separate functions where appropriate.
 - Validate that the requested size is positive.
-Improvement challenge: After displaying the values, set every element to zero using pointer arithmetic, then display the array again before freeing it.
+
+Improvement challenge 1 : After displaying the values, set every element to zero using pointer arithmetic, then display the array again before freeing it.
+
+Improvement challenge 2 :
+Add one new function:
+void display_numbers_reverse(int size, int **ppNumber);
+
+
+It must display the allocated integers in reverse order, using pointer arithmetic rather than array indexing.
 */
