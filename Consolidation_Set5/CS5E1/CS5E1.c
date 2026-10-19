@@ -4,6 +4,7 @@
 void get_size(int* size);
 void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
+void display_numbers(int size, int** ppNumber);
 
 int main(void)
 {
@@ -15,6 +16,7 @@ int main(void)
     printf("So you want to store %d integers\n", size);
     allocate(size, ppNumber);
     get_numbers(size, ppNumber);
+    display_numbers(size, ppNumber);
 
     return(0);
 }
@@ -53,8 +55,16 @@ void get_numbers(int size, int** ppNumber)
     for(int i = 0; i < size; i++)
     {
         scanf(" %d", (*ppNumber + i));
+    }
+}
+
+void display_numbers(int size, int** ppNumber)
+{
+    for(int i = 0; i < size; i++)
+    {
         printf("%d ", *(*ppNumber + i));
     }
+    printf("\n");
 }
 
 /*
