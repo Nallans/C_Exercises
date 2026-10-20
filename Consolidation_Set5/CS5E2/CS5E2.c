@@ -3,6 +3,7 @@
 
 void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
+void get_size(int* size);
 
 int main(void)
 {
@@ -12,6 +13,9 @@ int main(void)
 
     allocate(size, ppNumber);
     get_numbers(size, ppNumber);
+    printf("\n");
+    get_size(&size);
+    printf("So you want to store %d numbers\n", size);
 
     return(0);
 }
@@ -33,12 +37,18 @@ void allocate(int size, int** ppNumber)
 void get_numbers(int size, int** ppNumber)
 {
     printf("What are the %d numbers you want to store ?\n", size);
-    
+
     for(int i = 0; i < size; i++)
     {
         scanf(" %d", (*ppNumber + i));
         printf("%d ", *(*ppNumber + i));
     }
+}
+
+void get_size(int* size)
+{
+    printf("What is the new size of array you want ? ");
+    scanf(" %d", size);
 }
 
 /*
