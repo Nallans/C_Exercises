@@ -83,7 +83,7 @@ void get_size(int* size)
 void reallocate(int size, int** ppNumber)
 {
     *ppNumber = (int*)realloc(*ppNumber, size * sizeof(int));
-    if(ppNumber == NULL)
+    if(*ppNumber == NULL)
     {
         printf("Reallocation failed :/\n");
     }
