@@ -19,6 +19,7 @@ int main(void)
     printf("So you want to store %d numbers\n", size);
     printf("\n");
     reallocate(size, ppNumber);
+    get_numbers(size, ppNumber);
 
     return(0);
 }
@@ -39,12 +40,25 @@ void allocate(int size, int** ppNumber)
 
 void get_numbers(int size, int** ppNumber)
 {
-    printf("What are the %d numbers you want to store ?\n", size);
-
-    for(int i = 0; i < size; i++)
+    if(size == 5)
     {
-        scanf(" %d", (*ppNumber + i));
-        printf("%d ", *(*ppNumber + i));
+        printf("What are the %d numbers you want to store ?\n", size);
+
+        for(int i = 0; i < size; i++)
+        {
+            scanf(" %d", (*ppNumber + i));
+            printf("%d ", *(*ppNumber + i));
+        }
+    }
+    else
+    {
+        printf("What are the %d numbers you want to store ?\n", size - 5);
+
+        for(int i = 5; i < size; i++)
+        {
+            scanf(" %d", (*ppNumber + i));
+            printf("%d ", *(*ppNumber + i));
+        }
     }
 }
 
