@@ -23,6 +23,9 @@ int main(void)
     get_numbers(size, ppNumber);
     display_numbers(size, pNumber);
 
+    free(*ppNumber);
+    *ppNumber = NULL;
+
     return(0);
 }
 
@@ -51,6 +54,10 @@ void get_numbers(int size, int** ppNumber)
             scanf(" %d", (*ppNumber + i));
         }
     }
+    else if(size < 5)
+    {
+        return;
+    }
     else
     {
         printf("What are the %d numbers you want to store ?\n", size - 5);
@@ -66,9 +73,9 @@ void get_size(int* size)
 {
     printf("What is the new size of array you want ? ");
     scanf(" %d", size);
-    while(*size < 6)
+    while(*size < 1)
     {
-        printf("You must enter a size greater than 5 : ");
+        printf("You must enter a size greater than 0 : ");
         scanf(" %d", size);
     }
 }
