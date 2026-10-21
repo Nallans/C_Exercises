@@ -4,6 +4,7 @@
 void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
 void get_size(int* size);
+void reallocate(int size, int** ppNumber);
 
 int main(void)
 {
@@ -16,6 +17,8 @@ int main(void)
     printf("\n");
     get_size(&size);
     printf("So you want to store %d numbers\n", size);
+    printf("\n");
+    reallocate(size, ppNumber);
 
     return(0);
 }
@@ -49,6 +52,24 @@ void get_size(int* size)
 {
     printf("What is the new size of array you want ? ");
     scanf(" %d", size);
+    while(*size < 6)
+    {
+        printf("You must enter a size greater than 5 : ");
+        scanf(" %d", size);
+    }
+}
+
+void reallocate(int size, int** ppNumber)
+{
+    *ppNumber = (int*)realloc(*ppNumber, size * sizeof(int));
+    if(ppNumber == NULL)
+    {
+        printf("Reallocation failed :/\n");
+    }
+    else
+    {
+        printf("Reallocation successful\n");
+    }
 }
 
 /*
