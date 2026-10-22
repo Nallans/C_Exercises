@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 void allocate(int size, int** ppNumber);
+void get_numbers(int size, int** ppNumber);
 
 int main(void)
 {
@@ -10,6 +11,7 @@ int main(void)
     int** ppNumber = &pNumber;
 
     allocate(size, ppNumber);
+    get_numbers(size, ppNumber);
 
     return(0);
 }
@@ -25,6 +27,16 @@ void allocate(int size, int** ppNumber)
     else
     {
         printf("Memory allocation successful :D\n");
+    }
+}
+
+void get_numbers(int size, int** ppNumber)
+{
+    printf("What are the %d numbers you want to store ?\n", size);
+
+    for(int i = 0; i < size; i++)
+    {
+        scanf(" %d", (*ppNumber + i));
     }
 }
 
