@@ -4,6 +4,7 @@
 void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
 void display_numbers(int size, int* pNumber);
+void get_size(int* size);
 
 int main(void)
 {
@@ -15,6 +16,7 @@ int main(void)
     get_numbers(size, ppNumber);
     display_numbers(size, pNumber);
     printf("\n");
+    get_size(&size);
 
     return(0);
 }
@@ -48,6 +50,18 @@ void display_numbers(int size, int* pNumber)
     for(int i = 0; i < size; i++)
     {
         printf("%d ", *(pNumber + i));
+    }
+}
+
+void get_size(int* size)
+{
+    printf("What is the new size of the array ? ");
+    scanf(" %d", size);
+
+    while(*size < 1)
+    {
+        printf("Choose a size greater than 0 : ");
+        scanf(" %d", size);
     }
 }
 
