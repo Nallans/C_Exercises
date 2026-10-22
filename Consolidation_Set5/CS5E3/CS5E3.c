@@ -1,3 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void allocate(int size, int** ppNumber);
+
+int main(void)
+{
+    int size = 5;
+    int* pNumber;
+    int** ppNumber = &pNumber;
+
+    allocate(size, ppNumber);
+
+    return(0);
+}
+
+void allocate(int size, int** ppNumber)
+{
+    *ppNumber = (int*)malloc(size * sizeof(int));
+
+    if(*ppNumber == NULL)
+    {
+        printf("Memory allocation failed :/\n");
+    }
+    else
+    {
+        printf("Memory allocation successful :D\n");
+    }
+}
+
 /*
 Exercise 3 — Safe Reallocation
 Objective: Handle allocation failure without losing access to the original allocation.
