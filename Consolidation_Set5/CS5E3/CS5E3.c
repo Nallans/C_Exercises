@@ -1,0 +1,14 @@
+/*
+Exercise 3 — Safe Reallocation
+Objective: Handle allocation failure without losing access to the original allocation.
+
+Write a program that allocates an array of 5 integers and then attempts to resize it.
+
+Your program must:
+- Preserve access to the original allocation if resizing fails.
+- Update the main pointer only after a successful resize.
+- Free the memory correctly when finished.
+You don't need to force an allocation failure. The purpose is to write the code so that it handles one correctly if it occurs.
+
+Improvement challenge: Put the resizing logic into a function and decide what that function should return to communicate success or failure.
+*/
