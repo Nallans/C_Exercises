@@ -5,6 +5,7 @@ void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
 void display_numbers(int size, int* pNumber);
 void get_size(int* size);
+void reallocate(int size, int** ppNumber);
 
 int main(void)
 {
@@ -17,6 +18,9 @@ int main(void)
     display_numbers(size, pNumber);
     printf("\n");
     get_size(&size);
+    reallocate(size, ppNumber);
+    printf("\n");
+    display_numbers(size, pNumber);
 
     return(0);
 }
@@ -62,6 +66,24 @@ void get_size(int* size)
     {
         printf("Choose a size greater than 0 : ");
         scanf(" %d", size);
+    }
+}
+
+void reallocate(int size, int** ppNumber)
+{
+    int* temp = realloc(*ppNumber, size * sizeof(int));
+    
+    if(temp == NULL)
+    {
+        printf("Reallocation failed :/\n");
+    }
+    else
+    {
+        printf("Reallocation successful ! :D\n");
+        temp = *ppNumber;
+        *ppNumber = temp;
+        free(temp);
+        temp = NULL;
     }
 }
 
