@@ -80,9 +80,7 @@ void reallocate(int size, int** ppNumber)
     else
     {
         printf("Reallocation successful ! :D\n");
-        temp = *ppNumber;
         *ppNumber = temp;
-        free(temp);
         temp = NULL;
     }
 }
