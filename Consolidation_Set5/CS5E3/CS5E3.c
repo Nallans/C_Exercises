@@ -22,6 +22,9 @@ int main(void)
     printf("\n");
     display_numbers(size, pNumber);
 
+    free(*ppNumber);
+    *ppNumber = NULL;
+
     return(0);
 }
 
