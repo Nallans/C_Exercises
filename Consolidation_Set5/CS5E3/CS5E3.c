@@ -104,4 +104,10 @@ Your program must:
 You don't need to force an allocation failure. The purpose is to write the code so that it handles one correctly if it occurs.
 
 Improvement challenge: Put the resizing logic into a function and decide what that function should return to communicate success or failure.
+
+Improvement challenge 2 : 
+
+Imagine the allocation fails when you request a larger array. What happens if main() then calls display_numbers(size, pNumber) using the newly requested size?
+
+Modify main() so that it handles the return value correctly and never accesses elements beyond the allocation if reallocation fails. No need to rewrite the rest of your program.
 */
