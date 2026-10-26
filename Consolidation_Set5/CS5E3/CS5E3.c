@@ -19,9 +19,16 @@ int main(void)
     display_numbers(size, pNumber);
     printf("\n");
     get_size(&size);
-    reallocate(size, ppNumber);
-    printf("\n");
-    display_numbers(size, pNumber);
+    if(reallocate(size, ppNumber))
+    {
+        display_numbers(size, pNumber);
+        printf("\n");
+    }
+    else
+    {
+        display_numbers(5, pNumber);
+        printf("\n");
+    }
 
     free(*ppNumber);
     *ppNumber = NULL;
