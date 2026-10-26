@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -5,7 +6,7 @@ void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
 void display_numbers(int size, int* pNumber);
 void get_size(int* size);
-void reallocate(int size, int** ppNumber);
+bool reallocate(int size, int** ppNumber);
 
 int main(void)
 {
@@ -72,19 +73,21 @@ void get_size(int* size)
     }
 }
 
-void reallocate(int size, int** ppNumber)
+bool reallocate(int size, int** ppNumber)
 {
     int* temp = realloc(*ppNumber, size * sizeof(int));
     
     if(temp == NULL)
     {
         printf("Reallocation failed :/\n");
+        return false;
     }
     else
     {
         printf("Reallocation successful ! :D\n");
         *ppNumber = temp;
         temp = NULL;
+        return true;
     }
 }
 
