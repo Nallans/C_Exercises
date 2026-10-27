@@ -1,3 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void allocate(int size, int** ppNumber);
+
+int main(void)
+{
+    int size = 4;
+    int* pNumber;
+    int** ppNumber = &pNumber;
+
+    allocate(size, ppNumber);
+
+    free(*ppNumber);
+    *ppNumber = NULL;
+
+    return(0);
+}
+
+void allocate(int size, int** ppNumber)
+{
+    *ppNumber = malloc(size * sizeof(int));
+
+    if(*ppNumber == NULL)
+    {
+        printf("Memory allocation failed :/\n");
+    }
+    else
+    {
+        printf("Memory allocation successful :D\n");
+    }
+}
+
 /*
 Exercise 4 — A Dynamic Array That Grows
 Objective: Combine malloc() and realloc() into a small, practical data structure.
