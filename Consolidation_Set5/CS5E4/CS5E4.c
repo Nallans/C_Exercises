@@ -3,7 +3,7 @@
 
 void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
-void display_numbers(int size, int* pNumber);
+void display_stats(int size, int* pNumber);
 
 int main(void)
 {
@@ -13,7 +13,7 @@ int main(void)
 
     allocate(size, ppNumber);
     get_numbers(size, ppNumber);
-    display_numbers(size, pNumber);
+    display_stats(size, pNumber);
 
     free(*ppNumber);
     *ppNumber = NULL;
@@ -51,12 +51,14 @@ void get_numbers(int size, int** ppNumber)
     }
 }
 
-void display_numbers(int size, int* pNumber)
+void display_stats(int size, int* pNumber)
 {
     for(int i = 0; i < size; i++)
     {
         printf("%d ", *(pNumber + i));
     }
+    printf("\n");
+    printf("Size of the array : %d integers\n", size);
 }
 
 /*
