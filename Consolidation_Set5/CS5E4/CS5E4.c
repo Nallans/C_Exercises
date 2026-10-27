@@ -3,6 +3,7 @@
 
 void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
+void display_numbers(int size, int* pNumber);
 
 int main(void)
 {
@@ -12,6 +13,7 @@ int main(void)
 
     allocate(size, ppNumber);
     get_numbers(size, ppNumber);
+    display_numbers(size, pNumber);
 
     free(*ppNumber);
     *ppNumber = NULL;
@@ -46,8 +48,14 @@ void get_numbers(int size, int** ppNumber)
             printf("Exiting loop...\n");
             break;
         }
-        
-        printf("%d ", *(*ppNumber + i));
+    }
+}
+
+void display_numbers(int size, int* pNumber)
+{
+    for(int i = 0; i < size; i++)
+    {
+        printf("%d ", *(pNumber + i));
     }
 }
 
