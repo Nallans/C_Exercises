@@ -4,6 +4,7 @@
 void allocate(int size, int** ppNumber);
 void get_numbers(int size, int** ppNumber);
 void display_stats(int size, int* pNumber);
+void reallocate(int size, int** ppNumber);
 
 int main(void)
 {
@@ -13,6 +14,9 @@ int main(void)
 
     allocate(size, ppNumber);
     get_numbers(size, ppNumber);
+    display_stats(size, pNumber);
+    size = 8;
+    reallocate(size, ppNumber);
     display_stats(size, pNumber);
 
     free(*ppNumber);
@@ -59,6 +63,22 @@ void display_stats(int size, int* pNumber)
     }
     printf("\n");
     printf("Size of the array : %d integers\n", size);
+}
+
+void reallocate(int size, int** ppNumber)
+{
+    int* temp = realloc(*ppNumber, size * sizeof(int));
+
+    if(temp == NULL)
+    {
+        printf("Memory reallocation failed :/\n");
+    }
+    else
+    {
+        printf("Memory reallocation successful :D\n");
+        *ppNumber = temp;
+        temp = NULL;
+    }
 }
 
 /*
