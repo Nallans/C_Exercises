@@ -1,8 +1,9 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 void allocate(int size, int** ppNumber);
-void get_numbers(int* size, int** ppNumber);
+void get_numbers(int** ppNumber);
 void display_stats(int size, int* pNumber);
 void reallocate(int size, int** ppNumber);
 
@@ -13,7 +14,7 @@ int main(void)
     int** ppNumber = &pNumber;
 
     allocate(size, ppNumber);
-    get_numbers(&size, ppNumber);
+    get_numbers(ppNumber);
     display_stats(size, pNumber);
     size = 8;
     reallocate(size, ppNumber);
@@ -39,18 +40,24 @@ void allocate(int size, int** ppNumber)
     }
 }
 
-void get_numbers(int* size, int** ppNumber)
+void get_numbers(int** ppNumber)
 {
-    for(int i = 0; i < *size; i++)
+    bool end = false;
+    int i = 0;
+
+    while(end == false)
     {
         printf("What is number %d ? ", i + 1);
         scanf(" %d", (*ppNumber + i));
 
         if(*(*ppNumber + i) == -1)
         {
+            *(*ppNumber + i) = 0;
             printf("Exiting loop...\n");
+            end = true;
             break;
         }
+        i++;
     }
 }
 
