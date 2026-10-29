@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 void allocate(int size, int** ppNumber);
-void get_numbers(int size, int** ppNumber);
+void get_numbers(int* size, int** ppNumber);
 void display_stats(int size, int* pNumber);
 void reallocate(int size, int** ppNumber);
 
@@ -13,7 +13,7 @@ int main(void)
     int** ppNumber = &pNumber;
 
     allocate(size, ppNumber);
-    get_numbers(size, ppNumber);
+    get_numbers(&size, ppNumber);
     display_stats(size, pNumber);
     size = 8;
     reallocate(size, ppNumber);
@@ -39,12 +39,11 @@ void allocate(int size, int** ppNumber)
     }
 }
 
-void get_numbers(int size, int** ppNumber)
+void get_numbers(int* size, int** ppNumber)
 {
-    printf("What are the numbers you want to store ?\n");
-
-    for(int i = 0; i < size; i++)
+    for(int i = 0; i < *size; i++)
     {
+        printf("What is number %d ? ", i + 1);
         scanf(" %d", (*ppNumber + i));
 
         if(*(*ppNumber + i) == -1)
