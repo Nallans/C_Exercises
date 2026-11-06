@@ -3,22 +3,23 @@
 #include <stdlib.h>
 
 void allocate(int size, int** ppNumber);
-void get_numbers(int** ppNumber);
-void display_stats(int size, int* pNumber);
+int get_numbers(int** ppNumber);
+void display_stats(int numbers, int size, int* pNumber);
 void reallocate(int size, int** ppNumber);
 
 int main(void)
 {
     int size = 4;
+    int numbers;
     int* pNumber;
     int** ppNumber = &pNumber;
 
     allocate(size, ppNumber);
-    get_numbers(ppNumber);
-    display_stats(size, pNumber);
+    numbers = get_numbers(ppNumber);
+    display_stats(numbers, size, pNumber);
     size = 8;
     reallocate(size, ppNumber);
-    display_stats(size, pNumber);
+    display_stats(numbers, size, pNumber);
 
     free(*ppNumber);
     *ppNumber = NULL;
@@ -40,7 +41,7 @@ void allocate(int size, int** ppNumber)
     }
 }
 
-void get_numbers(int** ppNumber)
+int get_numbers(int** ppNumber)
 {
     bool end = false;
     int i = 0;
@@ -59,11 +60,12 @@ void get_numbers(int** ppNumber)
         }
         i++;
     }
+    return i;
 }
 
-void display_stats(int size, int* pNumber)
+void display_stats(int numbers, int size, int* pNumber)
 {
-    for(int i = 0; i < size; i++)
+    for(int i = 0; i < numbers; i++)
     {
         printf("%d ", *(pNumber + i));
     }
