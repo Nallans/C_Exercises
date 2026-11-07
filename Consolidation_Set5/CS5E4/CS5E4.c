@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 void allocate(int size, int** ppNumber);
-int get_numbers(int** ppNumber);
+int get_numbers(int* size, int** ppNumber);
 void display_stats(int numbers, int size, int* pNumber);
 void reallocate(int size, int** ppNumber);
 
@@ -15,11 +15,11 @@ int main(void)
     int** ppNumber = &pNumber;
 
     allocate(size, ppNumber);
-    numbers = get_numbers(ppNumber);
+    numbers = get_numbers(&size, ppNumber);
     display_stats(numbers, size, pNumber);
-    size = 8;
-    reallocate(size, ppNumber);
-    display_stats(numbers, size, pNumber);
+    // size = 8;
+    // reallocate(size, ppNumber);
+    // display_stats(numbers, size, pNumber);
 
     free(*ppNumber);
     *ppNumber = NULL;
@@ -41,7 +41,7 @@ void allocate(int size, int** ppNumber)
     }
 }
 
-int get_numbers(int** ppNumber)
+int get_numbers(int* size, int** ppNumber)
 {
     bool end = false;
     int i = 0;
@@ -50,6 +50,11 @@ int get_numbers(int** ppNumber)
     {
         printf("What is number %d ? ", i + 1);
         scanf(" %d", (*ppNumber + i));
+        if(i == 4 || i == 8 || i == 16 || i == 32)
+        {
+            *size *= 2;
+            reallocate(*size, ppNumber);
+        }
 
         if(*(*ppNumber + i) == -1)
         {
