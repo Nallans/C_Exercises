@@ -6,6 +6,7 @@ void allocate(int size, int** ppNumber);
 int get_numbers(int* size, int** ppNumber);
 void display_stats(int numbers, int size, int* pNumber);
 void reallocate(int size, int** ppNumber);
+void remove_number(int* numbers, int** ppNumber);
 
 int main(void)
 {
@@ -16,6 +17,8 @@ int main(void)
 
     allocate(size, ppNumber);
     numbers = get_numbers(&size, ppNumber);
+    display_stats(numbers, size, pNumber);
+    remove_number(&numbers, ppNumber);
     display_stats(numbers, size, pNumber);
     // size = 8;
     // reallocate(size, ppNumber);
@@ -92,6 +95,29 @@ void reallocate(int size, int** ppNumber)
         *ppNumber = temp;
         temp = NULL;
     }
+}
+
+void remove_number(int* numbers, int** ppNumber)
+{
+    int temp, index;
+
+    printf("Which number do you want to remove ? ");
+    scanf(" %d", &index);
+    index--;
+
+    for(int i = index; i < *numbers; i++) 
+    {
+        if((i + 1) >= *numbers)
+        {
+            break;
+        }
+        else
+        {
+            temp = *(*ppNumber + (i + 1));
+            *(*ppNumber + i) = temp;
+        }
+    }
+    *numbers -= 1;
 }
 
 /*
