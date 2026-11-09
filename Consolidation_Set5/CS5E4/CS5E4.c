@@ -73,7 +73,7 @@ int get_numbers(int* size, int** ppNumber)
 
 void display_stats(int numbers, int size, int* pNumber)
 {
-    for(int i = 0; i < numbers; i++)
+    for(int i = 0; i < numbers + 1; i++)
     {
         printf("%d ", *(pNumber + i));
     }
@@ -117,6 +117,7 @@ void remove_number(int* numbers, int** ppNumber)
             *(*ppNumber + i) = temp;
         }
     }
+    *(*ppNumber + *numbers) = 0;
     *numbers -= 1;
 }
 
@@ -139,7 +140,7 @@ Important distinction: the number of elements stored is not the same as the allo
 
 Improvement challenge: Add a function that removes an element at a chosen index, shifts the remaining elements, and updates the number of stored elements without shrinking the allocation.
 
-Improvement challenge : 
+Improvement challenge 2 : 
 Your removal implementation is on the right track. I have just one additional requirement:
 
 After removing an element, make sure the last previously occupied slot is no longer treated as part of the array.
