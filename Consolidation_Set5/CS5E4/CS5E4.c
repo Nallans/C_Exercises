@@ -73,7 +73,7 @@ int get_numbers(int* size, int** ppNumber)
 
 void display_stats(int numbers, int size, int* pNumber)
 {
-    for(int i = 0; i < numbers + 1; i++)
+    for(int i = 0; i < numbers; i++)
     {
         printf("%d ", *(pNumber + i));
     }
@@ -117,7 +117,7 @@ void remove_number(int* numbers, int** ppNumber)
             *(*ppNumber + i) = temp;
         }
     }
-    *(*ppNumber + *numbers) = 0;
+    *(*ppNumber + (*numbers - 1)) = 0;
     *numbers -= 1;
 }
 
