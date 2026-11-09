@@ -138,4 +138,11 @@ The user should be able to stop entering numbers using a sentinel value, such as
 Important distinction: the number of elements stored is not the same as the allocated capacity.
 
 Improvement challenge: Add a function that removes an element at a chosen index, shifts the remaining elements, and updates the number of stored elements without shrinking the allocation.
+
+Improvement challenge : 
+Your removal implementation is on the right track. I have just one additional requirement:
+
+After removing an element, make sure the last previously occupied slot is no longer treated as part of the array.
+
+You already decrease numbers. Think about whether you need to do anything else to the memory contents, or whether changing the logical count is sufficient.
 */
