@@ -1,3 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+bool allocate_array(int size, int** ppNumber);
+
+int main(void)
+{
+    int size = 4;
+    int* pNumber;
+    int** ppNumber = &pNumber;
+    
+    allocate_array(size, ppNumber);
+    return(0);
+}
+
+bool allocate_array(int size, int** ppNumber)
+{
+    *ppNumber = malloc(size * sizeof(int));
+
+    if(*ppNumber == NULL)
+    {
+        printf("Initial memory allocation failed :/\n");
+        return false;
+    }
+    else
+    {
+        printf("Initial memory allocation successful :D\n");
+        return true;
+    }
+}
+
 /*
 Exercise 5 — Memory Ownership
 Objective: Understand how pointers and functions interact with the lifetime of allocated memory.
