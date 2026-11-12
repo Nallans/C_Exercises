@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 bool allocate_array(int size, int** ppNumber);
+void fill_array(int size, int** ppNumber);
 
 int main(void)
 {
@@ -11,6 +12,7 @@ int main(void)
     int** ppNumber = &pNumber;
     
     allocate_array(size, ppNumber);
+    fill_array(size, ppNumber);
     return(0);
 }
 
@@ -27,6 +29,15 @@ bool allocate_array(int size, int** ppNumber)
     {
         printf("Initial memory allocation successful :D\n");
         return true;
+    }
+}
+
+void fill_array(int size, int** ppNumber)
+{
+    for(int i = 0; i < size; i++)
+    {
+        printf("What is number %d ? ", i + 1);
+        scanf(" %d", (*ppNumber + i));
     }
 }
 
