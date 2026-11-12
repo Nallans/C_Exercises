@@ -13,12 +13,18 @@ int main(void)
     int* pNumber;
     int** ppNumber = &pNumber;
     
-    allocate_array(size, ppNumber);
-    fill_array(size, ppNumber);
-    display_array(size, pNumber);
-    free_array(ppNumber);
-
-    return(0);
+    if(allocate_array(size, ppNumber))
+    {
+        fill_array(size, ppNumber);
+        display_array(size, pNumber);
+        free_array(ppNumber);
+        
+        return(0);
+    }
+    else
+    {
+        return(1);
+    }
 }
 
 bool allocate_array(int size, int** ppNumber)
