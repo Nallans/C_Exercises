@@ -4,6 +4,7 @@
 
 bool allocate_array(int size, int** ppNumber);
 void fill_array(int size, int** ppNumber);
+void display_array(int size, int* pNumber);
 
 int main(void)
 {
@@ -13,6 +14,8 @@ int main(void)
     
     allocate_array(size, ppNumber);
     fill_array(size, ppNumber);
+    display_array(size, pNumber);
+    
     return(0);
 }
 
@@ -38,6 +41,14 @@ void fill_array(int size, int** ppNumber)
     {
         printf("What is number %d ? ", i + 1);
         scanf(" %d", (*ppNumber + i));
+    }
+}
+
+void display_array(int size, int* pNumber)
+{
+    for(int i = 0; i < size; i++)
+    {
+        printf("%d ", *(pNumber + i));
     }
 }
 
