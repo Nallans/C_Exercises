@@ -5,6 +5,7 @@
 bool allocate_array(int size, int** ppNumber);
 void fill_array(int size, int** ppNumber);
 void display_array(int size, int* pNumber);
+void free_array(int** ppNumber);
 
 int main(void)
 {
@@ -15,7 +16,8 @@ int main(void)
     allocate_array(size, ppNumber);
     fill_array(size, ppNumber);
     display_array(size, pNumber);
-    
+    free_array(ppNumber);
+
     return(0);
 }
 
@@ -50,6 +52,12 @@ void display_array(int size, int* pNumber)
     {
         printf("%d ", *(pNumber + i));
     }
+}
+
+void free_array(int** ppNumber)
+{
+    free(*ppNumber);
+    *ppNumber = NULL;
 }
 
 /*
