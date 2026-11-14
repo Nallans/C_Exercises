@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 bool allocate_array(int size, int** ppNumber);
-void fill_array(int size, int** ppNumber);
+void fill_array(int size, int* pNumber);
 void display_array(int size, int* pNumber);
 void free_array(int** ppNumber);
 
@@ -15,7 +15,7 @@ int main(void)
     
     if(allocate_array(size, ppNumber))
     {
-        fill_array(size, ppNumber);
+        fill_array(size, pNumber);
         display_array(size, pNumber);
         free_array(ppNumber);
         
@@ -43,12 +43,12 @@ bool allocate_array(int size, int** ppNumber)
     }
 }
 
-void fill_array(int size, int** ppNumber)
+void fill_array(int size, int* pNumber)
 {
     for(int i = 0; i < size; i++)
     {
         printf("What is number %d ? ", i + 1);
-        scanf(" %d", (*ppNumber + i));
+        scanf(" %d", (pNumber + i));
     }
 }
 
@@ -90,4 +90,11 @@ Answer : Then we would have a copy of the same address stored in another pointer
 Answer : To properly free an allocation, we must then set the variables that referred to the address to NULL to remove any risk of segmentation fault. Because if we access the same variable after freeing but it was not replaced by the processor and still contains the old address, then you're calling something that possibly doesn't exist anymore and risk a segmentation fault.
 
 Improvement challenge: Modify your design so that the cleanup function receives a pointer to the pointer and sets the caller's pointer to NULL after freeing it.
+
+Final improvement challenge :
+Does fill_array() actually need to modify the caller's pointer variable?
+Or does it only need access to the allocated integers?
+Change its parameter type accordingly, update its implementation, and explain why the new type is sufficient.
+
+Explanation : It makes more sense to use a pointer because we only need to access the values. It doesn't impact anything that this is local to the function, because we only access values through it. So we don't need another level of pointer, adding it would be adding a layer of complexity for nothing.
 */
