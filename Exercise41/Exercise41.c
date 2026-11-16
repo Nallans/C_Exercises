@@ -2,13 +2,18 @@
 #include <stdlib.h>
 
 void get_string(char* sentence);
+int count_string(char* sentence);
 
 int main(void)
 {
     char sentence[50];
+    int length;
 
     get_string(sentence);
-    printf("%s\n", sentence);
+    length = count_string(sentence);
+    printf( "%s\n"
+            "Length = %d\n", 
+            sentence, length);
 
     return(0);
 }
@@ -17,7 +22,18 @@ void get_string(char* sentence)
 {
     printf("Give a word or sentence please\n");
     scanf(" %49[^\n]", sentence);
-} 
+}
+
+int count_string(char* sentence)
+{
+    int count = 0;
+
+    while(sentence[count] != '\0')
+    {
+        count++;
+    }
+    return count + 1; // Adding space for terminating string
+}
 
 /*
 Exercise 41 — Dynamically Allocated Strings
