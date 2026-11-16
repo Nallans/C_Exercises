@@ -1,3 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void get_string(char* sentence);
+
+int main(void)
+{
+    char sentence[50];
+
+    get_string(sentence);
+    printf("%s\n", sentence);
+
+    return(0);
+}
+
+void get_string(char* sentence)
+{
+    printf("Give a word or sentence please\n");
+    scanf(" %49[^\n]", sentence);
+} 
+
 /*
 Exercise 41 — Dynamically Allocated Strings
 Objective: Learn to allocate memory for strings based on their actual length.
