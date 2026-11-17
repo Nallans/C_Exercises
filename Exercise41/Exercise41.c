@@ -3,17 +3,21 @@
 
 void get_string(char* sentence);
 int count_string(char* sentence);
+void allocate(int size, char** ppNewSentence);
 
 int main(void)
 {
     char sentence[50];
-    int length;
+    char* pNewSentence;
+    char** ppNewSentence = &pNewSentence;
+    int size;
 
     get_string(sentence);
-    length = count_string(sentence);
+    size = count_string(sentence);
     printf( "%s\n"
             "Length = %d\n", 
-            sentence, length);
+            sentence, size);
+    allocate(size, ppNewSentence);
 
     return(0);
 }
@@ -33,6 +37,20 @@ int count_string(char* sentence)
         count++;
     }
     return count + 1; // Adding space for terminating string
+}
+
+void allocate(int size, char** ppNewSentence)
+{
+    *ppNewSentence = malloc(size * sizeof(char));
+
+    if(*ppNewSentence == NULL)
+    {
+        printf("Memory allocation failed :/\n");
+    }
+    else
+    {
+        printf("Memory allocation successful :D\n");
+    }
 }
 
 /*
