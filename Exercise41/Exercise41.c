@@ -4,6 +4,7 @@
 void get_string(char* sentence);
 int count_string(char* sentence);
 void allocate(int size, char** ppNewSentence);
+void string_copy(char* word1, char* word2);
 
 int main(void)
 {
@@ -14,10 +15,10 @@ int main(void)
 
     get_string(sentence);
     size = count_string(sentence);
-    printf( "%s\n"
-            "Length = %d\n", 
-            sentence, size);
+    printf( "Length = %d characters\n", 
+            size);
     allocate(size, ppNewSentence);
+    string_copy(sentence, pNewSentence);
 
     return(0);
 }
@@ -51,6 +52,22 @@ void allocate(int size, char** ppNewSentence)
     {
         printf("Memory allocation successful :D\n");
     }
+}
+
+void string_copy(char* word1, char* word2)
+{
+    int i = 0;
+
+    while(word1[i] != '\0')
+    {
+        word2[i] = word1[i];
+        i++;
+    }    
+    word2[i] = '\0';
+
+    printf( "Original string : %s\n"
+            "Copied string to allocated memory : %s\n",
+            word1, word2);
 }
 
 /*
