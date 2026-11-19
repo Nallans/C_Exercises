@@ -16,17 +16,27 @@ int main(void)
     int size;
 
     get_string(sentence);
+
     size = count_string(sentence);
     printf( "Length = %d characters\n", 
             size);
+
     if(allocate(size, ppNewSentence))
     {
         string_copy(sentence, pNewSentence);
         display_string(pNewSentence);
+
+        free(pNewSentence);
+        pNewSentence = NULL;
+
         return(0);
     }
+
     else
     {
+        free(pNewSentence);
+        pNewSentence = NULL;
+
         return(1);
     }
 }
@@ -45,6 +55,7 @@ int count_string(char* sentence)
     {
         count++;
     }
+
     return count + 1; // Adding space for terminating string
 }
 
@@ -57,6 +68,7 @@ bool allocate(int size, char** ppNewSentence)
         printf("Memory allocation failed :/\n");
         return false;
     }
+
     else
     {
         printf("Memory allocation successful :D\n");
@@ -73,7 +85,8 @@ void string_copy(char* word1, char* word2)
         word2[i] = word1[i];
         i++;
     }    
-    word2[i] = '\0';
+
+    word2[i] = '\0'; // Adding terminating character to end properly
 }
 
 void display_string(char* pNewSentence)
