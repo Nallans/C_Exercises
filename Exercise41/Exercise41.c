@@ -1,9 +1,10 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 void get_string(char* sentence);
 int count_string(char* sentence);
-void allocate(int size, char** ppNewSentence);
+bool allocate(int size, char** ppNewSentence);
 void string_copy(char* word1, char* word2);
 void display_string(char* pNewSentence);
 
@@ -18,11 +19,16 @@ int main(void)
     size = count_string(sentence);
     printf( "Length = %d characters\n", 
             size);
-    allocate(size, ppNewSentence);
-    string_copy(sentence, pNewSentence);
-    display_string(pNewSentence);
-
-    return(0);
+    if(allocate(size, ppNewSentence))
+    {
+        string_copy(sentence, pNewSentence);
+        display_string(pNewSentence);
+        return(0);
+    }
+    else
+    {
+        return(1);
+    }
 }
 
 void get_string(char* sentence)
@@ -42,17 +48,19 @@ int count_string(char* sentence)
     return count + 1; // Adding space for terminating string
 }
 
-void allocate(int size, char** ppNewSentence)
+bool allocate(int size, char** ppNewSentence)
 {
     *ppNewSentence = malloc(size * sizeof(char));
 
     if(*ppNewSentence == NULL)
     {
         printf("Memory allocation failed :/\n");
+        return false;
     }
     else
     {
         printf("Memory allocation successful :D\n");
+        return true;
     }
 }
 
@@ -66,10 +74,6 @@ void string_copy(char* word1, char* word2)
         i++;
     }    
     word2[i] = '\0';
-
-    printf( "Original string : %s\n"
-            "Copied string to allocated memory : %s\n",
-            word1, word2);
 }
 
 void display_string(char* pNewSentence)
