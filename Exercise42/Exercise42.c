@@ -2,14 +2,18 @@
 #include <stdlib.h>
 
 void get_string(char* string);
+int count_string(char* string);
 
 int main(void)
 {
     char string[50];
+    int size;
     // char* pString = string;
     // char** ppString = &pString;
 
     get_string(string);
+    size = count_string(string);
+    printf("Size of string : %d\n", size);
 
     return(0);
 }
@@ -19,6 +23,18 @@ void get_string(char* string)
     printf("Give me a string of letters :\n");
     scanf("%49[^\n]", string);
     printf("%s\n", string);
+}
+
+int count_string(char* string)
+{
+    int count = 0;
+
+    while(string[count] != '\0')
+    {
+        count++;
+    }
+
+    return count + 1; // Adding last space for terminating character
 }
 
 /*
