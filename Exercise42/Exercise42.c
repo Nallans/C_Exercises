@@ -1,19 +1,22 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 void get_string(char* string);
 int count_string(char* string);
+bool allocate(int size, char** ppString);
 
 int main(void)
 {
     char string[50];
     int size;
-    // char* pString = string;
-    // char** ppString = &pString;
+    char* pString; 
+    char** ppString = &pString;
 
     get_string(string);
     size = count_string(string);
     printf("Size of string : %d\n", size);
+    allocate(size, ppString);
 
     return(0);
 }
@@ -35,6 +38,22 @@ int count_string(char* string)
     }
 
     return count + 1; // Adding last space for terminating character
+}
+
+bool allocate(int size, char** ppString)
+{
+    *ppString = malloc(size * sizeof(char));
+
+    if(*ppString == NULL)
+    {
+        printf("Memory allocation failed :/\n");
+        return false;
+    }
+    else
+    {
+        printf("Memory allocation successful ! :D\n");
+        return true;
+    }
 }
 
 /*
