@@ -1,24 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void get_string(char** ppString);
+void get_string(char* string);
 
 int main(void)
 {
     char string[50];
-    char* pString = string;
-    char** ppString = &pString;
+    // char* pString = string;
+    // char** ppString = &pString;
 
-    get_string(ppString);
+    get_string(string);
 
     return(0);
 }
 
-void get_string(char** ppString)
+void get_string(char* string)
 {
     printf("Give me a string of letters :\n");
-    scanf("%49[^\n]", *ppString);
-    printf("%s\n", *ppString);
+    scanf("%49[^\n]", string);
+    printf("%s\n", string);
 }
 
 /*
