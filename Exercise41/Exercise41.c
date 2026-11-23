@@ -110,5 +110,12 @@ Constraints:
 - Don't allocate a fixed-size array for the final string.
 - Use malloc().
 - Handle allocation failure.
-The input mechanism can use a temporary buffer.
+The input mechanism can use a temporary buffer. 
+
+Improvement challenge — Exercise 41
+Your current program works with strings up to the capacity of your temporary buffer.
+
+Now, make get_string() report whether it successfully received input, and have main() handle that result before attempting to count or allocate the string.
+
+The goal is to practise handling input failure separately from memory-allocation failure.
 */
