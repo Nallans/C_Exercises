@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void get_string(char* sentence);
+bool get_string(char* sentence);
 int count_string(char* sentence);
 bool allocate(int size, char** ppNewSentence);
 void string_copy(char* word1, char* word2);
@@ -15,36 +15,63 @@ int main(void)
     char** ppNewSentence = &pNewSentence;
     int size;
 
-    get_string(sentence);
-
-    size = count_string(sentence);
-    printf( "Length = %d characters\n", 
-            size);
-
-    if(allocate(size, ppNewSentence))
+    if(get_string(sentence))
     {
-        string_copy(sentence, pNewSentence);
-        display_string(pNewSentence);
 
-        free(pNewSentence);
-        pNewSentence = NULL;
+        size = count_string(sentence);
+        printf( "Length = %d characters\n", 
+                size);
 
-        return(0);
+        if(allocate(size, ppNewSentence))
+        {
+            string_copy(sentence, pNewSentence);
+            display_string(pNewSentence);
+
+            free(pNewSentence);
+            pNewSentence = NULL;
+
+            return(0);
+        }
+
+        else
+        {
+            free(pNewSentence);
+            pNewSentence = NULL;
+
+            return(1);
+        }
     }
-
     else
     {
-        free(pNewSentence);
-        pNewSentence = NULL;
-
+        printf("Sorry, letters only ! Try again !\n");
         return(1);
     }
 }
 
-void get_string(char* sentence)
+bool get_string(char* sentence)
 {
+    int i = 0;
+    bool is_correct = true;
+
     printf("Give a word or sentence please\n");
     scanf(" %49[^\n]", sentence);
+
+    while(sentence[i] != '\0')
+    {
+        if( (sentence[i] > 64 && sentence[i] < 91) ||
+            (sentence[i] > 96 && sentence[i] < 123) ||
+            (sentence[i] == 32))
+        {
+            i++;
+        }
+        else
+        {
+            is_correct = false;
+            return is_correct;
+        }
+    }
+    
+        return is_correct;
 }
 
 int count_string(char* sentence)
