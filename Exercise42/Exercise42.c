@@ -22,6 +22,9 @@ int main(void)
     string_copy(string, *ppString);
     printf("New copied string : %s\n", *ppString);
 
+    free(*ppString);
+    *ppString = NULL;
+
     return(0);
 }
 
