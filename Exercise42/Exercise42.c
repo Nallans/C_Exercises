@@ -5,10 +5,12 @@
 void get_string(char* string);
 int count_string(char* string);
 bool allocate(int size, char** ppString);
+void string_copy(char* word1, char* word2);
 
 int main(void)
 {
     char string[50];
+    char string_test[50];
     int size;
     char* pString; 
     char** ppString = &pString;
@@ -17,6 +19,8 @@ int main(void)
     size = count_string(string);
     printf("Size of string : %d\n", size);
     allocate(size, ppString);
+    string_copy(string, string_test);
+    printf("New copied string : %s\n", string_test);
 
     return(0);
 }
@@ -25,7 +29,6 @@ void get_string(char* string)
 {
     printf("Give me a string of letters :\n");
     scanf("%49[^\n]", string);
-    printf("%s\n", string);
 }
 
 int count_string(char* string)
@@ -54,6 +57,19 @@ bool allocate(int size, char** ppString)
         printf("Memory allocation successful ! :D\n");
         return true;
     }
+}
+
+void string_copy(char* word1, char* word2)
+{
+    int i = 0;
+
+    while(word1[i] != '\0')
+    {
+        word2[i] = word1[i];
+        i++;
+    }
+
+    word2[i] = '\0';
 }
 
 /*
