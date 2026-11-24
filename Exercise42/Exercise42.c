@@ -10,7 +10,7 @@ void string_copy(char* word1, char* word2);
 int main(void)
 {
     char string[50];
-    char string_test[50];
+    // char string_test[50];
     int size;
     char* pString; 
     char** ppString = &pString;
@@ -19,8 +19,8 @@ int main(void)
     size = count_string(string);
     printf("Size of string : %d\n", size);
     allocate(size, ppString);
-    string_copy(string, string_test);
-    printf("New copied string : %s\n", string_test);
+    string_copy(string, *ppString);
+    printf("New copied string : %s\n", *ppString);
 
     return(0);
 }
