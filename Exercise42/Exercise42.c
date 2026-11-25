@@ -2,77 +2,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void get_string(char* string);
-int count_string(char* string);
-bool allocate(int size, char** ppString);
-void string_copy(char* word1, char* word2);
+char* create_string(void);
 
 int main(void)
 {
+    create_string();
+
+    return(0); 
+}
+
+char* create_string(void)
+{
     char string[50];
-    // char string_test[50];
-    int size;
-    char* pString; 
-    char** ppString = &pString;
+    char* pString = string;
 
-    get_string(string);
-    size = count_string(string);
-    printf("Size of string : %d\n", size);
-    allocate(size, ppString);
-    string_copy(string, *ppString);
-    printf("New copied string : %s\n", *ppString);
+    printf("Give a string : ");
+    scanf(" %49[^\n]", string);
+    printf("Your string is \"%s\"\n", string);
 
-    free(*ppString);
-    *ppString = NULL;
-
-    return(0);
-}
-
-void get_string(char* string)
-{
-    printf("Give me a string of letters :\n");
-    scanf("%49[^\n]", string);
-}
-
-int count_string(char* string)
-{
-    int count = 0;
-
-    while(string[count] != '\0')
-    {
-        count++;
-    }
-
-    return count + 1; // Adding last space for terminating character
-}
-
-bool allocate(int size, char** ppString)
-{
-    *ppString = malloc(size * sizeof(char));
-
-    if(*ppString == NULL)
-    {
-        printf("Memory allocation failed :/\n");
-        return false;
-    }
-    else
-    {
-        printf("Memory allocation successful ! :D\n");
-        return true;
-    }
-}
-
-void string_copy(char* word1, char* word2)
-{
-    int i = 0;
-
-    while(word1[i] != '\0')
-    {
-        word2[i] = word1[i];
-        i++;
-    }
-
-    word2[i] = '\0';
+    return pString;
 }
 
 /*
