@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 char* create_string(void);
+int count_string(char* word);
 
 int main(void)
 {
@@ -15,12 +16,27 @@ char* create_string(void)
 {
     char string[50];
     char* pString = string;
+    int size;
 
     printf("Give a string : ");
     scanf(" %49[^\n]", string);
     printf("Your string is \"%s\"\n", string);
+    size = count_string(string);    
+    printf("The size of your string is %d\n", size);
 
     return pString;
+}
+
+int count_string(char* word)
+{
+    int count = 0;
+
+    while(word[count] != '\0')
+    {
+        count++;
+    }
+    
+    return count + 1;
 }
 
 /*
