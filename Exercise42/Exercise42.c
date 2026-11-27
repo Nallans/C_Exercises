@@ -5,6 +5,7 @@
 char* create_string(void);
 int count_string(char* word);
 void allocate(int size, char** ppString);
+void string_copy(char* word1, char* word2);
 
 int main(void)
 {
@@ -54,6 +55,19 @@ void allocate(int size, char** ppString)
     {
         printf("Memory allocation successful ! :D\n");
     }
+}
+
+void string_copy(char* word1, char* word2)
+{
+    int count = 0;
+
+    while(word1[count] != '\0')
+    {
+        word2[count] = word1[count];
+        count++;
+    }
+
+    word2[count] = '\0';
 }
 
 /*
