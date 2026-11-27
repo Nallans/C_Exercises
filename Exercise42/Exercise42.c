@@ -27,6 +27,8 @@ char* create_string(void)
     size = count_string(string);    
     printf("The size of your string is %d\n", size);
     allocate(size, ppString);
+    string_copy(string, *ppString);
+    printf("The newly allocated string is \"%s\"\n", *ppString);
 
     return pString;
 }
