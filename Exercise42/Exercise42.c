@@ -4,6 +4,7 @@
 
 char* create_string(void);
 int count_string(char* word);
+void allocate(int size, char** ppString);
 
 int main(void)
 {
@@ -16,6 +17,7 @@ char* create_string(void)
 {
     char string[50];
     char* pString = string;
+    char** ppString = &pString;
     int size;
 
     printf("Give a string : ");
@@ -23,6 +25,7 @@ char* create_string(void)
     printf("Your string is \"%s\"\n", string);
     size = count_string(string);    
     printf("The size of your string is %d\n", size);
+    allocate(size, ppString);
 
     return pString;
 }
@@ -37,6 +40,20 @@ int count_string(char* word)
     }
     
     return count + 1;
+}
+
+void allocate(int size, char** ppString)
+{
+    *ppString = (char*)malloc(size * sizeof(char));
+
+    if(*ppString == NULL)
+    {
+        printf("Memory allocation failed :/\n");
+    }
+    else
+    {
+        printf("Memory allocation successful ! :D\n");
+    }
 }
 
 /*
